@@ -34,12 +34,12 @@ vim.bo.autoread = true
 -- auto completion
 vim.o.wildmenu = true
 
--- theme
-require('zephyr')
-
 -- plugins
 require('plugins')
 local keyset = vim.keymap.set
+
+-- theme
+require('zephyr')
 
 -- Terminal
 -- vim.g.terminal_key = "<S-T>"
