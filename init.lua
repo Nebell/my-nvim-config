@@ -39,7 +39,7 @@ require('plugins')
 local keyset = vim.keymap.set
 
 -- theme
-require('zephyr')
+require('theme')
 
 -- Terminal
 -- vim.g.terminal_key = "<S-T>"
@@ -69,21 +69,13 @@ keyset("n", "<S-TAB>", "<<")
 keyset("i", "<S-TAB>", "<Esc><<i")
 keyset("v", "<TAB>", ">")
 keyset("v", "<S-TAB>", "<")
--- tabs
-keyset("n", "<A-Left>", "gt")
-keyset("n", "<A-Right>", "gT")
-
--- rainbow parenthese
-vim.g.rainbow_active = 1
-vim.g.rainbow_conf = {
-    -- gui color
-    guifgs = { 'white', 'lightskyblue', 'darkcyan', 'peachpuff', 'sandybrown' }
-}
 
 -- nvim-tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-require("nvim-tree").setup()
+require("nvim-tree").setup({
+    open_on_setup = true,
+})
 keyset("n", "<C-G>", "<ESC>:NvimTreeToggle<CR>", {silent = true})
 keyset("i", "<C-G>", "<ESC>:NvimTreeToggle<CR>i", {silent = true})
 keyset("n", "<Leader>loc", "<ESC>:NvimTreeFindFile<CR>", {silent = true})
@@ -91,13 +83,31 @@ keyset("i", "<Leader>loc", "<ESC>:NvimTreeFindFile<CR>i", {silent = true})
 
 -- buffer line
 vim.opt.termguicolors = true
-require("bufferline").setup{}
+require("bufferline").setup{
+    options = {
+        diagnostics = {"coc" , "nvim_lsp"},
+        offsets = {{
+            filetype = "NvimTree",
+            text = "File Explorer",
+            highlight = "Directory",
+            text_align = "left"
+        }}
+    }
+}
+keyset({ "n", "v", "i" }, "<A-Left>", "<cmd>BufferLineCyclePrev<CR>", {silent = true})
+keyset({ "n", "v", "i" }, "<A-Right>", "<cmd>BufferLineCycleNext<CR>", {silent = true})
+keyset({ "n", "v", "i" }, "<A-H>", "<cmd>BufferLineCyclePrev<CR>", {silent = true})
+keyset({ "n", "v", "i" }, "<A-L>", "<cmd>BufferLineCycleNext<CR>", {silent = true})
 
 -- fuzzy search
 vim.g.Lf_WindowPosition = 'popup'
 vim.g.Lf_ShortcutF = '<C-P>'
 vim.g.Lf_GtagsAutoGenerate = 0
-keyset("n", "<Leader>fl", ':<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>', {silent = true} )
 keyset("n", "<C-F>", ':<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>', {silent = true} )
+keyset("n", "<Leader>fl", ':<C-U><C-R>=printf("Leaderf! line %s", "")<CR><CR>', {silent = true} )
 keyset("n", "<Leader>fb", ':<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>', {silent = true} )
+keyset("n", "<Leader>f", ':<C-U><C-R>=printf("Leaderf self")<CR><CR>', {silent = true} )
 keyset("n", "<Leader>fs", ":CocList symbols<CR>", {silent = true})
+
+-- debug
+require('debug')

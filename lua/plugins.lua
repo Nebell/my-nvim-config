@@ -7,14 +7,9 @@ return require('packer').startup(function(use)
     use 'tpope/vim-surround'
     use 'itchyny/lightline.vim'
     use 'skywind3000/vim-terminal-help'
-    use({
-        'glepnir/zephyr-nvim',
-        requires = { 'nvim-treesitter/nvim-treesitter', opt = true },
-    })
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
-    }
+
+    -- theme
+    use ({ 'projekt0n/github-nvim-theme' })
 
     -- rainbow parenthese
     use 'luochen1990/rainbow'
@@ -34,4 +29,7 @@ return require('packer').startup(function(use)
 
     -- float terminal
     use 'voldikss/vim-floaterm'
+
+    -- debug
+    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 end)
