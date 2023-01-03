@@ -31,5 +31,5 @@ return require('packer').startup(function(use)
     use 'voldikss/vim-floaterm'
 
     -- debug
-    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+    use "puremourning/vimspector"
 end)
