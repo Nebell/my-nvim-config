@@ -30,8 +30,6 @@ keyset("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
 -- <C-g>u breaks current undo, please make your own choice
 keyset("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
 
--- Use <c-j> to trigger snippets
-keyset("i", "<c-j>", "<Plug>(coc-snippets-expand-jump)")
 -- Use <c-space> to trigger completion
 keyset("i", "<c-space>", "coc#refresh()", {silent = true, expr = true})
 
@@ -60,6 +58,16 @@ function _G.show_docs()
 end
 keyset("n", "K", '<CMD>lua _G.show_docs()<CR>', {silent = true})
 
+-- Remap <C-J> and <C-K> to scroll float windows/popups
+---@diagnostic disable-next-line: redefined-local
+local opts = {silent = true, nowait = true, expr = true}
+--- scroll if something float, otherwise jump 15 lines
+keyset("n", "<C-J>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "15j"', opts)
+keyset("n", "<C-K>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "15k"', opts)
+keyset("i", "<C-J>", 'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<Right>"', opts)
+keyset("i", "<C-K>", 'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<Left>"', opts)
+keyset("v", "<C-J>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-J>"', opts)
+keyset("v", "<C-K>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-K>"', opts)
 
 -- Highlight the symbol and its references on a CursorHold event(cursor is idle)
 vim.api.nvim_create_augroup("CocGroup", {})
@@ -74,9 +82,8 @@ vim.api.nvim_create_autocmd("CursorHold", {
 keyset("n", "<leader>rn", "<Plug>(coc-rename)", {silent = true})
 
 
--- Formatting selected code
-keyset("x", "<leader>f", "<Plug>(coc-format-selected)", {silent = true})
-keyset("n", "<leader>f", "<Plug>(coc-format-selected)", {silent = true})
+-- Formatting 
+keyset({"n", "v"}, "<Space>f", "<CMD>call CocActionAsync('format')<CR>", {silent = true})
 
 -- Mappings for CoCList
 -- code actions and coc stuff
@@ -87,9 +94,9 @@ keyset("n", "<leader>a", ":<C-u>CocList diagnostics<cr>", opts)
 -- Show commands
 keyset("n", "<leader>c", ":<C-u>CocList commands<cr>", opts)
 -- Find symbol of current document
-keyset("n", "<leader>o", ":<C-u>CocList outline<cr>", opts)
+keyset("n", "<C-O>", ":<C-u>CocList outline<cr>", opts)
 -- Search workleader symbols
-keyset("n", "<leader>s", ":<C-u>CocList -I symbols<cr>", opts)
+keyset("n", "<C-S>", ":<C-u>CocList -I symbols<cr>", opts)
 -- Do default action for next item
 keyset("n", "<leader>j", ":<C-u>CocNext<cr>", opts)
 -- Do default action for previous item
