@@ -7,7 +7,7 @@ return require('packer').startup(function(use)
     use 'itchyny/lightline.vim' -- status bar
 
     -- coc.nvim
-    use {'neoclide/coc.nvim', branch = 'release', config = function() end }
+    use {'neoclide/coc.nvim', branch = 'release' }
 
     -- theme
     use ({ 'projekt0n/github-nvim-theme' })
@@ -27,7 +27,13 @@ return require('packer').startup(function(use)
 
     -- fuzzy search
     -- use {'Yggdroot/LeaderF', run = ':LeaderfInstallCExtension'}
-    use {'ibhagwan/fzf-lua', requires = 'junegunn/fzf'}
+    -- use {'ibhagwan/fzf-lua', requires = 'junegunn/fzf'}
+    use {'nvim-telescope/telescope.nvim', tag = '0.1.0',
+        requires = { 'nvim-lua/plenary.nvim' }
+    }
+
+    -- git diff
+    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
     -- terminal 
     use 'voldikss/vim-floaterm'  -- float terminal
@@ -41,4 +47,13 @@ return require('packer').startup(function(use)
 
     -- motion
     use 'ggandor/leap.nvim'
+
+    -- symbol outline
+    use {'liuchengxu/vista.vim'}
+
+    -- git signs for buffer
+    use {
+        'lewis6991/gitsigns.nvim',
+        config = function() require('gitsigns').setup() end,
+    }
 end)

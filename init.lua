@@ -65,7 +65,8 @@ keyset("n", "<A-UP>", "ddkP")
 keyset("n", "<C-UP>", "15k")
 keyset("n", "<C-DOWN>", "15j")
 --- indent
-keyset("n", "<TAB>", ">>")
+-- Ctrl-I will act as <Tab>: https://github.com/neovim/neovim/issues/5916
+-- keyset("n", "<TAB>", ">>") 
 keyset("n", "<S-TAB>", "<<")
 keyset("v", "<TAB>", ">")
 keyset("v", "<S-TAB>", "<")
@@ -75,10 +76,12 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 require("nvim-tree").setup({
     open_on_setup = true,
+    view = {
+        width = 23,
+    }
 })
 keyset({ "n", "i", "v" }, "<C-G>", "<CMD>NvimTreeToggle<CR>", {silent = true})
-keyset("n", "<Leader>loc", "<ESC>:NvimTreeFindFile<CR>", {silent = true})
-keyset("i", "<Leader>loc", "<ESC>:NvimTreeFindFile<CR>i", {silent = true})
+keyset({ "n", "i", "v" }, "<Leader>loc", "<CMD>NvimTreeFindFile<CR>", {silent = true})
 
 -- buffer line
 vim.opt.termguicolors = true
@@ -108,20 +111,17 @@ require("bufferline").setup{
 }
 keyset({ "n", "v", "i" }, "<A-Left>", "<cmd>BufferLineCyclePrev<CR>", {silent = true})
 keyset({ "n", "v", "i" }, "<A-Right>", "<cmd>BufferLineCycleNext<CR>", {silent = true})
-keyset({ "n", "v", "i" }, "<A-H>", "<cmd>BufferLineCyclePrev<CR>", {silent = true})
-keyset({ "n", "v", "i" }, "<A-L>", "<cmd>BufferLineCycleNext<CR>", {silent = true})
+keyset({ "n", "v", "i" }, "<C-H>", "<cmd>BufferLineCyclePrev<CR>", {silent = true})
+keyset({ "n", "v", "i" }, "<C-L>", "<cmd>BufferLineCycleNext<CR>", {silent = true})
 
 -- fuzzy search
-local fzf = require("fzf-lua")
-local fzf_opts = {noremap = true, silent = true}
-keyset({ "n", "v", "i" }, "<C-P>", function() fzf.files() end, fzf_opts)
-keyset({ "n", "v", "i" }, "<C-F>", function() fzf.blines() end, fzf_opts)
-keyset({ "n", "v" }, "<Leader>fzf", function() fzf.builtin() end, fzf_opts)
-
--- debug
-require('debug')
+require('fuzzy')
 
 -- motion
 require('leap')
 keyset({"n"}, "z", "<Plug>(leap-forward-to)")
 keyset({"n"}, "Z", "<Plug>(leap-backward-to)")
+
+-- symbols outline
+vim.g.vista_default_executive = 'coc'
+keyset({ "n", "i", "v" }, "<C-S>", "<CMD>Vista!!<CR>", {silent = true})
