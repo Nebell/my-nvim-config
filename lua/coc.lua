@@ -104,9 +104,9 @@ keyset({ "v", "x" }, "<Space>f", "<Plug>(coc-format-selected)", { silent = true 
 ---@diagnostic disable-next-line: redefined-local
 local opts = { silent = true, nowait = true }
 -- Show all diagnostics
-keyset("n", "<C-K><C-D>", ":<C-u>CocList diagnostics<cr>", opts)
+keyset("n", "<C-C><C-D>", ":<C-u>CocList diagnostics<cr>", opts)
 -- Find symbol of current document
-keyset("n", "<C-K><C-S>", ":<C-u>CocList outline<cr>", opts)
+keyset("n", "<C-C><C-S>", ":<C-u>CocList outline<cr>", opts)
 -- Search workleader symbols
 -- keyset("n", "<C-S>", ":<C-u>CocList -I symbols<cr>", opts)
 
