@@ -79,6 +79,7 @@ require("nvim-tree").setup({
         width = 23,
     }
 })
+
 keyset({ "n", "i", "v" }, "<C-G>", "<CMD>NvimTreeToggle<CR>", {silent = true})
 keyset({ "n", "i", "v" }, "<Leader>loc", "<CMD>NvimTreeFindFile<CR>", {silent = true})
 
