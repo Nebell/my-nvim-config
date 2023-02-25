@@ -90,9 +90,9 @@ require("bufferline").setup{
             text_align = "left"
         }},
         close_command = "bdelete! %d",       
-        right_mouse_command = "bdelete! %d", 
+        right_mouse_command = "bnext! | bdelete! %d", 
         left_mouse_command = "buffer %d",   
-        middle_mouse_command = "bdelete! %d",
+        middle_mouse_command = "bnext! | bdelete! %d",
         always_show_bufferline = true, 
         hover = {
             enabled = true,
