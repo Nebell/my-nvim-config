@@ -80,19 +80,20 @@ keyset({ "n", "i", "v" }, "<Leader>loc", "<CMD>NvimTreeFindFile<CR>", {silent = 
 
 -- buffer line
 vim.opt.termguicolors = true
+local bufclose = function(bufnum) require('bufdelete').bufdelete(bufnum, true) end
 require("bufferline").setup{
     options = {
         diagnostics = {"coc" , "nvim_lsp"},
         offsets = {{
             filetype = "NvimTree",
-            text = "File Explorer",
+            text = function() return vim.fn.getcwd() end,
             highlight = "Directory",
             text_align = "left"
         }},
-        close_command = "bdelete! %d",       
-        right_mouse_command = "bnext! | bdelete! %d", 
+        close_command = bufclose, 
+        right_mouse_command = bufclose, 
         left_mouse_command = "buffer %d",   
-        middle_mouse_command = "bnext! | bdelete! %d",
+        middle_mouse_command = bufclose,
         always_show_bufferline = true, 
         hover = {
             enabled = true,

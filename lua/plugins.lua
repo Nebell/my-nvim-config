@@ -18,7 +18,10 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup({function(use)
     use 'wbthomason/packer.nvim'
     use 'tpope/vim-commentary' -- commentary
-    use 'tpope/vim-surround' -- surround e.g. () []
+    use({
+        "kylechui/nvim-surround", tag = "*",
+        config = function() require("nvim-surround").setup() end,
+    })
     -- use 'itchyny/lightline.vim' -- status bar
     use { 'nvim-lualine/lualine.nvim' }
 
@@ -48,7 +51,12 @@ return require('packer').startup({function(use)
         end,
     }
 
-    use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
+    use {'akinsho/bufferline.nvim', tag = "v3.*", 
+        requires = { 
+            'nvim-tree/nvim-web-devicons',
+            'famiu/bufdelete.nvim',     -- delete a buffer without mess up the layout
+        }
+    }
 
     -- fuzzy search
     -- use {'Yggdroot/LeaderF', run = ':LeaderfInstallCExtension'}
