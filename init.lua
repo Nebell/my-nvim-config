@@ -113,9 +113,9 @@ keyset({ "n", "v", "i" }, "<C-L>", "<cmd>BufferLineCycleNext<CR>", {silent = tru
 require('fuzzy')
 
 -- motion
-require('leap')
-keyset({"n"}, "z", "<Plug>(leap-forward-to)")
-keyset({"n"}, "Z", "<Plug>(leap-backward-to)")
+-- require('leap')
+keyset({"n"}, "f", "<Plug>(leap-forward-to)")
+keyset({"n"}, "F", "<Plug>(leap-backward-to)")
 
 -- symbols outline
 vim.g.vista_default_executive = 'coc'
