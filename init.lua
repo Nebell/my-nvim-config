@@ -37,6 +37,9 @@ vim.o.wildmenu = true
 -- keymap before loading vimspector
 vim.g.vimspector_enable_mappings = 'VISUAL_STUDIO'
 
+-- disable python provider for reducing startup time
+vim.g.loaded_python3_provider = 0
+
 -- plugins
 require('plugins')
 local keyset = vim.keymap.set
@@ -80,38 +83,11 @@ keyset({ "n", "i", "v" }, "<Leader>loc", "<CMD>NvimTreeFindFile<CR>", {silent = 
 
 -- buffer line
 vim.opt.termguicolors = true
-local bufclose = function(bufnum) require('bufdelete').bufdelete(bufnum, true) end
-require("bufferline").setup{
-    options = {
-        diagnostics = {"coc" , "nvim_lsp"},
-        offsets = {{
-            filetype = "NvimTree",
-            text = function() return vim.fn.getcwd() end,
-            highlight = "Directory",
-            text_align = "left"
-        }},
-        close_command = bufclose, 
-        right_mouse_command = bufclose, 
-        left_mouse_command = "buffer %d",   
-        middle_mouse_command = bufclose,
-        always_show_bufferline = true, 
-        hover = {
-            enabled = true,
-            delay = 200,
-            reveal = {'close'}
-        },
-        indicator = {
-            style = "none"
-        }
-    }
-}
+
 keyset({ "n", "v", "i" }, "<A-Left>", "<cmd>BufferLineCyclePrev<CR>", {silent = true})
 keyset({ "n", "v", "i" }, "<A-Right>", "<cmd>BufferLineCycleNext<CR>", {silent = true})
 keyset({ "n", "v", "i" }, "<C-H>", "<cmd>BufferLineCyclePrev<CR>", {silent = true})
 keyset({ "n", "v", "i" }, "<C-L>", "<cmd>BufferLineCycleNext<CR>", {silent = true})
-
--- fuzzy search
-require('fuzzy')
 
 -- motion
 -- require('leap')
@@ -121,3 +97,9 @@ keyset({"n"}, "F", "<Plug>(leap-backward-to)")
 -- symbols outline
 vim.g.vista_default_executive = 'coc'
 keyset({ "n", "i", "v" }, "<C-S>", "<CMD>Vista!!<CR>", {silent = true})
+
+-- fuzzy
+--- telescope
+keyset({ "n", "v"}, "<Space>t", "<CMD>Telescope<CR>", {silent = true})
+keyset({ "n", "v", "i" }, "<C-P>", "<CMD>Telescope find_files<CR>", {silent = true})
+keyset({ "n", "v", "i" }, "<C-F>",  "<CMD>Telescope current_buffer_fuzzy_find<CR>", {silent = true})
