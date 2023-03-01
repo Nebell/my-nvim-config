@@ -12,6 +12,7 @@ end
 local packer_bootstrap = ensure_packer()
 local keyset = vim.keymap.set
 local util = require('packer.util')
+local theme = require('theme')
 
 vim.cmd [[packadd packer.nvim]]
 
@@ -23,19 +24,17 @@ return require('packer').startup({function(use)
         config = function() require("nvim-surround").setup() end,
         event = "BufReadPost",
     })
-    -- use 'itchyny/lightline.vim' -- status bar
-    use { 'nvim-lualine/lualine.nvim' }
-
+    -- status bar
+    use { 'nvim-lualine/lualine.nvim', event = 'UIEnter', config = theme.lualine_setup }
     -- coc.nvim
-    use {'neoclide/coc.nvim', branch = 'release',
-        event = "VimEnter",
-    }
+    -- use {'neoclide/coc.nvim', branch = 'release',
+    --     event = "VimEnter",
+    -- }
 
     -- theme
-    use ({ 'projekt0n/github-nvim-theme' })
-
+    use { 'projekt0n/github-nvim-theme', event = 'UIEnter', config = theme.github_setup }
     -- rainbow parenthese
-    use 'luochen1990/rainbow'
+    use { 'luochen1990/rainbow', event = "BufReadPre" }
 
     -- file explorer
     use {
@@ -44,51 +43,16 @@ return require('packer').startup({function(use)
         requires = {
             'nvim-tree/nvim-web-devicons', -- optional, for file icons
         },
-        config = function()
-            vim.g.loaded_netrw = 1
-            vim.g.loaded_netrwPlugin = 1
-            require("nvim-tree").setup({
-                view = {
-                    width = 23,
-                }
-            })
-        end,
-    }
+        config = theme.nvim_tree_setup }
 
     use {'akinsho/bufferline.nvim', tag = "v3.*", 
-        event = "VimEnter",
+        event = "BufReadPre",
         requires = { 
             'nvim-tree/nvim-web-devicons',
-            'famiu/bufdelete.nvim',     -- delete a buffer without mess up the layout
+            -- delete a buffer without mess up the layout
+            {'famiu/bufdelete.nvim', module = 'bufdelete'},
         },
-        config = function() 
-            local bufclose = function(bufnum) require('bufdelete').bufdelete(bufnum, true) end
-            require("bufferline").setup{
-                options = {
-                    diagnostics = {"coc" , "nvim_lsp"},
-                    offsets = {{
-                        filetype = "NvimTree",
-                        text = function() return vim.fn.getcwd() end,
-                        highlight = "Directory",
-                        text_align = "left"
-                    }},
-                    close_command = bufclose, 
-                    right_mouse_command = bufclose, 
-                    left_mouse_command = "buffer %d",   
-                    middle_mouse_command = bufclose,
-                    always_show_bufferline = true, 
-                    hover = {
-                        enabled = true,
-                        delay = 200,
-                        reveal = {'close'}
-                    },
-                    indicator = {
-                        style = "none"
-                    }
-                }
-            }
-        end
-    }
+        config = theme.bufferline_setup }
 
     -- fuzzy search
     use {'nvim-telescope/telescope.nvim', tag = '0.1.0',
@@ -122,28 +86,23 @@ return require('packer').startup({function(use)
     }
 
     -- git diff
-    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim', event = "BufReadPost" }
 
     -- terminal 
-    use { 'voldikss/vim-floaterm',
-        cmd = "FloatermToggle"
-    }  -- float terminal
+    use { 'voldikss/vim-floaterm', cmd = "FloatermToggle" }  -- float terminal
     -- use 'skywind3000/vim-terminal-help' -- terminal
 
     -- debug
     -- use 'puremourning/vimspector'
 
     -- function argument modifier
-    use 'vim-scripts/argtextobj.vim'
+    use { 'vim-scripts/argtextobj.vim', event = "BufReadPost" }
 
     -- motion
-    use { 'ggandor/leap.nvim', 
-        config = function() require('leap') end,
-        module = 'leap',
-    }
+    use { 'ggandor/leap.nvim', key = 'f', config = function() require('leap') end }
 
     -- symbol outline
-    use { 'liuchengxu/vista.vim' }
+    use { 'liuchengxu/vista.vim', cmd = "Vista!!" }
 
     -- git signs for buffer
     use {
