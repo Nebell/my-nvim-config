@@ -102,7 +102,7 @@ return require('packer').startup({function(use)
     use { 'ggandor/leap.nvim', key = 'f', config = function() require('leap') end }
 
     -- symbol outline
-    use { 'liuchengxu/vista.vim', cmd = "Vista!!" }
+    use { 'liuchengxu/vista.vim', event = "BufReadPost"}
 
     -- git signs for buffer
     use {
