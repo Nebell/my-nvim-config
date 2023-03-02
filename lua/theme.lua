@@ -1,5 +1,7 @@
 theme = {}
 
+utils = require('utils')
+
 -- github theme
 function theme.github_setup()
     require('github-theme').setup({
@@ -18,47 +20,50 @@ vim.g.rainbow_conf = {
 }
 
 -- lualine
-function theme.lualine_setup()
-    require('lualine').setup {
-      options = {
+lualine_config = {
+    options = {
         icons_enabled = true,
         theme = 'wombat',
         component_separators = { left = '', right = ''},
         section_separators = { left = '', right = ''},
         disabled_filetypes = {
-          statusline = { 'NvimTree', 'vista' },
-          winbar = { 'NvimTree', 'vista' },
+            statusline = { 'NvimTree', 'vista' },
+            winbar = { 'NvimTree', 'vista' },
         },
         ignore_focus = {},
         always_divide_middle = true,
         globalstatus = false,
         refresh = {
-          statusline = 1000,
-          tabline = 1000,
-          winbar = 1000,
+            statusline = 1000,
+            tabline = 1000,
+            winbar = 1000,
         }
-      },
-      sections = {
+    },
+    sections = {
         lualine_a = {'mode'},
         lualine_b = {'branch', 'diagnostics'},
         lualine_c = {'filename'},
         lualine_x = {'encoding', 'fileformat', 'filetype'},
         lualine_y = {},
         lualine_z = {'location'}
-      },
-      inactive_sections = {
+    },
+    inactive_sections = {
         lualine_a = {},
         lualine_b = {},
         lualine_c = {'filename'},
         lualine_x = {'location'},
         lualine_y = {},
         lualine_z = {}
-      },
-      tabline = {},
-      winbar = {},
-      inactive_winbar = {},
-      extensions = {}
-    }
+    },
+    tabline = {},
+    winbar = {},
+    inactive_winbar = {},
+    extensions = {}
+}
+function theme.lualine_setup()
+    utils.async_run(function()
+        require('lualine').setup(lualine_config)
+    end)
 end
 
 -- symbols outline
@@ -79,32 +84,35 @@ function theme.nvim_tree_setup()
 end
 
 -- bufferline
-local bufclose = function(bufnum) require('bufdelete').bufdelete(bufnum, true) end
-function theme.bufferline_setup() 
-    require("bufferline").setup{
-        options = {
-            diagnostics = {"coc" , "nvim_lsp"},
-            offsets = {{
-                filetype = "NvimTree",
-                text = function() return vim.fn.getcwd() end,
-                highlight = "Directory",
-                text_align = "left"
-            }},
-            close_command = bufclose, 
-            right_mouse_command = bufclose, 
-            left_mouse_command = "buffer %d",   
-            middle_mouse_command = bufclose,
-            always_show_bufferline = true, 
-            hover = {
-                enabled = true,
-                delay = 200,
-                reveal = {'close'}
-            },
-            indicator = {
-                style = "none"
-            }
+bufferline_config = {
+    options = {
+        diagnostics = {"coc" , "nvim_lsp"},
+        offsets = {{
+            filetype = "NvimTree",
+            text = function() return vim.fn.getcwd() end,
+            highlight = "Directory",
+            text_align = "left"
+        }},
+        close_command = bufclose, 
+        right_mouse_command = bufclose, 
+        left_mouse_command = "buffer %d",   
+        middle_mouse_command = bufclose,
+        always_show_bufferline = true, 
+        hover = {
+            enabled = true,
+            delay = 200,
+            reveal = {'close'}
+        },
+        indicator = {
+            style = "none"
         }
     }
+}
+local bufclose = function(bufnum) require('bufdelete').bufdelete(bufnum, true) end
+function theme.bufferline_setup() 
+    utils.async_run(function()
+        require("bufferline").setup(bufferline_config)
+    end)
 end
 
 return theme
