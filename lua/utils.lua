@@ -1,7 +1,8 @@
 M = {}
 
-function M.async_run(func)
+local function async_run(func)
     if type(func) ~= 'function' then
+        print('callback should be a function! but not '.. type(func) .. '!')
         return
     end
 
@@ -12,6 +13,13 @@ function M.async_run(func)
     end))
     async_task:send()
 
+end
+M.async_run = async_run
+
+function M.async(func)
+    return function()
+        async_task(func)
+    end
 end
 
 return M

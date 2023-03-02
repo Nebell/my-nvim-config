@@ -42,6 +42,7 @@ vim.g.vimspector_enable_mappings = 'VISUAL_STUDIO'
 vim.g.loaded_python3_provider = 0
 
 -- plugins
+utils = require('utils')
 require('plugins')
 local keyset = vim.keymap.set
 
