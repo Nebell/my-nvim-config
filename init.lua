@@ -56,9 +56,6 @@ keyset("i", "<C-T>", "<ESC>:FloatermToggle<CR>", {silent = true})
 keyset("n", "<C-T>", ":FloatermToggle<CR>", {silent = true})
 keyset("t", "<C-T>", "<C-\\><C-n>:FloatermToggle<CR>", {silent = true})
 
--- Coc
--- require('coc')
-
 -- Custom
 --- shift lines
 keyset("i", "<A-DOWN>", "<ESC>ddpi")
@@ -96,7 +93,7 @@ keyset({"n"}, "f", "<Plug>(leap-forward-to)")
 keyset({"n"}, "F", "<Plug>(leap-backward-to)")
 
 -- symbols outline
-vim.g.vista_default_executive = 'coc'
+vim.g.vista_default_executive = 'lsp'
 keyset({ "n", "i", "v" }, "<C-S>", "<CMD>Vista!!<CR>", {silent = true})
 
 -- fuzzy
