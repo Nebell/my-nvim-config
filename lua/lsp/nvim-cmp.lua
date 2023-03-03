@@ -2,6 +2,16 @@ M = {}
 
 function M.setup()
 
+    local has_words_before = function()
+        unpack = unpack or table.unpack
+        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+    end
+
+    local feedkey = function(key, mode)
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+    end
+
     local cmp = require 'cmp'
     cmp.setup({
         snippet = {
@@ -21,13 +31,12 @@ function M.setup()
             ['<C-Space>'] = cmp.mapping.complete(),
             ['<ESC>'] = cmp.mapping(function(fallback)
                 if cmp.visible() then
-                    cmp.mapping.abort()
+                    cmp.abort()
                 else
                     fallback()
                 end
-            end, {"i", "s", "c"}),
+            end, { "i", "s", "c" }),
             ['<CR>'] = cmp.mapping.confirm(),
-            ['<S-Tab>'] = cmp.mapping.select_prev_item(),
             ["<Tab>"] = cmp.mapping(function(fallback)
                 -- This little snippet will confirm with tab, and if no entry is selected,
                 -- will confirm the first item
@@ -38,6 +47,26 @@ function M.setup()
                     else
                         cmp.confirm()
                     end
+                else
+                    fallback()
+                end
+            end, { "i", "s", "c", }),
+
+            ['<C-K>'] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                    cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+                elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+                    feedkey("<Plug>(vsnip-jump-prev)", "")
+                else
+                    fallback()
+                end
+            end, { "i", "s", "c", }),
+
+            ['<C-J>'] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                elseif vim.fn["vsnip#available"](1) == 1 then
+                    feedkey("<Plug>(vsnip-expand-or-jump)", "")
                 else
                     fallback()
                 end
