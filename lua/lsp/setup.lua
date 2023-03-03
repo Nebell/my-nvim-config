@@ -48,10 +48,19 @@ function M.setup()
     require('lsp.keybinding').keybinding()
 
     local lsp = require('lspconfig')
+    -- local cmp = require('cmp_nvim_lsp')
+    local capabilities
+    if cmp ~= nil then
+        capabilities = cmp.default_capabilities()
+    end
     for srv, cfg in pairs(servers) do
         if cfg.on_attach == nil then
             cfg.on_attach = on_attach
         end
+
+        -- nvim-cmp
+        cfg.capabilities = capabilities
+
         if lsp[srv] ~= nil then
             lsp[srv].setup(cfg)
         end

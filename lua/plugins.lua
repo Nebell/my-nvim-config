@@ -20,7 +20,7 @@ return require('packer').startup({ function(use)
     use 'tpope/vim-commentary' -- commentary
     use({
         "kylechui/nvim-surround", tag = "*",
-        config = function() require('utils').async_run(require("nvim-surround").setup()) end,
+        config = function() require('utils').async_run(require("nvim-surround").setup) end,
         event = "BufReadPost",
     })
     -- status bar
@@ -62,7 +62,7 @@ return require('packer').startup({ function(use)
     use { 'nvim-telescope/telescope.nvim',
         requires = { 'nvim-lua/plenary.nvim' },
         cmd = "Telescope",
-        module = 'telescope.*',
+        module_pattern = 'telescope.*',
         config = function()
             -- fuzzy search
             local mapping = {
@@ -126,6 +126,15 @@ return require('packer').startup({ function(use)
     use { 'windwp/nvim-autopairs', event = "InsertEnter",
         config = function() require("nvim-autopairs").setup {} end
     }
+
+    -- autocompletion
+    use { 'hrsh7th/nvim-cmp', event = "UIEnter", config = "" }
+    -- nvim-cmp plugins, run after nvim-cmp
+    -- use {
+    --     'hrsh7th/cmp-nvim-lsp',
+    --     'hrsh7th/cmp-buffer',
+    --     'hrsh7th/cmp-path',
+    --     'hrsh7th/cmp-cmdline', }
 
     if packer_bootstrap then
         require('packer').sync()
