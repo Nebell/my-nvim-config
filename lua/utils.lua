@@ -16,10 +16,11 @@ local function async_run(func)
 end
 M.async_run = async_run
 
-function M.async(func)
+local function async(func)
     return function()
-        async_task(func)
+        async_run(func)
     end
 end
+M.async = async
 
 return M
