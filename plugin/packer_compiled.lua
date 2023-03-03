@@ -155,6 +155,18 @@ _G.packer_plugins = {
     path = "C:\\Users\\Administrator\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\leap.nvim",
     url = "https://github.com/ggandor/leap.nvim"
   },
+  ["lspsaga.nvim"] = {
+    commands = { "Lspsaga" },
+    config = { "\27LJ\2\n?\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\18lspsaga_setup\14lsp.setup\frequire\0" },
+    load_after = {
+      ["nvim-lspconfig"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "C:\\Users\\Administrator\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\lspsaga.nvim",
+    url = "https://github.com/glepnir/lspsaga.nvim"
+  },
   ["lualine.nvim"] = {
     config = { "\27LJ\2\nR\0\0\3\0\5\0\b6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\3\0009\2\4\2B\0\2\1K\0\1\0\19lualine_config\nTheme\nsetup\flualine\frequire,\1\0\3\0\3\0\0056\0\0\0009\0\1\0003\2\2\0B\0\2\1K\0\1\0\0\14async_run\nutils\0" },
     loaded = false,
@@ -190,6 +202,7 @@ _G.packer_plugins = {
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-lspconfig"] = {
+    after = { "lspsaga.nvim" },
     config = { "\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14lsp.setup\frequire\0" },
     loaded = false,
     needs_bufread = false,
@@ -215,24 +228,12 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-tree/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
-    after = { "nvim-treesitter-context" },
-    config = { "\27LJ\2\n‘\1\0\2\t\0\a\1\21*\2\0\0006\3\0\0006\5\1\0009\5\2\0059\5\3\0056\6\1\0009\6\4\0069\6\5\6\18\b\1\0B\6\2\0A\3\1\3\15\0\3\0X\5\a€\15\0\4\0X\5\5€9\5\6\4\1\2\5\0X\5\2€+\5\2\0L\5\2\0K\0\1\0\tsize\22nvim_buf_get_name\bapi\ffs_stat\tloop\bvim\npcall€€€dK\0\0\3\1\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0-\2\0\0B\0\2\1K\0\1\0\0À\nsetup\28nvim-treesitter.configs\frequireò\1\1\0\4\0\v\0\0175\0\1\0005\1\0\0=\1\2\0005\1\3\0004\2\0\0=\2\4\0013\2\5\0=\2\4\1=\1\6\0006\1\a\0'\3\b\0B\1\2\0029\1\t\0013\3\n\0B\1\2\0012\0\0€K\0\1\0\0\14async_run\nutils\frequire\14highlight\0\fdisable\1\0\2&additional_vim_regex_highlighting\1\venable\2\21ensure_installed\1\0\2\17auto_install\2\17sync_install\1\1\a\0\0\6c\blua\bvim\thelp\ago\vpython\0" },
+    config = { "\27LJ\2\n‘\1\0\2\t\0\a\1\21*\2\0\0006\3\0\0006\5\1\0009\5\2\0059\5\3\0056\6\1\0009\6\4\0069\6\5\6\18\b\1\0B\6\2\0A\3\1\3\15\0\3\0X\5\a€\15\0\4\0X\5\5€9\5\6\4\1\2\5\0X\5\2€+\5\2\0L\5\2\0K\0\1\0\tsize\22nvim_buf_get_name\bapi\ffs_stat\tloop\bvim\npcall€€€dK\0\0\3\1\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0-\2\0\0B\0\2\1K\0\1\0\0À\nsetup\28nvim-treesitter.configs\frequireò\1\1\0\4\0\v\0\0175\0\1\0005\1\0\0=\1\2\0005\1\3\0004\2\0\0=\2\4\0013\2\5\0=\2\4\1=\1\6\0006\1\a\0'\3\b\0B\1\2\0029\1\t\0013\3\n\0B\1\2\0012\0\0€K\0\1\0\0\14async_run\nutils\frequire\14highlight\0\fdisable\1\0\2\venable\2&additional_vim_regex_highlighting\1\21ensure_installed\1\0\2\17auto_install\2\17sync_install\1\1\a\0\0\6c\blua\bvim\thelp\ago\vpython\0" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
     path = "C:\\Users\\Administrator\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
-  },
-  ["nvim-treesitter-context"] = {
-    config = { "\27LJ\2\n`\0\0\5\0\5\0\n6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\0\0'\4\3\0B\2\2\0029\2\4\2B\0\2\1K\0\1\0\nsetup\23treesitter-context\14async_run\nutils\frequire\0" },
-    load_after = {
-      ["nvim-treesitter"] = true
-    },
-    loaded = false,
-    needs_bufread = false,
-    only_cond = false,
-    path = "C:\\Users\\Administrator\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\nvim-treesitter-context",
-    url = "https://github.com/nvim-treesitter/nvim-treesitter-context"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
@@ -287,14 +288,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "C:\\Users\\Administrator\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-vsnip-integ",
     url = "https://github.com/hrsh7th/vim-vsnip-integ"
-  },
-  ["vista.vim"] = {
-    commands = { "Vista", "Vista!", "Vista!!" },
-    loaded = false,
-    needs_bufread = false,
-    only_cond = false,
-    path = "C:\\Users\\Administrator\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\vista.vim",
-    url = "https://github.com/liuchengxu/vista.vim"
   }
 }
 
@@ -303,6 +296,7 @@ local module_lazy_loads = {
   ["^bufferline"] = "bufdelete.nvim",
   ["^cmp"] = "nvim-cmp",
   ["^cmp_nvim_lsp"] = "nvim-cmp",
+  ["^lspsaga"] = "lspsaga.nvim",
   ["telescope.*"] = "telescope.nvim"
 }
 local lazy_load_called = {['packer.load'] = true}
@@ -337,14 +331,6 @@ time([[Config for leap.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
-pcall(vim.cmd, [[au CmdUndefined Vista! ++once lua require"packer.load"({'vista.vim'}, {}, _G.packer_plugins)]])
-pcall(vim.api.nvim_create_user_command, 'FloatermToggle', function(cmdargs)
-          require('packer.load')({'vim-floaterm'}, { cmd = 'FloatermToggle', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
-        end,
-        {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'vim-floaterm'}, {}, _G.packer_plugins)
-          return vim.fn.getcompletion('FloatermToggle ', 'cmdline')
-      end})
 pcall(vim.api.nvim_create_user_command, 'NvimTreeToggle', function(cmdargs)
           require('packer.load')({'nvim-tree.lua'}, { cmd = 'NvimTreeToggle', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
@@ -352,7 +338,20 @@ pcall(vim.api.nvim_create_user_command, 'NvimTreeToggle', function(cmdargs)
           require('packer.load')({'nvim-tree.lua'}, {}, _G.packer_plugins)
           return vim.fn.getcompletion('NvimTreeToggle ', 'cmdline')
       end})
-pcall(vim.cmd, [[au CmdUndefined Vista!! ++once lua require"packer.load"({'vista.vim'}, {}, _G.packer_plugins)]])
+pcall(vim.api.nvim_create_user_command, 'FloatermToggle', function(cmdargs)
+          require('packer.load')({'vim-floaterm'}, { cmd = 'FloatermToggle', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'vim-floaterm'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('FloatermToggle ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'Lspsaga', function(cmdargs)
+          require('packer.load')({'lspsaga.nvim'}, { cmd = 'Lspsaga', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'lspsaga.nvim'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('Lspsaga ', 'cmdline')
+      end})
 pcall(vim.api.nvim_create_user_command, 'Telescope', function(cmdargs)
           require('packer.load')({'telescope.nvim'}, { cmd = 'Telescope', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
@@ -360,23 +359,16 @@ pcall(vim.api.nvim_create_user_command, 'Telescope', function(cmdargs)
           require('packer.load')({'telescope.nvim'}, {}, _G.packer_plugins)
           return vim.fn.getcompletion('Telescope ', 'cmdline')
       end})
-pcall(vim.api.nvim_create_user_command, 'Vista', function(cmdargs)
-          require('packer.load')({'vista.vim'}, { cmd = 'Vista', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
-        end,
-        {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'vista.vim'}, {}, _G.packer_plugins)
-          return vim.fn.getcompletion('Vista ', 'cmdline')
-      end})
 time([[Defining lazy-load commands]], false)
 
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au UIEnter * ++once lua require("packer.load")({'github-nvim-theme', 'lualine.nvim', 'nvim-cmp'}, { event = "UIEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au BufReadPost * ++once lua require("packer.load")({'gitsigns.nvim', 'diffview.nvim', 'nvim-surround', 'argtextobj.vim', 'nvim-treesitter'}, { event = "BufReadPost *" }, _G.packer_plugins)]]
+vim.cmd [[au BufReadPre * ++once lua require("packer.load")({'lspsaga.nvim', 'nvim-lspconfig', 'rainbow', 'bufferline.nvim'}, { event = "BufReadPre *" }, _G.packer_plugins)]]
+vim.cmd [[au UIEnter * ++once lua require("packer.load")({'github-nvim-theme', 'nvim-cmp', 'lualine.nvim'}, { event = "UIEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-autopairs'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au BufReadPre * ++once lua require("packer.load")({'nvim-lspconfig', 'bufferline.nvim', 'rainbow'}, { event = "BufReadPre *" }, _G.packer_plugins)]]
-vim.cmd [[au BufReadPost * ++once lua require("packer.load")({'nvim-treesitter', 'argtextobj.vim', 'nvim-surround', 'nvim-treesitter-context', 'diffview.nvim', 'gitsigns.nvim'}, { event = "BufReadPost *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 

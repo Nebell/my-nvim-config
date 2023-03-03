@@ -106,9 +106,6 @@ return require('packer').startup({ function(use)
     -- motion
     use { 'ggandor/leap.nvim', key = 'f', config = function() require('leap') end }
 
-    -- symbol outline
-    use { 'liuchengxu/vista.vim', cmd = { "Vista", "Vista!", "Vista!!" } }
-
     -- git signs for buffer
     use {
         'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' },
@@ -119,14 +116,23 @@ return require('packer').startup({ function(use)
     -- LSP
     use { 'neovim/nvim-lspconfig', event = "BufReadPre", config = function() require('lsp.setup').setup() end }
     use { 'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim', module = 'mason' }
+    use({ "glepnir/lspsaga.nvim", branch = "main", after = 'nvim-lspconfig',
+        event = "BufReadPre", cmd = "Lspsaga", module = 'lspsaga',
+        config = function() require('lsp.setup').lspsaga_setup() end ,
+        requires = {
+            { "nvim-tree/nvim-web-devicons" },
+            --Please make sure you install markdown and markdown_inline parser
+            { "nvim-treesitter/nvim-treesitter" }
+        }
+    })
 
     -- highlight and code structure
     use { 'nvim-treesitter/nvim-treesitter', event = "BufReadPost",
         run = ":TSUpdate", config = require('lsp.treesitter').setup }
-    use { 'nvim-treesitter/nvim-treesitter-context', event = "BufReadPost", after = 'nvim-treesitter',
-        config = function() require('utils').async_run(
-                require('treesitter-context').setup)
-        end }
+    -- use { 'nvim-treesitter/nvim-treesitter-context', event = "BufReadPost", after = 'nvim-treesitter',
+    --     config = function() require('utils').async_run(
+    --             require('treesitter-context').setup)
+    --     end }
 
     use { 'windwp/nvim-autopairs', event = "InsertEnter",
         config = function() require("nvim-autopairs").setup {} end
