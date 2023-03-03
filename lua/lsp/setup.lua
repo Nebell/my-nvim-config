@@ -48,7 +48,7 @@ function M.setup()
     require('lsp.keybinding').keybinding()
 
     local lsp = require('lspconfig')
-    -- local cmp = require('cmp_nvim_lsp')
+    local cmp = require('cmp_nvim_lsp')
     local capabilities
     if cmp ~= nil then
         capabilities = cmp.default_capabilities()
