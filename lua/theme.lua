@@ -104,7 +104,9 @@ Theme.bufferline_config = {
         },
         indicator = {
             style = "none"
-        }
+        },
+        separator_style = "slant",
+        modified_icon = '㋡',
     }
 }
 function Theme.bufferline_setup()
