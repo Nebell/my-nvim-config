@@ -1,7 +1,6 @@
-M = {}
+local M = {}
 
 function M.setup()
-
     local has_words_before = function()
         unpack = unpack or table.unpack
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -28,16 +27,16 @@ function M.setup()
             documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
-            ['<C-Space>'] = cmp.mapping.complete(),
-            ['<ESC>'] = cmp.mapping(function(fallback)
+                ['<C-Space>'] = cmp.mapping.complete(),
+                ['<ESC>'] = cmp.mapping(function(fallback)
                 if cmp.visible() then
                     cmp.abort()
                 else
                     fallback()
                 end
             end, { "i", "s", "c" }),
-            ['<CR>'] = cmp.mapping.confirm(),
-            ["<Tab>"] = cmp.mapping(function(fallback)
+                ['<CR>'] = cmp.mapping.confirm(),
+                ["<Tab>"] = cmp.mapping(function(fallback)
                 -- This little snippet will confirm with tab, and if no entry is selected,
                 -- will confirm the first item
                 if cmp.visible() then
@@ -47,12 +46,13 @@ function M.setup()
                     else
                         cmp.confirm()
                     end
+                elseif has_words_before() then
+                    cmp.complete()
                 else
                     fallback()
                 end
             end, { "i", "s", "c", }),
-
-            ['<C-K>'] = cmp.mapping(function(fallback)
+                ['<C-K>'] = cmp.mapping(function(fallback)
                 if cmp.visible() then
                     cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
                 elseif vim.fn["vsnip#jumpable"](-1) == 1 then
@@ -61,8 +61,7 @@ function M.setup()
                     fallback()
                 end
             end, { "i", "s", "c", }),
-
-            ['<C-J>'] = cmp.mapping(function(fallback)
+                ['<C-J>'] = cmp.mapping(function(fallback)
                 if cmp.visible() then
                     cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
                 elseif vim.fn["vsnip#available"](1) == 1 then

@@ -1,4 +1,4 @@
-M = {}
+local M = {}
 
 function M.lspsaga()
     local keyset = vim.keymap.set

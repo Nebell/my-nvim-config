@@ -1,4 +1,4 @@
-M = {}
+local M = {}
 
 local utils = require('utils')
 
@@ -32,6 +32,8 @@ M.mason_setup = mason_setup
 local servers = {
     pyright = {},
     lua_ls = {},
+    rust_analyzer = {},
+    gopls = {},
 }
 
 -- Use an on_attach function to only map the following keys
