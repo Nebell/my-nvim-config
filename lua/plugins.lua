@@ -22,7 +22,7 @@ local plugins = {
     -- }
 
     -- theme
-    { 'projekt0n/github-nvim-theme', event = "VeryLazy",   config = theme.github_setup },
+    { 'projekt0n/github-nvim-theme', event = "VeryLazy",  config = theme.github_setup },
     -- rainbow parenthese
     { 'luochen1990/rainbow',         event = "BufReadPre" },
 
@@ -51,7 +51,10 @@ local plugins = {
     -- fuzzy search
     {
         'nvim-telescope/telescope.nvim',
-        dependencies = { 'nvim-lua/plenary.nvim' },
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'kdheepak/lazygit.nvim',
+        },
         cmd = "Telescope",
         module_pattern = 'telescope.*',
         config = function()
@@ -67,7 +70,7 @@ local plugins = {
                 }
             }
 
-            require('telescope').setup {
+            require('telescope').setup({
                 defaults = {
                     mappings = {
                         i = mapping,
@@ -76,7 +79,8 @@ local plugins = {
                 },
                 extensions = {
                 },
-            }
+            })
+            require('telescope').load_extension('lazygit')
         end,
     },
 
@@ -102,6 +106,11 @@ local plugins = {
         dependencies = { 'nvim-lua/plenary.nvim' },
         config = function() require('utils').async_run(require('gitsigns').setup) end,
         event = "BufReadPost",
+    },
+
+    -- lazygit
+    {
+        'kdheepak/lazygit.nvim'
     },
 
     -- LSP
@@ -145,7 +154,7 @@ local plugins = {
     -- autocompletion
     {
         'hrsh7th/nvim-cmp',
-        event = "VeryLazy",
+        event = "UIEnter",
         module = { 'cmp_nvim_lsp', 'cmp' },
         config = function() require('lsp.nvim-cmp').setup() end,
         -- nvim-cmp plugins, run dependenciesnvim-cmp
