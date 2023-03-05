@@ -3,7 +3,7 @@ local M = {}
 local theme = require('theme')
 local plugins = {
     { 'wbthomason/packer.nvim' },
-    { 'tpope/vim-commentary' },   -- commentary
+    { 'tpope/vim-commentary' }, -- commentary
     {
         "kylechui/nvim-surround",
         version = "*",
@@ -22,7 +22,7 @@ local plugins = {
     -- }
 
     -- theme
-    { 'projekt0n/github-nvim-theme', event = 'UIEnter',   config = theme.github_setup },
+    { 'projekt0n/github-nvim-theme', event = "VeryLazy",   config = theme.github_setup },
     -- rainbow parenthese
     { 'luochen1990/rainbow',         event = "BufReadPre" },
 
@@ -31,7 +31,7 @@ local plugins = {
         'nvim-tree/nvim-tree.lua',
         cmd = "NvimTreeToggle",
         dependencies = {
-            'nvim-tree/nvim-web-devicons',     -- optional, for file icons
+            'nvim-tree/nvim-web-devicons', -- optional, for file icons
         },
         config = theme.nvim_tree_setup
     },
@@ -94,7 +94,7 @@ local plugins = {
     { 'vim-scripts/argtextobj.vim', event = "BufReadPost" },
 
     -- motion
-    { 'ggandor/leap.nvim',          key = 'f',                          config = function() require('leap') end },
+    { 'ggandor/leap.nvim',          key = 'f',                              config = function() require('leap') end },
 
     -- git signs for buffer
     {
@@ -129,7 +129,7 @@ local plugins = {
     {
         'nvim-treesitter/nvim-treesitter-context',
         event = "BufReadPost",
-        dependencies= 'nvim-treesitter',
+        dependencies = 'nvim-treesitter',
         config = function()
             require('utils').async_run(
                 require('treesitter-context').setup)
@@ -145,22 +145,21 @@ local plugins = {
     -- autocompletion
     {
         'hrsh7th/nvim-cmp',
-        event = "UIEnter",
+        event = "VeryLazy",
         module = { 'cmp_nvim_lsp', 'cmp' },
-        config = function() require('lsp.nvim-cmp').setup() end
-    },
-    -- nvim-cmp plugins, run dependenciesnvim-cmp
-    {
-        dependencies= 'nvim-cmp',
-        'hrsh7th/cmp-nvim-lsp',
-        'hrsh7th/cmp-buffer',
-        'hrsh7th/cmp-path',
-        'hrsh7th/cmp-cmdline',
+        config = function() require('lsp.nvim-cmp').setup() end,
+        -- nvim-cmp plugins, run dependenciesnvim-cmp
+        dependencies = {
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-cmdline',
+        },
     },
 
     -- snippet
     {
-        dependencies= 'nvim-cmp',
+        dependencies = 'nvim-cmp',
         event = "InsertEnter",
         'hrsh7th/cmp-nvim-lua',
         'hrsh7th/cmp-vsnip',
