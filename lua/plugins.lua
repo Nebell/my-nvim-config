@@ -110,9 +110,7 @@ local plugins = {
     {
         "glepnir/lspsaga.nvim",
         branch = "main",
-        dependencies= 'nvim-lspconfig',
         cmd = "Lspsaga",
-        module = 'lspsaga',
         config = function() require('lsp.setup').lspsaga_setup() end,
         dependencies = {
             { "nvim-tree/nvim-web-devicons" },
@@ -171,6 +169,18 @@ local plugins = {
     },
 }
 
+local lazy_config = {
+    defaults = {
+        lazy = true,
+    },
+    git = {
+        url_format = "https://github.com/%s.git",
+    },
+    install = {
+        missing = true,
+    }
+}
+
 function M.setup()
     local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
     if not vim.loop.fs_stat(lazypath) then
@@ -184,7 +194,7 @@ function M.setup()
         })
     end
     vim.opt.rtp:prepend(lazypath)
-    require('lazy').setup(plugins)
+    require('lazy').setup(plugins, lazy_config)
 end
 
 return M
