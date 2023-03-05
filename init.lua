@@ -43,7 +43,7 @@ vim.g.loaded_python3_provider = 0
 
 -- plugins
 utils = require('utils')
-require('plugins')
+require('plugins').setup()
 local keyset = vim.keymap.set
 
 -- theme
