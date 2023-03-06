@@ -96,7 +96,7 @@ local lspsaga_config = {
 
 -- Lspsaga setup
 function M.lspsaga_setup()
-    utils.async_run(function() require("lspsaga").setup(lspsaga_config) end)
+    require("lspsaga").setup(lspsaga_config)
 end
 
 return M
