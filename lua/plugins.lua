@@ -13,12 +13,12 @@ local plugins = {
     { 'nvim-lualine/lualine.nvim', event = "VeryLazy", config = theme.lualine_setup },
 
     -- dashboard
-    -- {
-    --     'goolord/alpha-nvim',
-    --     config = function ()
-    --         require'alpha'.setup(require'alpha.themes.dashboard'.config)
-    --     end
-    -- }
+    {
+        'glepnir/dashboard-nvim',
+        event = 'VimEnter',
+        config = require('theme').dashboard_setup,
+        dependencies = { { 'nvim-tree/nvim-web-devicons' } }
+    },
 
     -- theme
     { 'projekt0n/github-nvim-theme', event = "VeryLazy", config = theme.github_setup },
@@ -189,7 +189,7 @@ local plugins = {
 
 local lazy_config = {
     defaults = {
-        -- lazy = true,
+        lazy = true,
     },
     git = {
         url_format = "https://github.com/%s.git",
