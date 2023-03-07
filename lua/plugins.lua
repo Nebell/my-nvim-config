@@ -21,7 +21,7 @@ local plugins = {
     },
 
     -- theme
-    { 'rmehri01/onenord.nvim', event = "VeryLazy", config = theme.theme_setup },
+    { 'rmehri01/onenord.nvim', event = "UIEnter", config = theme.theme_setup },
     -- rainbow parenthese
     { 'luochen1990/rainbow', event = "BufReadPre" },
 
