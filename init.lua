@@ -50,12 +50,9 @@ local keyset = vim.keymap.set
 require('theme')
 
 -- Terminal
--- vim.g.terminal_key = "<S-T>"
-vim.g.floaterm_height = 0.8
-vim.g.floaterm_width = 0.8
-keyset("i", "<C-T>", "<ESC>:FloatermToggle<CR>", {silent = true})
-keyset("n", "<C-T>", ":FloatermToggle<CR>", {silent = true})
-keyset("t", "<C-T>", "<C-\\><C-n>:FloatermToggle<CR>", {silent = true})
+keyset({ "i", "n", "v" }, "<C-T>", "<CMD>ToggleTerm<CR>", {silent = true})
+keyset("t", "<C-T>", "<C-\\><C-n><CMD>ToggleTerm<CR>", {silent = true})
+keyset("t", "<ESC>", "<C-\\><C-n>", {silent = true})
 
 -- Custom
 --- shift lines

@@ -21,7 +21,7 @@ local plugins = {
     },
 
     -- theme
-    { 'projekt0n/github-nvim-theme', event = "VeryLazy", config = theme.github_setup },
+    { 'rmehri01/onenord.nvim', event = "VeryLazy", config = theme.theme_setup },
     -- rainbow parenthese
     { 'luochen1990/rainbow', event = "BufReadPre" },
 
@@ -79,7 +79,6 @@ local plugins = {
                 extensions = {
                 },
             })
-            require('telescope').load_extension('lazygit')
         end,
     },
 
@@ -87,8 +86,9 @@ local plugins = {
     { 'sindrets/diffview.nvim', dependencies = 'nvim-lua/plenary.nvim', event = "BufReadPost" },
 
     -- terminal
-    { 'voldikss/vim-floaterm', cmd = "FloatermToggle" }, -- float terminal
-    -- 'skywind3000/vim-terminal-help' -- terminal
+    { 'akinsho/toggleterm.nvim', version = "*", event = "VeryLazy", opts = {
+        direction = "float",
+    } },
 
     -- debug
     -- 'puremourning/vimspector'
@@ -110,11 +110,6 @@ local plugins = {
         event = "BufReadPost",
     },
 
-    -- lazygit
-    {
-        'kdheepak/lazygit.nvim', event = "VeryLazy",
-    },
-
     -- LSP
     { 'neovim/nvim-lspconfig', event = "BufReadPre", config = function() require('lsp.setup').setup() end },
     { 'williamboman/mason.nvim', event = "VeryLazy" },
@@ -134,8 +129,8 @@ local plugins = {
     {
         'simrat39/symbols-outline.nvim',
         event = "BufReadPost",
-        config = function () require("symbols-outline").setup() end,
-        keys = {{"<C-S>", "<cmd>SymbolsOutline<CR>", {silent = true, noremap = true}}}
+        config = function() require("symbols-outline").setup() end,
+        keys = { { "<C-S>", "<cmd>SymbolsOutline<CR>", { silent = true, noremap = true } } }
     },
 
     -- highlight and code structure
