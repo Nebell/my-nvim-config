@@ -26,7 +26,7 @@ function Theme.theme_setup()
             match_paren = false,
         },
         custom_highlights = { -- Overwrite default highlight groups
-            ["@string"] = { fg = "#B0BEC5"},
+            ["@string"] = { fg = "#B0BEC5" },
             ["@character"] = { fg = "#90A4AE" },
         },
         custom_colors = {}, -- Overwrite default colors
@@ -41,6 +41,18 @@ vim.g.rainbow_conf = {
 }
 
 -- lualine
+local function context_line()
+    return vim.fn['nvim_treesitter#statusline']({
+        indicator_size = 100,
+        type_patterns = { 'class', 'function', 'method', 'parameter' },
+        transform_fn = function(line, _node)
+            return line:gsub('%s*[%[%(%{]*%s*$', '')
+        end,
+        separator = '  ',
+        allow_duplicates = false
+    })
+end
+
 Theme.lualine_config = {
     options = {
         icons_enabled = true,
@@ -63,7 +75,7 @@ Theme.lualine_config = {
     sections = {
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diagnostics' },
-        lualine_c = { 'filename' },
+        lualine_c = { 'filename', context_line },
         lualine_x = { 'encoding', 'fileformat', 'filetype' },
         lualine_y = {},
         lualine_z = { 'location' }
