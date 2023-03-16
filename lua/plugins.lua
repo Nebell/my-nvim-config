@@ -2,7 +2,7 @@ local M = {}
 
 local theme = require('theme')
 local plugins = {
-    { 'tpope/vim-commentary', event = "BufReadPost" }, -- commentary
+    { 'tpope/vim-commentary',      event = "BufReadPost" }, -- commentary
     {
         "kylechui/nvim-surround",
         -- version = "*",
@@ -10,7 +10,7 @@ local plugins = {
         event = "BufReadPost",
     },
     -- status bar
-    { 'nvim-lualine/lualine.nvim', event = "VeryLazy", config = theme.lualine_setup },
+    { 'nvim-lualine/lualine.nvim', event = "VeryLazy",   config = theme.lualine_setup },
 
     -- dashboard
     {
@@ -21,9 +21,9 @@ local plugins = {
     },
 
     -- theme
-    { 'rmehri01/onenord.nvim', event = "UIEnter", config = theme.theme_setup },
+    { 'rmehri01/onenord.nvim', event = "UIEnter",   config = theme.theme_setup },
     -- rainbow parenthese
-    { 'luochen1990/rainbow', event = "BufReadPre" },
+    { 'luochen1990/rainbow',   event = "BufReadPre" },
 
     -- file explorer
     {
@@ -59,11 +59,11 @@ local plugins = {
         config = function()
             -- fuzzy search
             local mapping = {
-                ["<C-j>"] = {
+                    ["<C-j>"] = {
                     require('telescope.actions').move_selection_next, type = "action",
                     opts = { nowait = true, silent = true }
                 },
-                ["<C-k>"] = {
+                    ["<C-k>"] = {
                     require('telescope.actions').move_selection_previous, type = "action",
                     opts = { nowait = true, silent = true }
                 }
@@ -83,12 +83,17 @@ local plugins = {
     },
 
     -- git diff
-    { 'sindrets/diffview.nvim', dependencies = 'nvim-lua/plenary.nvim', event = "BufReadPost" },
+    { 'sindrets/diffview.nvim',     dependencies = 'nvim-lua/plenary.nvim', event = "BufReadPost" },
 
     -- terminal
-    { 'akinsho/toggleterm.nvim', version = "*", event = "VeryLazy", opts = {
-        direction = "float",
-    } },
+    {
+        'akinsho/toggleterm.nvim',
+        version = "*",
+        event = "VeryLazy",
+        opts = {
+            direction = "float",
+        }
+    },
 
     -- debug
     -- 'puremourning/vimspector'
@@ -97,10 +102,15 @@ local plugins = {
     { 'vim-scripts/argtextobj.vim', event = "BufReadPost" },
 
     -- motion
-    { 'ggandor/leap.nvim', event = "BufReadPost", keys = {
-        { "f", "<Plug>(leap-forward-to)" },
-        { "F", "<Plug>(leap-backward-to)" },
-    }, config = function() require('leap') end },
+    {
+        'ggandor/leap.nvim',
+        event = "BufReadPost",
+        keys = {
+            { "f", "<Plug>(leap-forward-to)" },
+            { "F", "<Plug>(leap-backward-to)" },
+        },
+        config = function() require('leap') end
+    },
 
     -- git signs for buffer
     {
@@ -111,9 +121,9 @@ local plugins = {
     },
 
     -- LSP
-    { 'neovim/nvim-lspconfig', event = "BufReadPre", config = function() require('lsp.setup').setup() end },
-    { 'williamboman/mason.nvim', event = "VeryLazy" },
-    { 'williamboman/mason-lspconfig.nvim', event = "VeryLazy", dependencies = 'williamboman/mason.nvim' },
+    { 'neovim/nvim-lspconfig',             event = "BufReadPre", config = function() require('lsp.setup').setup() end },
+    { 'williamboman/mason.nvim',           event = "VeryLazy" },
+    { 'williamboman/mason-lspconfig.nvim', event = "VeryLazy",   dependencies = 'williamboman/mason.nvim' },
     {
         "glepnir/lspsaga.nvim",
         branch = "main",
@@ -148,7 +158,7 @@ local plugins = {
         config = function()
             require("go").setup()
         end,
-        event = { "CmdlineEnter" },
+        -- event = { "CmdlineEnter" },
         ft = { "go", 'gomod' },
         build = function() require("go.install").update_all_sync() end, -- if you need to install/update all binaries
     },
@@ -184,11 +194,21 @@ local plugins = {
         config = function() require('lsp.nvim-cmp').setup() end,
         -- nvim-cmp plugins, run dependenciesnvim-cmp
         dependencies = {
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-cmdline',
         },
+    }, {
+        'hrsh7th/cmp-buffer',
+        event = "BufReadPost",
+        dependencies = {
+            'hrsh7th/nvim-cmp',
+        },
+    }, {
+        'hrsh7th/cmp-nvim-lsp',
+        dependencies = {
+            'hrsh7th/nvim-cmp',
+            'neovim/nvim-lspconfig',
+        }
     },
 
     -- snippet
