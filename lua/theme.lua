@@ -60,8 +60,8 @@ Theme.lualine_config = {
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
         disabled_filetypes = {
-            statusline = { 'NvimTree', 'vista', 'Outline' },
-            winbar = { 'NvimTree', 'vista', 'Outline' },
+            statusline = { 'NvimTree', 'vista', 'Outline', 'Terminal' },
+            winbar = { 'NvimTree', 'vista', 'Outline', 'Terminal'  },
         },
         ignore_focus = {},
         always_divide_middle = true,
