@@ -35,9 +35,6 @@ vim.bo.autoread = true
 -- auto completion
 vim.o.wildmenu = true
 
--- keymap before loading vimspector
-vim.g.vimspector_enable_mappings = 'VISUAL_STUDIO'
-
 -- disable python provider for reducing startup time
 vim.g.loaded_python3_provider = 0
 
@@ -49,12 +46,12 @@ local keyset = vim.keymap.set
 -- theme
 require('theme')
 
--- Terminal
+---------------- Terminal -----------------------
 keyset({ "i", "n", "v" }, "<C-T>", "<CMD>ToggleTerm<CR>", {silent = true})
 keyset("t", "<C-T>", "<C-\\><C-n><CMD>ToggleTerm<CR>", {silent = true})
 keyset("t", "<ESC>", "<C-\\><C-n>", {silent = true})
 
--- Custom
+------------------ Custom -----------------------
 --- shift lines
 keyset("i", "<A-DOWN>", "<ESC>ddpi")
 keyset("i", "<A-UP>", "<ESC>ddkPi")
@@ -70,14 +67,14 @@ keyset("n", "<S-TAB>", "<<")
 keyset("v", "<TAB>", ">")
 keyset("v", "<S-TAB>", "<")
 
--- nvim-tree
+----------------- nvim-tree ---------------------
 -- vim.g.loaded_netrw = 1
 -- vim.g.loaded_netrwPlugin = 1
 
 keyset({ "n", "i", "v" }, "<C-G>", "<CMD>NvimTreeToggle<CR>", {silent = true})
 keyset({ "n", "i", "v" }, "<Leader>loc", "<CMD>NvimTreeFindFile<CR>", {silent = true})
 
--- buffer line
+----------------- buffer line -------------------
 vim.opt.termguicolors = true
 
 keyset({ "n", "v", "i" }, "<A-Left>", "<cmd>BufferLineCyclePrev<CR>", {silent = true})
@@ -89,7 +86,7 @@ keyset({ "n", "v", "i" }, "<C-L>", "<cmd>BufferLineCycleNext<CR>", {silent = tru
 -- keyset({ "n", "i", "v" }, "<C-S>", "<CMD>Lspsaga outline<CR>", {silent = true})
 
 -- fuzzy
---- telescope
+----------------- telescope ---------------------
 keyset({ "n", "v"}, "<Space>t", "<CMD>Telescope<CR>", {silent = true})
 keyset({ "n", "v", "i" }, "<C-P>", "<CMD>Telescope find_files<CR>", {silent = true})
 keyset({ "n", "v", "i" }, "<C-F>",  "<CMD>Telescope current_buffer_fuzzy_find<CR>", {silent = true})
