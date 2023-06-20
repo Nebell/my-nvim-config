@@ -2,7 +2,7 @@ local M = {}
 
 local theme = require('theme')
 local plugins = {
-    { 'tpope/vim-commentary',  event = "BufReadPost" },     -- commentary
+    { 'tpope/vim-commentary',  event = "BufReadPost" }, -- commentary
     {
         "kylechui/nvim-surround",
         -- version = "*",
@@ -197,34 +197,27 @@ local plugins = {
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-cmdline',
         },
-    }, {
-    'hrsh7th/cmp-buffer',
-    event = "BufReadPost",
-    dependencies = {
-        'hrsh7th/nvim-cmp',
     },
-}, {
-    'hrsh7th/cmp-nvim-lsp',
-    dependencies = {
-        'hrsh7th/nvim-cmp',
-        'neovim/nvim-lspconfig',
-    }
-},
+    {
+        'hrsh7th/cmp-buffer',
+        event = "BufReadPost",
+        dependencies = {
+            'hrsh7th/nvim-cmp',
+        },
+    },
+    {
+        'hrsh7th/cmp-nvim-lsp',
+        dependencies = {
+            'hrsh7th/nvim-cmp',
+            'neovim/nvim-lspconfig',
+        }
+    },
 
     -- snippet
     {
         'hrsh7th/cmp-nvim-lua',
         dependencies = 'hrsh7th/nvim-cmp',
         event = "InsertEnter",
-    },
-    {
-        'hrsh7th/cmp-vsnip',
-        event = "BufRead",
-        dependencies = {
-            'hrsh7th/nvim-cmp',
-            'hrsh7th/vim-vsnip',
-            'hrsh7th/vim-vsnip-integ',
-        }
     },
     {
         "L3MON4D3/LuaSnip",
@@ -239,12 +232,15 @@ local plugins = {
     },
 }
 
+-- github domain, or change it to a mirror domain
+local git_src_url = "github.com"
+
 local lazy_config = {
     defaults = {
         lazy = true,
     },
     git = {
-        url_format = "https://github.com/%s.git",
+        url_format = "https://".. git_src_url .. "/%s.git",
     },
     install = {
         missing = true,
@@ -258,7 +254,7 @@ function M.setup()
             "git",
             "clone",
             "--filter=blob:none",
-            "https://kgithub.com/folke/lazy.nvim.git",
+            "https://".. git_src_url .. "/folke/lazy.nvim.git",
             "--branch=stable", -- latest stable release
             lazypath,
         })
