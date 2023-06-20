@@ -52,12 +52,6 @@ keyset("t", "<C-T>", "<C-\\><C-n><CMD>ToggleTerm<CR>", {silent = true})
 keyset("t", "<ESC>", "<C-\\><C-n>", {silent = true})
 
 ------------------ Custom -----------------------
---- shift lines
-keyset("i", "<A-DOWN>", "<ESC>ddpi")
-keyset("i", "<A-UP>", "<ESC>ddkPi")
-keyset("n", "<A-DOWN>", "ddp")
-keyset("n", "<A-UP>", "ddkP")
-
 keyset("n", "<C-K>", "15k")
 keyset("n", "<C-J>", "15j")
 --- indent

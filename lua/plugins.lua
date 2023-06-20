@@ -230,6 +230,24 @@ local plugins = {
             { 'rafamadriz/friendly-snippets' },
         }
     },
+
+    -- block move
+    {
+        'booperlv/nvim-gomove',
+        event = 'BufReadPost',
+        config = function()
+            require("gomove").setup {
+                -- whether or not to map default key bindings, (true/false)
+                map_defaults = true,
+                -- whether or not to reindent lines moved vertically (true/false)
+                reindent = true,
+                -- whether or not to undojoin same direction moves (true/false)
+                undojoin = true,
+                -- whether to not to move past end column when moving blocks horizontally, (true/false)
+                move_past_end_col = false,
+            }
+        end
+    },
 }
 
 -- github domain, or change it to a mirror domain
@@ -240,7 +258,7 @@ local lazy_config = {
         lazy = true,
     },
     git = {
-        url_format = "https://".. git_src_url .. "/%s.git",
+        url_format = "https://" .. git_src_url .. "/%s.git",
     },
     install = {
         missing = true,
@@ -254,7 +272,7 @@ function M.setup()
             "git",
             "clone",
             "--filter=blob:none",
-            "https://".. git_src_url .. "/folke/lazy.nvim.git",
+            "https://" .. git_src_url .. "/folke/lazy.nvim.git",
             "--branch=stable", -- latest stable release
             lazypath,
         })
