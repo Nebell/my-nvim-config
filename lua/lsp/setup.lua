@@ -6,7 +6,6 @@ local utils = require('utils')
 local mason_config = {
     -- The directory in which to install packages.
     install_root_dir = require "mason-core.path".concat { vim.fn.stdpath "data", "mason" },
-
     -- Where Mason should put its bin location in your PATH. Can be one of:
     -- - "prepend" (default, Mason's bin location is put first in PATH)
     -- - "append" (Mason's bin location is put at the end of PATH)
@@ -76,9 +75,21 @@ end
 
 M.mason_setup = mason_setup
 
+-- register autocmd
+function M.set_autocmd()
+    -- gopls auto imports
+    vim.api.nvim_create_autocmd('BufWritePre', {
+        pattern = '*.go',
+        callback = function()
+            vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
+        end
+    })
+end
+
 -- setup lspconfig and plugins
 function M.setup()
     utils.async_run(mason_setup)
+    utils.async_run(M.set_autocmd)
     require('lsp.keybinding').keybinding()
 
     local lsp = require('lspconfig')
@@ -99,7 +110,6 @@ function M.setup()
             lsp[srv].setup(cfg)
         end
     end
-
 end
 
 local lspsaga_config = {

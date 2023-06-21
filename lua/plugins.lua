@@ -9,7 +9,7 @@ local plugins = {
         config = function() require('utils').async_run(require("nvim-surround").setup) end,
         event = "BufReadPost",
     },
-    -- status bar
+    ---------- status bar -------------
     {
         'nvim-lualine/lualine.nvim',
         event = "VeryLazy",
@@ -22,7 +22,7 @@ local plugins = {
         module = "nvim-navic",
     },
 
-    -- dashboard
+    ---------- dashboard -------------
     {
         'glepnir/dashboard-nvim',
         event = 'VimEnter',
@@ -30,17 +30,17 @@ local plugins = {
         dependencies = { { 'nvim-tree/nvim-web-devicons' } }
     },
 
-    -- theme
+    ---------- theme -------------
     { 'rmehri01/onenord.nvim', event = "UIEnter",    config = theme.theme_setup },
-    -- rainbow parenthese
+    ---------- rainbow parenthese -------------
     { 'luochen1990/rainbow',   event = "BufReadPre" },
 
-    -- file explorer
+    ---------- file explorer -------------
     {
         'nvim-tree/nvim-tree.lua',
         cmd = "NvimTreeToggle",
         dependencies = {
-            'nvim-tree/nvim-web-devicons', -- optional, for file icons
+            'nvim-tree/nvim-web-devicons',
         },
         config = theme.nvim_tree_setup
     },
@@ -57,7 +57,7 @@ local plugins = {
         config = theme.bufferline_setup
     },
 
-    -- fuzzy search
+    ---------- fuzzy search -------------
     {
         'nvim-telescope/telescope.nvim',
         dependencies = {
@@ -92,10 +92,10 @@ local plugins = {
         end,
     },
 
-    -- git diff
+    ---------- git diff -------------
     { 'sindrets/diffview.nvim',     dependencies = 'nvim-lua/plenary.nvim', event = "BufReadPost" },
 
-    -- terminal
+    ---------- terminal -------------
     {
         'akinsho/toggleterm.nvim',
         version = "*",
@@ -105,13 +105,13 @@ local plugins = {
         }
     },
 
-    -- debug
+    ---------- debug -------------
     -- 'puremourning/vimspector'
 
-    -- function argument modifier
+    ---------- function argument modifier -------------
     { 'vim-scripts/argtextobj.vim', event = "BufReadPost" },
 
-    -- motion
+    ---------- motion -------------
     {
         'ggandor/leap.nvim',
         event = "BufReadPost",
@@ -122,7 +122,7 @@ local plugins = {
         config = function() require('leap') end
     },
 
-    -- git signs for buffer
+    ---------- git signs for buffer -------------
     {
         'lewis6991/gitsigns.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },
@@ -130,7 +130,7 @@ local plugins = {
         event = "BufReadPost",
     },
 
-    -- LSP
+    ---------- LSP -------------
     { 'neovim/nvim-lspconfig',             event = "BufReadPre", config = function() require('lsp.setup').setup() end },
     { 'williamboman/mason.nvim',           event = "VeryLazy" },
     { 'williamboman/mason-lspconfig.nvim', event = "VeryLazy",   dependencies = 'williamboman/mason.nvim' },
@@ -162,8 +162,23 @@ local plugins = {
         "rust-lang/rust.vim",
         ft = "rs",
     },
+    {
+        "ray-x/go.nvim",
+        dependencies = {
+            "ray-x/guihua.lua",
+            "neovim/nvim-lspconfig",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        config = function()
+            require("go").setup()
+        end,
+        -- event = { "CmdlineEnter" },
+        ft = { "go", 'gomod' },
+        -- build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+        build = ':lua require("go.install").update_all()' -- if you need to install/update all binaries
+    },
 
-    -- highlight and code structure
+    ---------- highlight and code structure -------------
     {
         'nvim-treesitter/nvim-treesitter',
         event = "BufReadPost",
@@ -186,7 +201,7 @@ local plugins = {
         config = function() require("nvim-autopairs").setup {} end
     },
 
-    -- autocompletion
+    ---------- autocompletion -------------
     {
         'hrsh7th/nvim-cmp',
         event = "VeryLazy",
@@ -213,7 +228,7 @@ local plugins = {
         }
     },
 
-    -- snippet
+    ---------- snippet -------------
     {
         'hrsh7th/cmp-nvim-lua',
         dependencies = 'hrsh7th/nvim-cmp',
@@ -231,7 +246,7 @@ local plugins = {
         }
     },
 
-    -- block move
+    ---------- block move -------------
     {
         'booperlv/nvim-gomove',
         event = 'BufReadPost',
@@ -249,12 +264,12 @@ local plugins = {
         end
     },
 
-    -- auto-save
+    ---------- auto-save -------------
     {
         "Pocco81/auto-save.nvim",
         event = "InsertEnter",
         config = function()
-             require("auto-save").setup({})
+            require("auto-save").setup({})
         end,
     },
 }
