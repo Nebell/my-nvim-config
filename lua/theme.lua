@@ -132,7 +132,7 @@ function Theme.lualine_setup()
             },
         }
         cfg.sections.lualine_c = lualine_c
-        cfg.inactive_sections.lualine_c = lualine_c
+        -- cfg.inactive_sections.lualine_c = lualine_c
         require('lualine').setup(cfg)
     end)
 end
