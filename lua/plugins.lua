@@ -38,7 +38,7 @@ local plugins = {
     },
 
     ---------- theme -------------
-    { 'rmehri01/onenord.nvim', event = "UIEnter",    config = theme.theme_setup },
+    { 'rmehri01/onenord.nvim', event = "UIEnter",   config = theme.theme_setup },
     ---------- rainbow parenthese -------------
     { 'luochen1990/rainbow',   event = "BufReadPre" },
 
@@ -294,6 +294,30 @@ local plugins = {
         config = function()
             require("auto-save").setup({})
         end,
+    },
+
+    ---------- undo tree -------------
+    {
+        'mbbill/undotree',
+        event = "TextChanged",
+        config = function()
+            vim.keymap.set('n', '<Space>u', vim.cmd.UndotreeToggle)
+        end
+    },
+
+    ---------- quickfix diagnostics -------------
+    {
+        "folke/trouble.nvim",
+        event = "BufReadPost",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        },
+        config = function ()
+            vim.keymap.set('n', '<Space>d', vim.cmd.TroubleToggle)
+        end
     },
 }
 
