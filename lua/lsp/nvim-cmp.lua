@@ -28,7 +28,7 @@ function M.setup()
             documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
-            ['<C-Space>'] = cmp.mapping.complete(),
+            -- ['<C-Space>'] = cmp.mapping.complete(),
             ['<ESC>']     = cmp.mapping(function(fallback)
                 if cmp.visible() then
                     cmp.abort()
