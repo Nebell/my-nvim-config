@@ -288,13 +288,13 @@ local plugins = {
     },
 
     ---------- auto-save -------------
-    {
-        "Pocco81/auto-save.nvim",
-        event = "InsertEnter",
-        config = function()
-            require("auto-save").setup({})
-        end,
-    },
+    -- {
+    --     "Pocco81/auto-save.nvim",
+    --     event = "InsertEnter",
+    --     config = function()
+    --         require("auto-save").setup({})
+    --     end,
+    -- },
 
     ---------- undo tree -------------
     {
