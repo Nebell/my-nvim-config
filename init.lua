@@ -36,6 +36,3 @@ lazy_setup()
 -- keyset
 require('keyset')
 
--- theme
-require('theme')
-
