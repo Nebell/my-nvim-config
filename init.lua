@@ -1,14 +1,14 @@
 require('options')
 
 -- github domain, or change it to a mirror domain
-local git_src_url = "github.com"
+vim.g.git_src_host = "github.com"
 
 local lazy_config = {
     defaults = {
         lazy = true,
     },
     git = {
-        url_format = "https://" .. git_src_url .. "/%s.git",
+        url_format = "https://" .. vim.g.git_src_host .. "/%s.git",
     },
     install = {
         missing = true,
@@ -22,7 +22,7 @@ local function lazy_setup()
             "git",
             "clone",
             "--filter=blob:none",
-            "https://" .. git_src_url .. "/folke/lazy.nvim.git",
+            "https://" .. vim.g.git_src_host .. "/folke/lazy.nvim.git",
             "--branch=stable", -- latest stable release
             lazypath,
         })
