@@ -49,7 +49,15 @@ return {
     },
     config = setup,
     keys = {
-        { "<C-H>",     "<cmd>BufferLineCyclePrev<CR>", mode = { "n", "v", "i" }, { silent = true } },
-        { "<C-L>",     "<cmd>BufferLineCycleNext<CR>", mode = { "n", "v", "i" }, { silent = true } },
+        { "<C-H>", "<cmd>BufferLineCyclePrev<CR>", mode = { "n", "v", "i" }, { silent = true } },
+        { "<C-L>", "<cmd>BufferLineCycleNext<CR>", mode = { "n", "v", "i" }, { silent = true } },
+        {
+            "<C-W>b",
+            function()
+                bufclose(0)
+            end,
+            mode = { "n", "v", "i" },
+            { silent = true }
+        },
     }
 }
