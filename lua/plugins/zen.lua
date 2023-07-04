@@ -1,3 +1,4 @@
+-- typewriter mode
 local typewriter = {
     preserve_scrolloff = vim.o.scrolloff,
     toggled = false,
@@ -8,9 +9,7 @@ function typewriter.toggle()
         typewriter.preserve_scrolloff = vim.o.scrolloff
         vim.o.scrolloff = 999
     else
-        if vim.o.scrolloff == 999 then
-            vim.o.scrolloff = typewriter.preserve_scrolloff
-        end
+        vim.o.scrolloff = typewriter.preserve_scrolloff
     end
     typewriter.toggled = not typewriter.toggled
 end
@@ -50,7 +49,7 @@ local true_zen_config = {
                 width = 70,
                 height = 44,
             },
-            quit_untoggles = true, -- type :q or :qa to quit Ataraxis mode
+            quit_untoggles = false, -- type :q or :qa to quit Ataraxis mode
             padding = {
                 -- padding windows
                 left = 52,
@@ -135,7 +134,7 @@ return {
     {
         "Pocco81/true-zen.nvim",
         keys = {
-            { "<leader>zn", "<CMD>TZAtaraxis<CR>", { mode = { 'n' } } }
+            { "<leader>zn", "<CMD>TZAtaraxis<CR>", { mode = { 'n', 'v' } } }
         },
         config = function()
             require("true-zen").setup(true_zen_config)
