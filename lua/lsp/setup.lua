@@ -61,6 +61,8 @@ local servers = {
                 workspace = {
                     -- Make the server aware of Neovim runtime files
                     library = vim.api.nvim_get_runtime_file("", true),
+                    -- Disable the message asks to modify .luarc.json
+                    checkThirdParty = false,
                 },
                 -- Do not send telemetry data containing a randomized but unique identifier
                 telemetry = {
@@ -132,7 +134,7 @@ function M.setup()
         -- The first entry (without a key) will be the default handler
         -- and will be called for each installed server that doesn't have
         -- a dedicated handler.
-        function(server_name)  -- default handler (optional)
+        function(server_name) -- default handler (optional)
             require("lspconfig")[server_name].setup {
                 capabilities = capabilities
             }
