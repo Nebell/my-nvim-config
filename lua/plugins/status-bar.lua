@@ -32,8 +32,8 @@ local lualine_config = {
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
         disabled_filetypes = {
-            statusline = { 'NvimTree', 'vista', 'Outline', 'Terminal' },
-            winbar = { 'NvimTree', 'vista', 'Outline', 'Terminal' },
+            statusline = require('ignore_ft'),
+            winbar = require('ignore_ft'),
         },
         ignore_focus = {},
         always_divide_middle = true,
