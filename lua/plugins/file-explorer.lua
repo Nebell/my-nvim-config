@@ -39,6 +39,6 @@ return {
     config = setup,
     keys = {
         { "<C-G>",       "<CMD>NvimTreeToggle<CR>",   mode = { "n", "i", "v" }, { silent = true } },
-        { "<Leader>loc", "<CMD>NvimTreeFindFile<CR>", mode = { "n", "i", "v" }, { silent = true } },
+        { "<Leader>loc", "<CMD>NvimTreeFindFile<CR>", mode = { "n", "v" }, { silent = true } },
     }
 }
