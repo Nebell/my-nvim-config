@@ -48,8 +48,6 @@ local function setup()
                     else
                         cmp.confirm()
                     end
-                elseif luasnip.expand_or_jumpable() then
-                    luasnip.expand_or_jump()
                 elseif has_words_before() then
                     cmp.complete()
                 else
@@ -75,9 +73,9 @@ local function setup()
                 end
             end, { "i", "s", "c", }),
             -- Abort completion and quit insert mode
-            -- 'E' means end
-            ['<C-E>']     = cmp.mapping(function(fallback)
-                cmp.abort()
+            -- 'C' means cancel
+            ['<C-C>']     = cmp.mapping(function(fallback)
+                cmp.close()
                 if cmp.visible() then
                     vim.cmd("stopinsert")
                 else
