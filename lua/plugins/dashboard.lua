@@ -6,7 +6,7 @@ local dashboard_config = {
             enable = true,
         },
         shortcut = {
-            { desc = ' Update', group = '@property', action = 'Lazy update', key = 'u' },
+            { desc = ' Update', group = '@property', action = 'Lazy update', key = 'u' },
             {
                 icon = ' ',
                 icon_hl = '@variable',
@@ -16,10 +16,10 @@ local dashboard_config = {
                 key = 'p',
             },
             {
-                desc = ' dotfiles',
-                group = 'Number',
-                action = 'Telescope dotfiles',
-                key = 'd',
+                desc = ' Recent',
+                group = 'Label',
+                action = function () require'telescope'.extensions.projects.projects{} end,
+                key = 'r',
             },
         },
     },

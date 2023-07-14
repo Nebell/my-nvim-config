@@ -32,8 +32,8 @@ local lualine_config = {
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
         disabled_filetypes = {
-            statusline = require('ignore_ft'),
-            winbar = require('ignore_ft'),
+            statusline = require('common').ignore_ft,
+            winbar = require('common').ignore_ft,
         },
         ignore_focus = {},
         always_divide_middle = true,

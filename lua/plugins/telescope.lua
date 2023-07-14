@@ -1,9 +1,13 @@
+-- load extensions
+local function load_extension()
+    require('telescope').load_extension('projects')
+end
+
 ---------- fuzzy search -------------
 return {
     'nvim-telescope/telescope.nvim',
     dependencies = {
         'nvim-lua/plenary.nvim',
-        'kdheepak/lazygit.nvim',
     },
     cmd = "Telescope",
     module_pattern = 'telescope.*',
@@ -20,6 +24,7 @@ return {
             }
         }
 
+
         require('telescope').setup({
             defaults = {
                 mappings = {
@@ -30,12 +35,14 @@ return {
             extensions = {
             },
         })
+
+        load_extension()
     end,
     keys = {
-        { "<Space>t", "<CMD>Telescope<CR>",                           mode = { "n", "v" },      { silent = true } },
-        { "<C-P>",    "<CMD>Telescope find_files<CR>",                mode = { "n", "v", "i" }, { silent = true } },
-        { "<Space>f",    "<CMD>Telescope current_buffer_fuzzy_find<CR>", mode = { "n", "v" }, { silent = true } },
-        { "<Space>j", "<CMD>Telescope jumplist<CR>",                  mode = { "n", "v" },      { silent = true } },
-        { "<Space><Space>", "<CMD>Telescope buffers<CR>",                  mode = { "n", "v" },      { silent = true } },
+        { "<Space>t",       "<CMD>Telescope<CR>",                           mode = { "n", "v" },      { silent = true } },
+        { "<C-P>",          "<CMD>Telescope find_files<CR>",                mode = { "n", "v", "i" }, { silent = true } },
+        { "<Space>f",       "<CMD>Telescope current_buffer_fuzzy_find<CR>", mode = { "n", "v" },      { silent = true } },
+        { "<Space>j",       "<CMD>Telescope jumplist<CR>",                  mode = { "n", "v" },      { silent = true } },
+        { "<Space><Space>", "<CMD>Telescope buffers<CR>",                   mode = { "n", "v" },      { silent = true } },
     },
 }
