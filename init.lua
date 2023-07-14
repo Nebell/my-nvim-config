@@ -1,7 +1,7 @@
 require('options')
 
 -- github domain, or change it to a mirror domain
-vim.g.git_src_host = "kgithub.com"
+vim.g.git_src_host = "github.com"
 
 local lazy_config = {
     defaults = {
