@@ -39,11 +39,18 @@ local cfg = {
 
 return {
     "ahmedkhalf/project.nvim",
+    event = "VeryLazy",
     module = "project_nvim",
     config = function()
         require("project_nvim").setup(cfg)
     end,
     keys = {
-        { "<Leader>pj", function() require 'telescope'.extensions.projects.projects {} end, mode = { 'v', 'n', 'o' } }
+        {
+            "<Leader>pj",
+            function()
+                require('telescope').extensions.projects.projects({})
+            end,
+            mode = { 'v', 'n', 'o' }
+        }
     }
 }
