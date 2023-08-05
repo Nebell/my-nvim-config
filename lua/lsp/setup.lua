@@ -172,6 +172,14 @@ local lspsaga_config = {
             close_in_preview = '<ESC>',
         },
     },
+    lightbulb = {
+        enable = true,
+        sign = false,
+        debounce = 10,
+        sign_priority = 40,
+        virtual_text = true,
+        enable_in_insert = true,
+    },
     ui = {
         -- This option only works in Neovim 0.9
         title = true,
@@ -180,7 +188,7 @@ local lspsaga_config = {
         winblend = 0,
         expand = "",
         collapse = "",
-        code_action = "",
+        code_action = "  ",
         incoming = " ",
         outgoing = " ",
         hover = ' ',

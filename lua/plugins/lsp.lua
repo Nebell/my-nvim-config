@@ -18,6 +18,7 @@ return {
         "glepnir/lspsaga.nvim",
         branch = "main",
         cmd = "Lspsaga",
+        event = "LspAttach",
         config = function() require('lsp.setup').lspsaga_setup() end,
         dependencies = {
             { "nvim-tree/nvim-web-devicons" },
