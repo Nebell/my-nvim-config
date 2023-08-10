@@ -42,3 +42,7 @@ vim.opt.termguicolors = true
 
 -- scrolloff: the leave lines on the top or bottom of screen
 vim.o.scrolloff = 4
+
+-- case
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
