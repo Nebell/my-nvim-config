@@ -29,15 +29,22 @@ local function setup()
         },
         mapping = cmp.mapping.preset.insert({
             -- ['<C-Space>'] = cmp.mapping.complete(),
-            ['<ESC>']     = cmp.mapping(function(fallback)
+            ['<ESC>'] = cmp.mapping(function(fallback)
                 if cmp.visible() then
                     cmp.abort()
                 else
                     fallback()
                 end
             end, { "i", "s", "c" }),
-            ['<CR>']      = cmp.mapping.confirm({ select = true }),
-            ["<Tab>"]     = cmp.mapping(function(fallback)
+            ['<CR>']  = cmp.mapping(function(fallback)
+                local entry = cmp.get_selected_entry()
+                if not entry then
+                    fallback()
+                else
+                    cmp.mapping.confirm({ select = true })
+                end
+            end),
+            ["<Tab>"] = cmp.mapping(function(fallback)
                 -- This little snippet will confirm with tab, and if no entry is selected,
                 -- will confirm the first item
                 if cmp.visible() then
@@ -54,7 +61,7 @@ local function setup()
                     fallback()
                 end
             end, { "i", "s", "c", }),
-            ['<C-K>']     = cmp.mapping(function(fallback)
+            ['<C-K>'] = cmp.mapping(function(fallback)
                 if cmp.visible() then
                     cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
                 elseif luasnip.jumpable(-1) then
@@ -63,7 +70,7 @@ local function setup()
                     fallback()
                 end
             end, { "i", "s", "c", }),
-            ['<C-J>']     = cmp.mapping(function(fallback)
+            ['<C-J>'] = cmp.mapping(function(fallback)
                 if cmp.visible() then
                     cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
                 elseif luasnip.expand_or_jumpable() then
@@ -74,7 +81,7 @@ local function setup()
             end, { "i", "s", "c", }),
             -- Abort completion and quit insert mode
             -- 'C' means cancel
-            ['<C-C>']     = cmp.mapping(function(fallback)
+            ['<C-C>'] = cmp.mapping(function(fallback)
                 cmp.close()
                 if cmp.visible() then
                     vim.cmd("stopinsert")
@@ -83,7 +90,6 @@ local function setup()
                 end
             end, { "i" })
         }),
-
         -- sources of completion
         sources = cmp.config.sources({
             { name = 'nvim_lsp' },
