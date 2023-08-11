@@ -289,5 +289,9 @@ return {
                 "Treesitter Search"
             },
         },
+    },
+    {
+        "vim-scripts/argtextobj.vim",
+        event = "BufReadPost",
     }
 }
