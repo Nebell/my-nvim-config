@@ -6,18 +6,21 @@ vim.api.nvim_create_autocmd("QuitPre", {
 
         local current_buf_ft = vim.api.nvim_buf_get_option(vim.api.nvim_get_current_buf(), 'filetype')
         local wins = vim.api.nvim_list_wins()
-        for _, w in ipairs(wins) do
-            local buf_id = vim.api.nvim_win_get_buf(w)
-            local buf_ft = vim.api.nvim_buf_get_option(buf_id, 'filetype')
-            for _, ft in ipairs(ignore_ft) do
-                
-                -- do nothing if exit the windows of ignore filetype
-                if current_buf_ft == ft then
-                    return
+        local wins_info = {}
+        for _, ft in ipairs(ignore_ft) do
+            -- do nothing if exit the windows of ignore filetype
+            if current_buf_ft == ft then
+                return
+            end
+
+            for _, w in ipairs(wins) do
+                if wins_info[w] == nil then
+                    local buf_id = vim.api.nvim_win_get_buf(w)
+                    wins_info[w] = vim.api.nvim_buf_get_option(buf_id, 'filetype')
                 end
 
                 -- record the window
-                if buf_ft == ft then
+                if wins_info[w] == ft then
                     table.insert(invalid_win, w)
                 end
             end
