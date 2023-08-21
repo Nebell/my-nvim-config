@@ -51,13 +51,6 @@ return {
     keys = {
         { "<C-H>", "<cmd>BufferLineCyclePrev<CR>", mode = { "n", "v", "i" }, { silent = true } },
         { "<C-L>", "<cmd>BufferLineCycleNext<CR>", mode = { "n", "v", "i" }, { silent = true } },
-        {
-            "<Leader>cb",
-            function()
-                bufclose(0)
-            end,
-            mode = { "n", "v", "i" },
-            { silent = true }
-        },
+        { "<Leader>cb", function() bufclose(0) end, mode = { "n", "v" }, { silent = true } },
     }
 }
