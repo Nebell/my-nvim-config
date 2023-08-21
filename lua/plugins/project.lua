@@ -1,7 +1,7 @@
 local project_pattern = {
     ".git", "_darcs", ".hg", ".bzr",
     ".svn", "Makefile", "package.json",
-    "go.mod", "go.work"
+    "go.work", "README.md"
 }
 
 local cfg = {
