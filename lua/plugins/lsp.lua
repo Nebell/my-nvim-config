@@ -37,7 +37,7 @@ local mason_config = {
 
 -- mason-lspconfig config
 local mason_lsp_config = {
-    automatic_installation = true,
+    automatic_installation = false,
     ensure_installed = {}
 }
 
