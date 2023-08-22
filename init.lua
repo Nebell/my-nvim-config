@@ -36,4 +36,5 @@ lazy_setup()
 -- keyset
 require('keyset')
 
-require('autocmd')
+-- require('autocmd')
+require('utils').source_files_from_dir(vim.fn.stdpath('config') .. "/lua/autocmd")
