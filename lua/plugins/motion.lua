@@ -272,6 +272,7 @@ return {
         opts = {},
         -- stylua: ignore
         keys = {
+            {"f"},{"F"},{"t"},{"T"},
             { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,   desc = "Flash" },
             {
                 "S",
