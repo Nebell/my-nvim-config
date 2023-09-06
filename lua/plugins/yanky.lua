@@ -11,11 +11,11 @@ local yanky_config = {
         },
         telescope = {
             use_default_mappings = true, -- if default mappings should be used
-            mappings = nil,        -- nil to use default mappings or no mappings (see `use_default_mappings`)
+            mappings = nil,              -- nil to use default mappings or no mappings (see `use_default_mappings`)
         },
     },
     system_clipboard = {
-        sync_with_ring = true,
+        sync_with_ring = false,
     },
     highlight = {
         on_put = true,
@@ -32,7 +32,10 @@ return {
         'gbprod/yanky.nvim',
         event = "BufReadPost",
         config = function()
-            vim.api.nvim_set_option("clipboard","unnamedplus")
+            if nil ~= os.getenv('SSH_CLIENT') then
+                yanky_config.system_clipboard.sync_with_ring = true
+                vim.api.nvim_set_option("clipboard", "unnamedplus")
+            end
             require("yanky").setup(yanky_config)
         end,
     }
