@@ -9,7 +9,7 @@ local config = {
             highlight = "Directory",
             text_align = "left"
         }, {
-            filetype = "Outline",
+            filetype = "sagaoutline",
             text = "Symbol Outline",
             text_align = "center"
         }

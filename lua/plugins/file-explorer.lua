@@ -12,7 +12,7 @@ local function setup()
             update_root = true
         },
         view = {
-            width = 23,
+            width = 30,
         }
     })
 end
