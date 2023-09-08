@@ -131,7 +131,8 @@ return {
             { "nvim-tree/nvim-web-devicons" },
             --Please make sure you install markdown and markdown_inline parser
             { "nvim-treesitter/nvim-treesitter" },
-        }
+        },
+        keys = { { "<C-S>", "<cmd>Lspsaga outline<CR>", { silent = true, noremap = true } } },
     },
     {
         'ray-x/lsp_signature.nvim',
