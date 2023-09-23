@@ -50,3 +50,6 @@ vim.opt.smartcase = true
 -- gui
 vim.opt.guifont = "Hack Nerd Font Mono:h14,CaskaydiaCove Nerd Font Mono:h14,Noto Color Emoji:h14,Microsoft Yahei UI:h14,sans-serif:h14"
 
+-- match
+vim.opt.showmatch = true
+vim.o.matchtime = 2
