@@ -1,4 +1,20 @@
 ---------- autocompletion -------------
+local function add_snippets()
+    local ls = require('luasnip')
+    local s = ls.snippet
+    local t = ls.text_node
+
+    ls.add_snippets("all", {
+        -- lambda symbol
+        s(":lambda", { t('λ') }),
+    })
+
+    ls.add_snippets("php", {
+        -- arrow
+        s("-", { t('->') }),
+        s("=", { t('=>') }),
+    })
+end
 
 local function setup()
     local has_words_before = function()
@@ -99,6 +115,7 @@ local function setup()
             -- { name = 'ultisnips' }, -- For ultisnips users.
             -- { name = 'snippy' }, -- For snippy users.
         }, {
+            { name = 'treesitter' },
             { name = 'buffer' },
         })
     })
@@ -125,6 +142,7 @@ local function setup()
     })
 
     -- cmp.event:on('confirm_done', reuqire('nvim-autopairs.completion.cmp').on_confirm_done())
+    add_snippets()
 end
 
 
@@ -160,6 +178,13 @@ return {
     {
         'hrsh7th/cmp-buffer',
         event = "BufReadPost",
+        dependencies = {
+            'hrsh7th/nvim-cmp',
+        },
+    },
+    {
+        'ray-x/cmp-treesitter',
+        event = "InsertEnter",
         dependencies = {
             'hrsh7th/nvim-cmp',
         },
