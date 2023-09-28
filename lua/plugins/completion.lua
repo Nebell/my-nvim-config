@@ -108,6 +108,12 @@ local function setup()
         }),
         -- sources of completion
         sources = cmp.config.sources({
+            {
+                name = 'omni',
+                option = {
+                    disable_omnifuncs = { 'v:lua.vim.lsp.omnifunc' }
+                }
+            },
             { name = 'nvim_lsp' },
             { name = 'nvim_lua' },
             { name = 'luasnip' }, -- For luasnip users.
@@ -116,6 +122,7 @@ local function setup()
             -- { name = 'snippy' }, -- For snippy users.
         }, {
             { name = 'treesitter' },
+            { name = 'path' },
             { name = 'buffer' },
         })
     })
@@ -145,7 +152,13 @@ local function setup()
     add_snippets()
 end
 
-
+local codeium_toggler = require('utils').toggler(function()
+    vim.cmd("CodeiumEnable")
+    vim.notify("CodeiumEnable", vim.log.levels.INFO)
+end, function()
+    vim.cmd("CodeiumDisable")
+    vim.notify("CodeiumDisable", vim.log.levels.INFO)
+end)
 
 return {
     ----------- autopairs ---------------
@@ -219,7 +232,7 @@ return {
             vim.g.codeium_disable_bindings = 1
         end,
         keys = {
-            { '<Leader>ai', "<CMD>CodeiumEnable<CR>", { 'n', 'v', 'i' },
+            { '<Leader>ai', function() codeium_toggler:toggle() end, { 'n', 'v', 'i' },
                 { expr = true } },
             { '<M-i>', function() return vim.fn['codeium#Accept']() end,             'i', { expr = true } },
             { '<M-j>', function() return vim.fn['codeium#CycleCompletions'](1) end,  'i', { expr = true } },
