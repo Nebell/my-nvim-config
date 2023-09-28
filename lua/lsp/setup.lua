@@ -30,6 +30,7 @@ local servers = {
     rust_analyzer = {},
     gopls = {},
     hls = { filetypes = { 'haskell', 'lhaskell', 'cabal' } },
+    racket_langserver = {},
 }
 
 -- Use an on_attach function to only map the following keys
