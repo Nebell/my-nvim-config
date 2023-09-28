@@ -148,6 +148,7 @@ end
 
 
 return {
+    ----------- autopairs ---------------
     {
         'windwp/nvim-autopairs',
         event = "InsertEnter",
@@ -164,6 +165,7 @@ return {
         end
     },
 
+    ----------- nvim-cmp ---------------
     {
         'hrsh7th/nvim-cmp',
         event = "VeryLazy",
@@ -206,5 +208,23 @@ return {
         'hrsh7th/cmp-omni',
         ft = "lua",
         dependencies = 'hrsh7th/nvim-cmp',
-    }
+    },
+
+    --------------------- ai -------------------------
+    {
+        'Exafunction/codeium.vim',
+        -- event = 'BufEnter',
+        config = function()
+            vim.g.codeium_enabled = 0
+            vim.g.codeium_disable_bindings = 1
+        end,
+        keys = {
+            { '<Leader>ai', "<CMD>CodeiumEnable<CR>", { 'n', 'v', 'i' },
+                { expr = true } },
+            { '<M-i>', function() return vim.fn['codeium#Accept']() end,             'i', { expr = true } },
+            { '<M-j>', function() return vim.fn['codeium#CycleCompletions'](1) end,  'i', { expr = true } },
+            { '<M-k>', function() return vim.fn['codeium#CycleCompletions'](-1) end, 'i', { expr = true } },
+            { '<M-o>', function() return vim.fn['codeium#Clear']() end,              'i', { expr = true } },
+        }
+    },
 }
