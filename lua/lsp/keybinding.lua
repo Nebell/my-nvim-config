@@ -5,7 +5,7 @@ function M.lspsaga()
 
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
+    local bufopts = { noremap = true, silent = true }
     keyset('n', 'gD', vim.lsp.buf.declaration, bufopts)
     keyset('n', 'gd', "<cmd>Lspsaga goto_definition<CR>", bufopts)
     keyset('n', 'gr', "<cmd>Lspsaga lsp_finder<CR>", bufopts)
@@ -36,7 +36,7 @@ function M.default()
 
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
+    local bufopts = { noremap = true, silent = true }
     keyset('n', 'gD', vim.lsp.buf.declaration, bufopts)
     keyset('n', 'gd', vim.lsp.buf.definition, bufopts)
     keyset('n', 'gr', vim.lsp.buf.references, bufopts)
