@@ -39,3 +39,6 @@ vim.o.wildmenu = true
 vim.g.loaded_python3_provider = 0
 
 vim.opt.termguicolors = true
+
+-- scrolloff: the leave lines on the top or bottom of screen
+vim.o.scrolloff = 4
