@@ -2,16 +2,15 @@ local M = {}
 
 local theme = require('theme')
 local plugins = {
-    { 'wbthomason/packer.nvim' },
-    { 'tpope/vim-commentary' }, -- commentary
+    { 'tpope/vim-commentary', event = "BufReadPost" }, -- commentary
     {
         "kylechui/nvim-surround",
-        version = "*",
+        -- version = "*",
         config = function() require('utils').async_run(require("nvim-surround").setup) end,
         event = "BufReadPost",
     },
     -- status bar
-    { 'nvim-lualine/lualine.nvim',   event = 'UIEnter',   config = theme.lualine_setup },
+    { 'nvim-lualine/lualine.nvim', event = "VeryLazy", config = theme.lualine_setup },
 
     -- dashboard
     -- {
@@ -22,9 +21,9 @@ local plugins = {
     -- }
 
     -- theme
-    { 'projekt0n/github-nvim-theme', event = "VeryLazy",  config = theme.github_setup },
+    { 'projekt0n/github-nvim-theme', event = "VeryLazy", config = theme.github_setup },
     -- rainbow parenthese
-    { 'luochen1990/rainbow',         event = "BufReadPre" },
+    { 'luochen1990/rainbow', event = "BufReadPre" },
 
     -- file explorer
     {
@@ -60,11 +59,11 @@ local plugins = {
         config = function()
             -- fuzzy search
             local mapping = {
-                    ["<C-j>"] = {
+                ["<C-j>"] = {
                     require('telescope.actions').move_selection_next, type = "action",
                     opts = { nowait = true, silent = true }
                 },
-                    ["<C-k>"] = {
+                ["<C-k>"] = {
                     require('telescope.actions').move_selection_previous, type = "action",
                     opts = { nowait = true, silent = true }
                 }
@@ -85,10 +84,10 @@ local plugins = {
     },
 
     -- git diff
-    { 'sindrets/diffview.nvim',     dependencies = 'nvim-lua/plenary.nvim', event = "BufReadPost" },
+    { 'sindrets/diffview.nvim', dependencies = 'nvim-lua/plenary.nvim', event = "BufReadPost" },
 
     -- terminal
-    { 'voldikss/vim-floaterm',      cmd = "FloatermToggle" }, -- float terminal
+    { 'voldikss/vim-floaterm', cmd = "FloatermToggle" }, -- float terminal
     -- 'skywind3000/vim-terminal-help' -- terminal
 
     -- debug
@@ -98,7 +97,10 @@ local plugins = {
     { 'vim-scripts/argtextobj.vim', event = "BufReadPost" },
 
     -- motion
-    { 'ggandor/leap.nvim',          key = 'f',                              config = function() require('leap') end },
+    { 'ggandor/leap.nvim', event = "BufReadPost", keys = {
+        { "f", "<Plug>(leap-forward-to)" },
+        { "F", "<Plug>(leap-backward-to)" },
+    }, config = function() require('leap') end },
 
     -- git signs for buffer
     {
@@ -110,12 +112,14 @@ local plugins = {
 
     -- lazygit
     {
-        'kdheepak/lazygit.nvim'
+        'kdheepak/lazygit.nvim',
+        event = "VeryLazy"
     },
 
     -- LSP
-    { 'neovim/nvim-lspconfig',   event = "BufReadPre",                config = function() require('lsp.setup').setup() end },
-    { 'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim', module = 'mason' },
+    { 'neovim/nvim-lspconfig', event = "BufReadPre", config = function() require('lsp.setup').setup() end },
+    { 'williamboman/mason.nvim', event = "VeryLazy" },
+    { 'williamboman/mason-lspconfig.nvim', event = "VeryLazy", dependencies = 'williamboman/mason.nvim' },
     {
         "glepnir/lspsaga.nvim",
         branch = "main",
@@ -168,18 +172,24 @@ local plugins = {
 
     -- snippet
     {
-        dependencies = 'nvim-cmp',
-        event = "InsertEnter",
         'hrsh7th/cmp-nvim-lua',
+        dependencies = 'hrsh7th/nvim-cmp',
+        event = "InsertEnter",
+    },
+    {
         'hrsh7th/cmp-vsnip',
-        'hrsh7th/vim-vsnip',
-        'hrsh7th/vim-vsnip-integ',
+        event = "BufRead",
+        dependencies = {
+            'hrsh7th/nvim-cmp',
+            'hrsh7th/vim-vsnip',
+            'hrsh7th/vim-vsnip-integ',
+        }
     },
 }
 
 local lazy_config = {
     defaults = {
-        lazy = true,
+        -- lazy = true,
     },
     git = {
         url_format = "https://github.com/%s.git",
