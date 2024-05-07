@@ -3,7 +3,8 @@ return {
     {
         'neovim/nvim-lspconfig',
         event = "BufReadPre",
-        config = function() require('lsp.setup').setup() end
+        config = function() require('lsp.setup').setup() end,
+        dependencies = { 'nvimdev/lspsaga.nvim'},
     },
     {
         'williamboman/mason.nvim',
@@ -18,13 +19,11 @@ return {
         "nvimdev/lspsaga.nvim",
         branch = "main",
         cmd = "Lspsaga",
-        event = "LspAttach",
         config = function() require('lsp.setup').lspsaga_setup() end,
         dependencies = {
             { "nvim-tree/nvim-web-devicons" },
             --Please make sure you install markdown and markdown_inline parser
             { "nvim-treesitter/nvim-treesitter" },
-            { "neovim/nvim-lspconfig" },
         }
     },
     {
