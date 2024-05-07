@@ -36,3 +36,4 @@ lazy_setup()
 -- keyset
 require('keyset')
 
+require('autocmd.closewin')
