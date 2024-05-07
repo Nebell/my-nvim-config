@@ -10,6 +10,7 @@ M.ignore_ft = {
     "floggraph",
     "sagaoutline",
     "NeogitStatus",
+    "neo-tree",
 }
 
 return M

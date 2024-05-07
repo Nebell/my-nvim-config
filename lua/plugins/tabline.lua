@@ -12,6 +12,11 @@ local config = {
             filetype = "sagaoutline",
             text = "Symbol Outline",
             text_align = "center"
+        }, {
+            filetype = "neo-tree",
+            text = function() return vim.fn.getcwd() end,
+            highlight = "Directory",
+            text_align = "left"
         }
         },
         close_command = bufclose,
