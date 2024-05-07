@@ -18,6 +18,7 @@ vim.bo.expandtab = true
 vim.o.autoindent = true
 vim.bo.autoindent = true
 vim.o.smartindent = true
+vim.bo.smartindent = true
 
 -- search
 vim.o.hlsearch = true
@@ -56,7 +57,7 @@ keyset("n", "<C-T>", ":FloatermToggle<CR>", {silent = true})
 keyset("t", "<C-T>", "<C-\\><C-n>:FloatermToggle<CR>", {silent = true})
 
 -- Coc
-require('coc')
+-- require('coc')
 
 -- Custom
 --- shift lines
