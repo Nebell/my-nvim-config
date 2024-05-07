@@ -154,7 +154,16 @@ return {
         'ray-x/lsp_signature.nvim',
         event = "InsertEnter",
         keys = {
-            { '<C-Space>', vim.lsp.buf.signature_help },
+            {
+                '<C-Space>',
+                mode = { "n", "i" },
+                function()
+                    require('lsp_signature').toggle_float_win()
+                end,
+                silent = true,
+                noremap = true,
+                desc = 'toggle signature'
+            },
         },
         config = function()
             require "lsp_signature".setup({})
