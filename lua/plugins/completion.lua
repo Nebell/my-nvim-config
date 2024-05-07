@@ -225,6 +225,7 @@ return {
     {
         'Exafunction/codeium.vim',
         -- event = 'BufEnter',
+        cmd = "Codeium",
         config = function()
             vim.g.codeium_enabled = 0
             vim.g.codeium_disable_bindings = 1
