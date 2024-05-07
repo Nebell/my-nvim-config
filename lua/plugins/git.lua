@@ -16,26 +16,20 @@ return {
 
     ---------- git branchs ----------
     {
-        "rbong/vim-flog",
-        keys = {
-            { "<Leader>gb", "<CMD>Flogsplit<CR>" },
-        },
-        config = require('autocmd.closewin').quit_flog_win,
-        dependencies = "tpope/vim-fugitive",
-    },
-    {
-        "tpope/vim-fugitive",
-        cmd = { "Git", "Gvdiffsplit" },
-    },
-
-    {
         "NeogitOrg/neogit",
         dependencies = {
-            "nvim-lua/plenary.nvim", -- required
+            "nvim-lua/plenary.nvim",         -- required
             "nvim-telescope/telescope.nvim", -- optional
-            "sindrets/diffview.nvim", -- optional
-            "ibhagwan/fzf-lua",      -- optional
+            "sindrets/diffview.nvim",        -- optional
+            "ibhagwan/fzf-lua",              -- optional
         },
-        config = true
+        config = true,
+        cmd = "Neogit",
+        keys = {
+            { "gv", function() require('neogit').open({ kind = "split" }) end,
+                { 'n', 'v' }, { slient = true, noremap = true } },
+            { "gp", function() require('neogit').open({ "commit" }) end,
+                { 'n', 'v' }, { slient = true, noremap = true } },
+        }
     }
 }
