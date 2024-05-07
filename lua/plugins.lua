@@ -120,26 +120,32 @@ return require('packer').startup({ function(use)
     use { 'neovim/nvim-lspconfig', event = "BufReadPre", config = function() require('lsp.setup').setup() end }
     use { 'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim', module = 'mason' }
 
+    -- highlight and code structure
     use { 'nvim-treesitter/nvim-treesitter', event = "BufReadPost",
         run = ":TSUpdate", config = require('lsp.treesitter').setup }
+    use { 'nvim-treesitter/nvim-treesitter-context', event = "BufReadPost", after = 'nvim-treesitter',
+        config = function() require('utils').async_run(
+                require('treesitter-context').setup)
+        end }
 
     use { 'windwp/nvim-autopairs', event = "InsertEnter",
         config = function() require("nvim-autopairs").setup {} end
     }
 
     -- autocompletion
-    use { 'hrsh7th/nvim-cmp', -- event = "UIEnter", module = {'cmp_nvim_lsp', 'cmp'},
-        config = require('lsp.nvim-cmp').setup }
+    use { 'hrsh7th/nvim-cmp', event = "UIEnter", module = { 'cmp_nvim_lsp', 'cmp' },
+        config = function() require('lsp.nvim-cmp').setup() end }
     -- nvim-cmp plugins, run after nvim-cmp
     use { after = 'nvim-cmp',
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-path',
-        'hrsh7th/cmp-cmdline'
+        'hrsh7th/cmp-cmdline',
     }
 
     -- snippet
     use { after = 'nvim-cmp', event = "InsertEnter",
+        'hrsh7th/cmp-nvim-lua',
         'hrsh7th/cmp-vsnip',
         'hrsh7th/vim-vsnip',
         'hrsh7th/vim-vsnip-integ',

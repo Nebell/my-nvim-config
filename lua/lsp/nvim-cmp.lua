@@ -74,6 +74,7 @@ function M.setup()
         }),
         sources = cmp.config.sources({
             { name = 'nvim_lsp' },
+            { name = 'nvim_lua' },
             { name = 'vsnip' }, -- For vsnip users.
             -- { name = 'luasnip' }, -- For luasnip users.
             -- { name = 'ultisnips' }, -- For ultisnips users.
@@ -103,6 +104,8 @@ function M.setup()
             { name = 'cmdline' }
         })
     })
+
+    -- cmp.event:on('confirm_done', reuqire('nvim-autopairs.completion.cmp').on_confirm_done())
 end
 
 return M
