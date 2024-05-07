@@ -229,7 +229,7 @@ _G.packer_plugins = {
   },
   ["nvim-treesitter"] = {
     after = { "nvim-treesitter-context" },
-    config = { "\27LJ\2\n‘\1\0\2\t\0\a\1\21*\2\0\0006\3\0\0006\5\1\0009\5\2\0059\5\3\0056\6\1\0009\6\4\0069\6\5\6\18\b\1\0B\6\2\0A\3\1\3\15\0\3\0X\5\a€\15\0\4\0X\5\5€9\5\6\4\1\2\5\0X\5\2€+\5\2\0L\5\2\0K\0\1\0\tsize\22nvim_buf_get_name\bapi\ffs_stat\tloop\bvim\npcall€€€d‚\1\0\0\3\1\5\0\f6\0\0\0'\2\1\0B\0\2\2+\1\2\0=\1\2\0006\0\0\0'\2\3\0B\0\2\0029\0\4\0-\2\0\0B\0\2\1K\0\1\0\0À\nsetup\28nvim-treesitter.configs\15prefer_git\28nvim-treesitter.install\frequireò\1\1\0\4\0\v\0\0175\0\1\0005\1\0\0=\1\2\0005\1\3\0004\2\0\0=\2\4\0013\2\5\0=\2\4\1=\1\6\0006\1\a\0'\3\b\0B\1\2\0029\1\t\0013\3\n\0B\1\2\0012\0\0€K\0\1\0\0\14async_run\nutils\frequire\14highlight\0\fdisable\1\0\2&additional_vim_regex_highlighting\1\venable\2\21ensure_installed\1\0\2\17auto_install\2\17sync_install\1\1\a\0\0\6c\blua\bvim\thelp\ago\vpython\0" },
+    config = { "\27LJ\2\n‘\1\0\2\t\0\a\1\21*\2\0\0006\3\0\0006\5\1\0009\5\2\0059\5\3\0056\6\1\0009\6\4\0069\6\5\6\18\b\1\0B\6\2\0A\3\1\3\15\0\3\0X\5\a€\15\0\4\0X\5\5€9\5\6\4\1\2\5\0X\5\2€+\5\2\0L\5\2\0K\0\1\0\tsize\22nvim_buf_get_name\bapi\ffs_stat\tloop\bvim\npcall€€€d‚\1\0\0\3\1\5\0\f6\0\0\0'\2\1\0B\0\2\2+\1\2\0=\1\2\0006\0\0\0'\2\3\0B\0\2\0029\0\4\0-\2\0\0B\0\2\1K\0\1\0\0À\nsetup\28nvim-treesitter.configs\15prefer_git\28nvim-treesitter.install\frequire‹\2\1\0\4\0\v\0\0175\0\1\0005\1\0\0=\1\2\0005\1\3\0004\2\0\0=\2\4\0013\2\5\0=\2\4\1=\1\6\0006\1\a\0'\3\b\0B\1\2\0029\1\t\0013\3\n\0B\1\2\0012\0\0€K\0\1\0\0\14async_run\nutils\frequire\14highlight\0\fdisable\1\0\2\venable\2&additional_vim_regex_highlighting\1\21ensure_installed\1\0\2\17sync_install\1\17auto_install\2\1\t\0\0\6c\blua\bvim\thelp\ago\vpython\rmarkdown\20markdown_inline\0" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
@@ -271,7 +271,7 @@ _G.packer_plugins = {
   },
   ["telescope.nvim"] = {
     commands = { "Telescope" },
-    config = { "\27LJ\2\nç\2\0\0\6\0\22\0\"5\0\6\0005\1\3\0006\2\0\0'\4\1\0B\2\2\0029\2\2\2>\2\1\0015\2\4\0=\2\5\1=\1\a\0005\1\t\0006\2\0\0'\4\1\0B\2\2\0029\2\b\2>\2\1\0015\2\n\0=\2\5\1=\1\v\0006\1\0\0'\3\f\0B\1\2\0029\1\r\0015\3\19\0005\4\17\0005\5\14\0=\0\15\5=\0\16\5=\5\18\4=\4\20\0034\4\0\0=\4\21\3B\1\2\1K\0\1\0\15extensions\rdefaults\1\0\0\rmappings\1\0\0\6n\6i\1\0\0\nsetup\14telescope\n<C-k>\1\0\2\vsilent\2\vnowait\2\1\0\1\ttype\vaction\28move_selection_previous\n<C-j>\1\0\0\topts\1\0\2\vsilent\2\vnowait\2\1\0\1\ttype\vaction\24move_selection_next\22telescope.actions\frequire\0" },
+    config = { "\27LJ\2\nç\2\0\0\6\0\22\0\"5\0\6\0005\1\3\0006\2\0\0'\4\1\0B\2\2\0029\2\2\2>\2\1\0015\2\4\0=\2\5\1=\1\a\0005\1\t\0006\2\0\0'\4\1\0B\2\2\0029\2\b\2>\2\1\0015\2\n\0=\2\5\1=\1\v\0006\1\0\0'\3\f\0B\1\2\0029\1\r\0015\3\19\0005\4\17\0005\5\14\0=\0\15\5=\0\16\5=\5\18\4=\4\20\0034\4\0\0=\4\21\3B\1\2\1K\0\1\0\15extensions\rdefaults\1\0\0\rmappings\1\0\0\6n\6i\1\0\0\nsetup\14telescope\n<C-k>\1\0\2\vnowait\2\vsilent\2\1\0\1\ttype\vaction\28move_selection_previous\n<C-j>\1\0\0\topts\1\0\2\vnowait\2\vsilent\2\1\0\1\ttype\vaction\24move_selection_next\22telescope.actions\frequire\0" },
     loaded = false,
     needs_bufread = true,
     only_cond = false,
@@ -350,6 +350,13 @@ pcall(vim.api.nvim_create_user_command, 'Telescope', function(cmdargs)
           require('packer.load')({'telescope.nvim'}, {}, _G.packer_plugins)
           return vim.fn.getcompletion('Telescope ', 'cmdline')
       end})
+pcall(vim.api.nvim_create_user_command, 'NvimTreeToggle', function(cmdargs)
+          require('packer.load')({'nvim-tree.lua'}, { cmd = 'NvimTreeToggle', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'nvim-tree.lua'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('NvimTreeToggle ', 'cmdline')
+      end})
 pcall(vim.api.nvim_create_user_command, 'FloatermToggle', function(cmdargs)
           require('packer.load')({'vim-floaterm'}, { cmd = 'FloatermToggle', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
@@ -364,23 +371,16 @@ pcall(vim.api.nvim_create_user_command, 'Lspsaga', function(cmdargs)
           require('packer.load')({'lspsaga.nvim'}, {}, _G.packer_plugins)
           return vim.fn.getcompletion('Lspsaga ', 'cmdline')
       end})
-pcall(vim.api.nvim_create_user_command, 'NvimTreeToggle', function(cmdargs)
-          require('packer.load')({'nvim-tree.lua'}, { cmd = 'NvimTreeToggle', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
-        end,
-        {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'nvim-tree.lua'}, {}, _G.packer_plugins)
-          return vim.fn.getcompletion('NvimTreeToggle ', 'cmdline')
-      end})
 time([[Defining lazy-load commands]], false)
 
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
+vim.cmd [[au UIEnter * ++once lua require("packer.load")({'lualine.nvim', 'nvim-cmp', 'github-nvim-theme'}, { event = "UIEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au BufReadPost * ++once lua require("packer.load")({'argtextobj.vim', 'diffview.nvim', 'nvim-treesitter-context', 'nvim-surround', 'nvim-treesitter', 'gitsigns.nvim'}, { event = "BufReadPost *" }, _G.packer_plugins)]]
+vim.cmd [[au BufReadPre * ++once lua require("packer.load")({'bufferline.nvim', 'nvim-lspconfig', 'rainbow', 'lspsaga.nvim'}, { event = "BufReadPre *" }, _G.packer_plugins)]]
 vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-autopairs'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au BufReadPost * ++once lua require("packer.load")({'nvim-surround', 'diffview.nvim', 'nvim-treesitter', 'argtextobj.vim', 'nvim-treesitter-context', 'gitsigns.nvim'}, { event = "BufReadPost *" }, _G.packer_plugins)]]
-vim.cmd [[au UIEnter * ++once lua require("packer.load")({'github-nvim-theme', 'lualine.nvim', 'nvim-cmp'}, { event = "UIEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au BufReadPre * ++once lua require("packer.load")({'rainbow', 'nvim-lspconfig', 'bufferline.nvim', 'lspsaga.nvim'}, { event = "BufReadPre *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 
