@@ -9,10 +9,10 @@ return {
             vim.cmd([[highlight TSRainbowRed guifg=#8491c3 ctermfg=LightBlue ]])
             vim.cmd([[highlight TSRainbowYellow guifg=#698aab ctermfg=Brown ]])
             vim.cmd([[highlight TSRainbowBlue guifg=#4c6cb3 ctermfg=Cyan ]])
-            vim.cmd([[highlight TSRainbowOrange guifg=#93b881 ctermfg=Brown ]])
+            vim.cmd([[highlight TSRainbowOrange guifg=#339999 ctermfg=Brown ]])
             -- vim.cmd([[highlight TSRainbowGreen guifg= ctermfg=]])
-            vim.cmd([[highlight TSRainbowViolet guifg=#e17b34 ctermfg=White ]])
-            -- vim.cmd([[highlight TSRainbowCyan guifg= ctermfg=]])
+            vim.cmd([[highlight TSRainbowViolet guifg=#93b881 ctermfg=White ]])
+            vim.cmd([[highlight TSRainbowCyan guifg=#CCCCCC ctermfg=Cyan ]])
         end,
         config = function()
             require('nvim-treesitter.configs').setup {
