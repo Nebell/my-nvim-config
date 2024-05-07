@@ -129,10 +129,10 @@ return require('packer').startup({ function(use)
     -- highlight and code structure
     use { 'nvim-treesitter/nvim-treesitter', event = "BufReadPost",
         run = ":TSUpdate", config = require('lsp.treesitter').setup }
-    -- use { 'nvim-treesitter/nvim-treesitter-context', event = "BufReadPost", after = 'nvim-treesitter',
-    --     config = function() require('utils').async_run(
-    --             require('treesitter-context').setup)
-    --     end }
+    use { 'nvim-treesitter/nvim-treesitter-context', event = "BufReadPost", after = 'nvim-treesitter',
+        config = function() require('utils').async_run(
+                require('treesitter-context').setup)
+        end }
 
     use { 'windwp/nvim-autopairs', event = "InsertEnter",
         config = function() require("nvim-autopairs").setup {} end
