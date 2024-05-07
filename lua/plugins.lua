@@ -112,8 +112,7 @@ local plugins = {
 
     -- lazygit
     {
-        'kdheepak/lazygit.nvim',
-        event = "VeryLazy"
+        'kdheepak/lazygit.nvim', event = "VeryLazy",
     },
 
     -- LSP
@@ -131,6 +130,12 @@ local plugins = {
             { "nvim-treesitter/nvim-treesitter" },
             { "neovim/nvim-lspconfig" },
         }
+    },
+    {
+        'simrat39/symbols-outline.nvim',
+        event = "BufReadPost",
+        config = function () require("symbols-outline").setup() end,
+        keys = {{"<C-S>", "<cmd>SymbolsOutline<CR>", {silent = true, noremap = true}}}
     },
 
     -- highlight and code structure

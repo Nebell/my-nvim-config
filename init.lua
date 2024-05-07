@@ -89,7 +89,7 @@ keyset({ "n", "v", "i" }, "<C-H>", "<cmd>BufferLineCyclePrev<CR>", {silent = tru
 keyset({ "n", "v", "i" }, "<C-L>", "<cmd>BufferLineCycleNext<CR>", {silent = true})
 
 -- symbols outline
-keyset({ "n", "i", "v" }, "<C-S>", "<CMD>Lspsaga outline<CR>", {silent = true})
+-- keyset({ "n", "i", "v" }, "<C-S>", "<CMD>Lspsaga outline<CR>", {silent = true})
 
 -- fuzzy
 --- telescope
