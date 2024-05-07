@@ -10,6 +10,8 @@ local ensure_packer = function()
 end
 
 local packer_bootstrap = ensure_packer()
+local keyset = vim.keymap.set
+local util = require('packer.util')
 
 vim.cmd [[packadd packer.nvim]]
 
@@ -34,7 +36,16 @@ return require('packer').startup({function(use)
         'nvim-tree/nvim-tree.lua',
         requires = {
             'nvim-tree/nvim-web-devicons', -- optional, for file icons
-        }
+        },
+        config = function()
+            vim.g.loaded_netrw = 1
+            vim.g.loaded_netrwPlugin = 1
+            require("nvim-tree").setup({
+                view = {
+                    width = 23,
+                }
+            })
+        end,
     }
 
     use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}

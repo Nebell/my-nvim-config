@@ -72,13 +72,8 @@ keyset("v", "<TAB>", ">")
 keyset("v", "<S-TAB>", "<")
 
 -- nvim-tree
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-require("nvim-tree").setup({
-    view = {
-        width = 23,
-    }
-})
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
 
 keyset({ "n", "i", "v" }, "<C-G>", "<CMD>NvimTreeToggle<CR>", {silent = true})
 keyset({ "n", "i", "v" }, "<Leader>loc", "<CMD>NvimTreeFindFile<CR>", {silent = true})
