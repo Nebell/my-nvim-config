@@ -33,7 +33,7 @@ local twilight_config = {
         "table",
         "if_statement",
     },
-    exclude = { "NvimTree", "Symbol Outline" }, -- exclude these filetypes
+    exclude = require("common").ignore_ft, -- exclude these filetypes
 }
 
 
@@ -52,8 +52,8 @@ local true_zen_config = {
             quit_untoggles = false, -- type :q or :qa to quit Ataraxis mode
             padding = {
                 -- padding windows
-                left = 52,
-                right = 52,
+                left = 30,
+                right = 30,
                 top = 40,
                 bottom = 40,
             },

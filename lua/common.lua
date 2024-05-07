@@ -9,6 +9,7 @@ M.ignore_ft = {
     "diff",
     "floggraph",
     "sagaoutline",
+    "NeogitStatus",
 }
 
 return M
