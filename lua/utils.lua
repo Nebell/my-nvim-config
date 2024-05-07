@@ -32,4 +32,31 @@ function M.source_files_from_dir(directory)
     end
 end
 
+-- toggler returns a toggler
+-- two params are function callback
+-- when first toggled, the first param of function will be called
+-- and the next time will call the other
+function M.toggler(on, off)
+    if type(on) ~= "function" or type(off) ~= "function" then
+        vim.notify("make sure that the callbacks of toggler are functions!", vim.log.levels.ERROR)
+        return
+    end
+
+    return {
+        sw = false,
+        on = on,
+        off = off,
+        -- lock = vim.loop.new_mutex()
+        toggle = function(self)
+            if self.sw then
+                self.off()
+            else
+                self.on()
+            end
+
+            self.sw = not self.sw
+        end
+    }
+end
+
 return M
