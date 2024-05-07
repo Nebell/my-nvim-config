@@ -4,5 +4,5 @@ vim.api.nvim_create_augroup("custom.highlights", {clear = true})
 vim.api.nvim_create_autocmd('TextYankPost', {
     group    = 'custom.highlights',
     pattern  = '*',
-    callback = function() vim.highlight.on_yank { timeout = 500 } end
+    callback = function() vim.highlight.on_yank { timeout = 200 } end
 })
