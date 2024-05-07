@@ -69,7 +69,6 @@ keyset("n", "<C-DOWN>", "15j")
 --- indent
 keyset("n", "<TAB>", ">>")
 keyset("n", "<S-TAB>", "<<")
-keyset("i", "<S-TAB>", "<Esc><<i")
 keyset("v", "<TAB>", ">")
 keyset("v", "<S-TAB>", "<")
 
@@ -79,8 +78,7 @@ vim.g.loaded_netrwPlugin = 1
 require("nvim-tree").setup({
     open_on_setup = true,
 })
-keyset("n", "<C-G>", "<ESC>:NvimTreeToggle<CR>", {silent = true})
-keyset("i", "<C-G>", "<ESC>:NvimTreeToggle<CR>i", {silent = true})
+keyset({ "n", "i", "v" }, "<C-G>", "<CMD>NvimTreeToggle<CR>", {silent = true})
 keyset("n", "<Leader>loc", "<ESC>:NvimTreeFindFile<CR>", {silent = true})
 keyset("i", "<Leader>loc", "<ESC>:NvimTreeFindFile<CR>i", {silent = true})
 
@@ -114,3 +112,6 @@ keyset("n", "<Leader>fs", ":CocList symbols<CR>", {silent = true})
 
 -- debug
 require('debug')
+
+-- motion
+require('leap').add_default_mappings()

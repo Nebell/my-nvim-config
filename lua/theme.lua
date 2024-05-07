@@ -6,10 +6,6 @@ require('github-theme').setup({
     dark_float = true
 })
 
-vim.g.lightline = {
-    colorscheme = "wombat"
-}
-
 -- rainbow parenthese
 vim.g.rainbow_active = 1
 vim.g.rainbow_conf = {
@@ -19,6 +15,7 @@ vim.g.rainbow_conf = {
 
 -- lightline
 vim.g.lightline = {
+    colorscheme = "wombat",
     enable = {
         -- it is conflicted with bufferline
         -- disable tabline for bufferline
