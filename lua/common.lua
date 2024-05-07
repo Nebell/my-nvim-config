@@ -8,6 +8,7 @@ M.ignore_ft = {
     "Trouble",
     "diff",
     "floggraph",
+    "sagaoutline",
 }
 
 return M
