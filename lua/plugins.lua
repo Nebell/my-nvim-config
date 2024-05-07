@@ -2,7 +2,7 @@ local M = {}
 
 local theme = require('theme')
 local plugins = {
-    { 'tpope/vim-commentary',      event = "BufReadPost" }, -- commentary
+    { 'tpope/vim-commentary', event = "BufReadPost" }, -- commentary
     {
         "kylechui/nvim-surround",
         -- version = "*",
@@ -10,7 +10,7 @@ local plugins = {
         event = "BufReadPost",
     },
     -- status bar
-    { 'nvim-lualine/lualine.nvim', event = "VeryLazy",   config = theme.lualine_setup },
+    { 'nvim-lualine/lualine.nvim', event = "VeryLazy", config = theme.lualine_setup },
 
     -- dashboard
     {
@@ -21,9 +21,9 @@ local plugins = {
     },
 
     -- theme
-    { 'rmehri01/onenord.nvim', event = "UIEnter",   config = theme.theme_setup },
+    { 'rmehri01/onenord.nvim', event = "UIEnter", config = theme.theme_setup },
     -- rainbow parenthese
-    { 'luochen1990/rainbow',   event = "BufReadPre" },
+    { 'luochen1990/rainbow', event = "BufReadPre" },
 
     -- file explorer
     {
@@ -59,11 +59,11 @@ local plugins = {
         config = function()
             -- fuzzy search
             local mapping = {
-                    ["<C-j>"] = {
+                ["<C-j>"] = {
                     require('telescope.actions').move_selection_next, type = "action",
                     opts = { nowait = true, silent = true }
                 },
-                    ["<C-k>"] = {
+                ["<C-k>"] = {
                     require('telescope.actions').move_selection_previous, type = "action",
                     opts = { nowait = true, silent = true }
                 }
@@ -83,7 +83,7 @@ local plugins = {
     },
 
     -- git diff
-    { 'sindrets/diffview.nvim',     dependencies = 'nvim-lua/plenary.nvim', event = "BufReadPost" },
+    { 'sindrets/diffview.nvim', dependencies = 'nvim-lua/plenary.nvim', event = "BufReadPost" },
 
     -- terminal
     {
@@ -121,9 +121,9 @@ local plugins = {
     },
 
     -- LSP
-    { 'neovim/nvim-lspconfig',             event = "BufReadPre", config = function() require('lsp.setup').setup() end },
-    { 'williamboman/mason.nvim',           event = "VeryLazy" },
-    { 'williamboman/mason-lspconfig.nvim', event = "VeryLazy",   dependencies = 'williamboman/mason.nvim' },
+    { 'neovim/nvim-lspconfig', event = "BufReadPre", config = function() require('lsp.setup').setup() end },
+    { 'williamboman/mason.nvim', event = "VeryLazy" },
+    { 'williamboman/mason-lspconfig.nvim', event = "VeryLazy", dependencies = 'williamboman/mason.nvim' },
     {
         "glepnir/lspsaga.nvim",
         branch = "main",
