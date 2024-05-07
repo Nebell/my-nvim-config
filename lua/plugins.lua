@@ -132,6 +132,12 @@ local plugins = {
         config = function() require("symbols-outline").setup() end,
         keys = { { "<C-S>", "<cmd>SymbolsOutline<CR>", { silent = true, noremap = true } } }
     },
+    {
+        'ray-x/lsp_signature.nvim',
+        config = function()
+            require "lsp_signature".setup({})
+        end,
+    },
 
     -- highlight and code structure
     {

@@ -4,6 +4,15 @@ local utils = require('utils')
 
 -- mason config
 local mason_config = {
+    -- The directory in which to install packages.
+    install_root_dir = require "mason-core.path".concat { vim.fn.stdpath "data", "mason" },
+
+    -- Where Mason should put its bin location in your PATH. Can be one of:
+    -- - "prepend" (default, Mason's bin location is put first in PATH)
+    -- - "append" (Mason's bin location is put at the end of PATH)
+    -- - "skip" (doesn't modify PATH)
+    ---@type '"prepend"' | '"append"' | '"skip"'
+    PATH = "prepend",
     ui = {
         icons = {
             package_installed = "✓",
@@ -18,15 +27,6 @@ local mason_lsp_config = {
     automatic_installation = true,
     ensure_installed = {}
 }
-
--- setup mason
-local function mason_setup()
-    require("mason").setup(mason_config)
-    require("mason-lspconfig").setup(mason_lsp_config)
-end
-
-M.mason_setup = mason_setup
-
 
 -- language servers
 local servers = {
@@ -65,6 +65,14 @@ local on_attach = function(client, bufnr)
 
 end
 
+-- setup mason
+local function mason_setup()
+    require("mason").setup(mason_config)
+    require("mason-lspconfig").setup(mason_lsp_config)
+end
+
+M.mason_setup = mason_setup
+
 -- setup lspconfig and plugins
 function M.setup()
     utils.async_run(mason_setup)
@@ -88,6 +96,7 @@ function M.setup()
             lsp[srv].setup(cfg)
         end
     end
+
 end
 
 local lspsaga_config = {
