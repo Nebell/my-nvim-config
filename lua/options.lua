@@ -46,3 +46,7 @@ vim.o.scrolloff = 4
 -- case
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+
+-- gui
+vim.opt.guifont = "Hack Nerd Font Mono:h14,CaskaydiaCove Nerd Font Mono:h14,Noto Color Emoji:h14"
+
