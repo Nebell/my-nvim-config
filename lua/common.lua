@@ -7,6 +7,7 @@ M.ignore_ft = {
     "undotree",
     "Trouble",
     "diff",
+    "floggraph",
 }
 
 return M

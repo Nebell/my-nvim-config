@@ -13,4 +13,27 @@ return {
         dependencies = 'nvim-lua/plenary.nvim',
         event = "BufReadPost"
     },
+
+    ---------- git branchs ----------
+    {
+        "rbong/vim-flog",
+        keys = {
+            { "<Leader>gb", "<CMD>Flogsplit<CR>" },
+        },
+        config = function()
+            vim.api.nvim_create_autocmd({ "FileType" }, {
+                pattern = "floggraph",
+                callback = function()
+                    vim.api.nvim_set_keymap(
+                        "n", "q", "<CMD>close<CR>",
+                        { noremap = true, silent = true }
+                    )
+                end
+            })
+        end,
+        dependencies = "tpope/vim-fugitive",
+    },
+    {
+        "tpope/vim-fugitive",
+    }
 }
