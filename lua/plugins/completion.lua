@@ -41,7 +41,7 @@ local function setup()
                 if not entry then
                     fallback()
                 else
-                    cmp.mapping.confirm({ select = true })
+                    cmp.confirm()
                 end
             end),
             ["<Tab>"] = cmp.mapping(function(fallback)
