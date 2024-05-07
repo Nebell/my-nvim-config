@@ -107,5 +107,4 @@ function theme.bufferline_setup()
     }
 end
 
-
 return theme

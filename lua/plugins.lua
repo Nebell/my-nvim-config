@@ -50,7 +50,7 @@ return require('packer').startup({function(use)
         requires = { 
             'nvim-tree/nvim-web-devicons',
             -- delete a buffer without mess up the layout
-            {'famiu/bufdelete.nvim', module = 'bufdelete'},
+            {'famiu/bufdelete.nvim', module = 'bufferline'},
         },
         config = theme.bufferline_setup }
 
@@ -102,7 +102,7 @@ return require('packer').startup({function(use)
     use { 'ggandor/leap.nvim', key = 'f', config = function() require('leap') end }
 
     -- symbol outline
-    use { 'liuchengxu/vista.vim', event = "BufReadPost"}
+    use { 'liuchengxu/vista.vim', cmd = { "Vista", "Vista!", "Vista!!" }}
 
     -- git signs for buffer
     use {
@@ -110,6 +110,9 @@ return require('packer').startup({function(use)
         config = function() require('gitsigns').setup() end,
         event = "BufReadPre",
     }
+
+    -- LSP
+    use { 'neovim/nvim-lspconfig', config = require('lsp.setup') }
     
     if packer_bootstrap then
         require('packer').sync()
