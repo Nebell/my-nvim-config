@@ -26,9 +26,13 @@ return require('packer').startup({function(use)
     })
     -- status bar
     use { 'nvim-lualine/lualine.nvim', event = 'UIEnter', config = theme.lualine_setup }
-    -- coc.nvim
-    -- use {'neoclide/coc.nvim', branch = 'release',
-    --     event = "VimEnter",
+
+    -- dashboard
+    -- use {
+    --     'goolord/alpha-nvim',
+    --     config = function ()
+    --         require'alpha'.setup(require'alpha.themes.dashboard'.config)
+    --     end
     -- }
 
     -- theme
@@ -112,7 +116,9 @@ return require('packer').startup({function(use)
     }
 
     -- LSP
-    use { 'neovim/nvim-lspconfig', config = require('lsp.setup') }
+    use { 'neovim/nvim-lspconfig',
+        event = "BufReadPre", config = require('lsp.setup').setup }
+    use { 'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim', module = 'mason' }
     
     if packer_bootstrap then
         require('packer').sync()
