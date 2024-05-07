@@ -1,5 +1,6 @@
 Theme = {}
 
+local utils = require('utils')
 --------------------  github theme -------------------
 function Theme.theme_setup()
     local _ = require("onenord.colors").load()
