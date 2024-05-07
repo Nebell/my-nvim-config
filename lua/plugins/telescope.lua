@@ -34,7 +34,8 @@ return {
     keys = {
         { "<Space>t", "<CMD>Telescope<CR>",                           mode = { "n", "v" },      { silent = true } },
         { "<C-P>",    "<CMD>Telescope find_files<CR>",                mode = { "n", "v", "i" }, { silent = true } },
-        { "<C-F>",    "<CMD>Telescope current_buffer_fuzzy_find<CR>", mode = { "n", "v", "i" }, { silent = true } },
+        { "<Space>f",    "<CMD>Telescope current_buffer_fuzzy_find<CR>", mode = { "n", "v", "i" }, { silent = true } },
         { "<Space>j", "<CMD>Telescope jumplist<CR>",                  mode = { "n", "v" },      { silent = true } },
+        { "<Space><Space>", "<CMD>Telescope buffers<CR>",                  mode = { "n", "v" },      { silent = true } },
     },
 }
