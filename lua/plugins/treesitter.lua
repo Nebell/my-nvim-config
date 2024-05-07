@@ -53,7 +53,7 @@ local function setup()
 
         -- compilers
         local compilers = { vim.fn.getenv('CC'), "cc", "gcc", "clang", "cl", "zig" }
-        if vim.fn.has('win32') then
+        if vim.loop.os_uname().sysname == "Windows" then
             compilers = { "zig", "clang", vim.fn.getenv('CC'), "gcc" }
         end
 
