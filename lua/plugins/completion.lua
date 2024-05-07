@@ -116,6 +116,7 @@ local function setup()
             },
             { name = 'nvim_lsp' },
             { name = 'nvim_lua' },
+            { name = 'nvim_lsp_signature_help' },
             { name = 'luasnip' }, -- For luasnip users.
             -- { name = 'vsnip' }, -- For vsnip users.
             -- { name = 'ultisnips' }, -- For ultisnips users.
@@ -124,7 +125,10 @@ local function setup()
             { name = 'treesitter' },
             { name = 'path' },
             { name = 'buffer' },
-        })
+        }),
+        experimental = {
+            ghost_text = true -- this feature conflict with copilot.vim's preview.
+        },
     })
 
     -- Set configuration for specific filetype.
