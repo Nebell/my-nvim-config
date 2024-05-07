@@ -229,10 +229,10 @@ return {
             vim.g.codeium_enabled = 0
             vim.g.codeium_disable_bindings = 1
 
-            vim.keymap.set('i', '<m-i>', function() return vim.fn['codeium#Accept']() end, { silent = true, expr = true })
+            vim.keymap.set('i', '<C-h>', function() return vim.fn['codeium#Accept']() end, { silent = true, expr = true })
             vim.keymap.set('i', '<m-j>', function() return vim.fn['codeium#CycleCompletions'](1) end, { silent = true, expr = true })
             vim.keymap.set('i', '<m-k>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { silent = true, expr = true })
-            vim.keymap.set('i', '<m-o>', function() return vim.fn['codeium#Clear']() end, { silent = true, expr = true })
+            vim.keymap.set('i', '<ESC>', function() return vim.fn['codeium#Clear']() end, { silent = true, expr = true })
         end,
         keys = {
             { '<Leader>ai', function() codeium_toggler:toggle() end, { 'n', 'v' }, { expr = true } },
