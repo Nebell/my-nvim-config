@@ -224,8 +224,9 @@ return {
     --------------------- ai -------------------------
     {
         'Exafunction/codeium.vim',
-        event = 'VeryLazy',
+        event = 'InsertEnter',
         cmd = "Codeium",
+        enabled = false,
         -- codeium server may not work on windows
         -- download language-server from https://github.com/Exafunction/codeium/releases/
         -- and replace the .exe before
