@@ -15,7 +15,7 @@ return {
         dependencies = 'williamboman/mason.nvim'
     },
     {
-        "glepnir/lspsaga.nvim",
+        "nvimdev/lspsaga.nvim",
         branch = "main",
         cmd = "Lspsaga",
         event = "LspAttach",
