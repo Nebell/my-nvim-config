@@ -226,6 +226,7 @@ return {
         'Exafunction/codeium.vim',
         event = 'VeryLazy',
         cmd = "Codeium",
+        cond = 0 == vim.fn.has("win32"),
         config = function()
             vim.g.codeium_enabled = 1
             vim.g.codeium_disable_bindings = 1
