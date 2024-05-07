@@ -26,15 +26,8 @@ return {
         config = true,
         cmd = "Neogit",
         keys = {
-<<<<<<< HEAD
-            { "gv", function() require('neogit').open({ kind = "split" }) end,
-                { 'n', 'v' }, { slient = true, noremap = true } },
-            { "gp", function() require('neogit').open({ "commit" }) end,
-                { 'n', 'v' }, { slient = true, noremap = true } },
-=======
             {"gv", function () require('neogit').open({ kind = "auto" }) end, {'n', 'v'}, {slient = true, noremap = true}},
             {"gm", function () require('neogit').open({ "commit" }) end, {'n', 'v'}, {slient = true, noremap = true}},
->>>>>>> ee993d4 (change neogit keys)
         }
     }
 }
