@@ -20,17 +20,7 @@ return {
         keys = {
             { "<Leader>gb", "<CMD>Flogsplit<CR>" },
         },
-        config = function()
-            vim.api.nvim_create_autocmd({ "FileType" }, {
-                pattern = "floggraph",
-                callback = function()
-                    vim.api.nvim_buf_set_keymap(
-                        0, "n", "q", "<CMD>close<CR>",
-                        { noremap = true, silent = true }
-                    )
-                end
-            })
-        end,
+        config = require('autocmd.closewin').quit_flog_win,
         dependencies = "tpope/vim-fugitive",
     },
     {
