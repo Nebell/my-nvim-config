@@ -226,17 +226,20 @@ return {
         'Exafunction/codeium.vim',
         event = 'VeryLazy',
         cmd = "Codeium",
-        cond = 0 == vim.fn.has("win32"),
+        -- codeium server may not work on windows
+        -- download language-server from https://github.com/Exafunction/codeium/releases/
+        -- and replace the .exe before
+        -- cond = 0 == vim.fn.has("win32"),
         config = function()
             vim.g.codeium_enabled = 1
             vim.g.codeium_disable_bindings = 1
 
             vim.keymap.set('i', '<C-]>', function() return vim.fn['codeium#Accept']() end, { silent = true, expr = true })
-            vim.keymap.set('i', '<M-j>', function() return vim.fn['codeium#CycleCompletions'](1) end,
+            vim.keymap.set('i', '<C-j>', function() return vim.fn['codeium#CycleCompletions'](1) end,
                 { silent = true, expr = true })
-            vim.keymap.set('i', '<M-k>', function() return vim.fn['codeium#CycleCompletions'](-1) end,
+            vim.keymap.set('i', '<C-k>', function() return vim.fn['codeium#CycleCompletions'](-1) end,
                 { silent = true, expr = true })
-            vim.keymap.set('i', '<C-x>', function() return vim.fn['codeium#Clear']() end,
+            vim.keymap.set('i', '<C-[>', function() return vim.fn['codeium#Clear']() end,
                 { silent = true, expr = true })
         end,
 
