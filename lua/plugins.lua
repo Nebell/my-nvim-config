@@ -106,8 +106,8 @@ local plugins = {
         'ggandor/leap.nvim',
         event = "BufReadPost",
         keys = {
-            { "f", "<Plug>(leap-forward-to)" },
-            { "F", "<Plug>(leap-backward-to)" },
+            { "z", "<Plug>(leap-forward-to)" },
+            { "Z", "<Plug>(leap-backward-to)" },
         },
         config = function() require('leap') end
     },
