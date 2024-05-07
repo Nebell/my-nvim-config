@@ -29,6 +29,7 @@ local servers = {
     },
     rust_analyzer = {},
     gopls = {},
+    hls = { filetypes = { 'haskell', 'lhaskell', 'cabal' } },
 }
 
 -- Use an on_attach function to only map the following keys
