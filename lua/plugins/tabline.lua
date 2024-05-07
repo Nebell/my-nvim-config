@@ -52,7 +52,7 @@ return {
         { "<C-H>", "<cmd>BufferLineCyclePrev<CR>", mode = { "n", "v", "i" }, { silent = true } },
         { "<C-L>", "<cmd>BufferLineCycleNext<CR>", mode = { "n", "v", "i" }, { silent = true } },
         {
-            "<C-W>b",
+            "<Leader>cb",
             function()
                 bufclose(0)
             end,
