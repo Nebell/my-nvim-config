@@ -25,6 +25,16 @@ local navic_config = {
     safe_output = true,
 }
 
+---------- codeium status ------------
+local function get_codeium_status()
+    -- check if codeium is on
+    if 0 ~= vim.api.nvim_eval('exists("*codeium#GetStatusString")') and
+        nil ~= string.match(vim.fn["codeium#GetStatusString"](), "ON") then
+        return '󰚩'
+    end
+    return '󱚧'
+end
+
 local lualine_config = {
     options = {
         icons_enabled = true,
@@ -49,7 +59,7 @@ local lualine_config = {
         lualine_b = { 'branch', 'diagnostics' },
         -- lualine_c = { 'filename', context_line },
         lualine_c = { 'filename', },
-        lualine_x = { 'encoding', 'fileformat', 'filetype' },
+        lualine_x = { 'encoding', get_codeium_status, 'fileformat', 'filetype' },
         lualine_y = {},
         lualine_z = { 'location' }
     },

@@ -154,10 +154,8 @@ end
 
 local codeium_toggler = require('utils').toggler(function()
     vim.cmd("CodeiumEnable")
-    vim.notify("CodeiumEnable", vim.log.levels.INFO)
 end, function()
     vim.cmd("CodeiumDisable")
-    vim.notify("CodeiumDisable", vim.log.levels.INFO)
 end)
 
 return {
@@ -230,14 +228,15 @@ return {
         config = function()
             vim.g.codeium_enabled = 0
             vim.g.codeium_disable_bindings = 1
+
+            vim.keymap.set('i', '<m-i>', function() return vim.fn['codeium#Accept']() end, { silent = true, expr = true })
+            vim.keymap.set('i', '<m-j>', function() return vim.fn['codeium#CycleCompletions'](1) end, { silent = true, expr = true })
+            vim.keymap.set('i', '<m-k>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { silent = true, expr = true })
+            vim.keymap.set('i', '<m-o>', function() return vim.fn['codeium#Clear']() end, { silent = true, expr = true })
         end,
         keys = {
             { '<Leader>ai', function() codeium_toggler:toggle() end, { 'n', 'v', 'i' },
                 { expr = true } },
-            { '<M-i>', function() return vim.fn['codeium#Accept']() end,             'i', { expr = true } },
-            { '<M-j>', function() return vim.fn['codeium#CycleCompletions'](1) end,  'i', { expr = true } },
-            { '<M-k>', function() return vim.fn['codeium#CycleCompletions'](-1) end, 'i', { expr = true } },
-            { '<M-o>', function() return vim.fn['codeium#Clear']() end,              'i', { expr = true } },
         }
     },
 }
