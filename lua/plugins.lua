@@ -59,7 +59,7 @@ return require('packer').startup({function(use)
         config = theme.bufferline_setup }
 
     -- fuzzy search
-    use {'nvim-telescope/telescope.nvim', tag = '0.1.0',
+    use {'nvim-telescope/telescope.nvim', 
         requires = { 'nvim-lua/plenary.nvim' },
         cmd = "Telescope",
         config = function()
@@ -119,6 +119,13 @@ return require('packer').startup({function(use)
     use { 'neovim/nvim-lspconfig',
         event = "BufReadPre", config = require('lsp.setup').setup }
     use { 'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim', module = 'mason' }
+
+    use { 'nvim-treesitter/nvim-treesitter', event = "BufReadPost",
+        run = ":TSUpdate", config = require('lsp.treesitter').setup }
+
+    use { 'windwp/nvim-autopairs', event = "InsertEnter",
+        config = function() require("nvim-autopairs").setup {} end
+    }
     
     if packer_bootstrap then
         require('packer').sync()

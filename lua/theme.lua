@@ -86,7 +86,7 @@ end
 -- bufferline
 bufferline_config = {
     options = {
-        diagnostics = {"coc" , "nvim_lsp"},
+        diagnostics = {"nvim_lsp", "coc"},
         offsets = {{
             filetype = "NvimTree",
             text = function() return vim.fn.getcwd() end,
