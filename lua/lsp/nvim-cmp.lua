@@ -7,86 +7,91 @@ function M.setup()
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
     end
 
-    local feedkey = function(key, mode)
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
-    end
+    local cmp = require('cmp')
+    local luasnip = require("luasnip")
 
-    local cmp = require 'cmp'
+    -- vscode like completion
+    require("luasnip.loaders.from_vscode").lazy_load()
+
     cmp.setup({
         snippet = {
             -- REQUIRED - you must specify a snippet engine
             expand = function(args)
-                vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-                -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+                -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+                require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
                 -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
                 -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
             end,
         },
         window = {
-            -- completion = cmp.config.window.bordered(),
+            completion = cmp.config.window.bordered(),
             documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
-                ['<C-Space>'] = cmp.mapping.complete(),
-                ['<ESC>'] = cmp.mapping(function(fallback)
+            ['<C-Space>'] = cmp.mapping.complete(),
+            ['<ESC>']     = cmp.mapping(function(fallback)
                 if cmp.visible() then
                     cmp.abort()
                 else
                     fallback()
                 end
             end, { "i", "s", "c" }),
-                ['<CR>'] = cmp.mapping.confirm(),
-                ["<Tab>"] = cmp.mapping(function(fallback)
+            ['<CR>']      = cmp.mapping.confirm({ select = true }),
+            ["<Tab>"]     = cmp.mapping(function(fallback)
                 -- This little snippet will confirm with tab, and if no entry is selected,
                 -- will confirm the first item
                 if cmp.visible() then
                     local entry = cmp.get_selected_entry()
                     if not entry then
                         cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-                        cmp.confirm()
+                        cmp.mapping.confirm({ select = true })
                     else
                         cmp.confirm()
                     end
+                elseif luasnip.expand_or_jumpable() then
+                    luasnip.expand_or_jump()
                 elseif has_words_before() then
                     cmp.complete()
                 else
                     fallback()
                 end
             end, { "i", "s", "c", }),
-                ['<C-K>'] = cmp.mapping(function(fallback)
+            ['<C-K>']     = cmp.mapping(function(fallback)
                 if cmp.visible() then
                     cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-                elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-                    feedkey("<Plug>(vsnip-jump-prev)", "")
+                elseif luasnip.jumpable(-1) then
+                    luasnip.jump(-1)
                 else
                     fallback()
                 end
             end, { "i", "s", "c", }),
-                ['<C-J>'] = cmp.mapping(function(fallback)
+            ['<C-J>']     = cmp.mapping(function(fallback)
                 if cmp.visible() then
                     cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-                elseif vim.fn["vsnip#available"](1) == 1 then
-                    feedkey("<Plug>(vsnip-expand-or-jump)", "")
+                elseif luasnip.expand_or_jumpable() then
+                    luasnip.expand_or_jump()
                 else
                     fallback()
                 end
             end, { "i", "s", "c", }),
-                -- Abort completion and quit insert mode
-                -- 'N' means normal mode
-                ['<C-N>'] = cmp.mapping(function(fallback)
+            -- Abort completion and quit insert mode
+            -- 'E' means end
+            ['<C-E>']     = cmp.mapping(function(fallback)
+                cmp.abort()
                 if cmp.visible() then
-                    cmp.abort()
                     vim.cmd("stopinsert")
                 else
                     fallback()
                 end
-                end, { "i" })
+            end, { "i" })
         }),
+
+        -- sources of completion
         sources = cmp.config.sources({
             { name = 'nvim_lsp' },
             { name = 'nvim_lua' },
-            { name = 'vsnip' }, -- For vsnip users.
-            -- { name = 'luasnip' }, -- For luasnip users.
+            { name = 'luasnip' }, -- For luasnip users.
+            -- { name = 'vsnip' }, -- For vsnip users.
             -- { name = 'ultisnips' }, -- For ultisnips users.
             -- { name = 'snippy' }, -- For snippy users.
         }, {
