@@ -93,3 +93,4 @@ keyset({ "n", "v", "i" }, "<C-L>", "<cmd>BufferLineCycleNext<CR>", {silent = tru
 keyset({ "n", "v"}, "<Space>t", "<CMD>Telescope<CR>", {silent = true})
 keyset({ "n", "v", "i" }, "<C-P>", "<CMD>Telescope find_files<CR>", {silent = true})
 keyset({ "n", "v", "i" }, "<C-F>",  "<CMD>Telescope current_buffer_fuzzy_find<CR>", {silent = true})
+keyset({ "n", "v", "i" }, "<Space>j",  "<CMD>Telescope jumplist<CR>", {silent = true})
