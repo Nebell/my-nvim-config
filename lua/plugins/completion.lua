@@ -224,17 +224,21 @@ return {
     --------------------- ai -------------------------
     {
         'Exafunction/codeium.vim',
-        -- event = 'BufEnter',
+        event = 'VeryLazy',
         cmd = "Codeium",
         config = function()
-            vim.g.codeium_enabled = 0
+            vim.g.codeium_enabled = 1
             vim.g.codeium_disable_bindings = 1
 
-            vim.keymap.set('i', '<C-h>', function() return vim.fn['codeium#Accept']() end, { silent = true, expr = true })
-            vim.keymap.set('i', '<m-j>', function() return vim.fn['codeium#CycleCompletions'](1) end, { silent = true, expr = true })
-            vim.keymap.set('i', '<m-k>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { silent = true, expr = true })
-            vim.keymap.set('i', '<C-l>', function() return vim.fn['codeium#Clear']() end, { silent = true, expr = true })
+            vim.keymap.set('i', '<C-]>', function() return vim.fn['codeium#Accept']() end, { silent = true, expr = true })
+            vim.keymap.set('i', '<M-j>', function() return vim.fn['codeium#CycleCompletions'](1) end,
+                { silent = true, expr = true })
+            vim.keymap.set('i', '<M-k>', function() return vim.fn['codeium#CycleCompletions'](-1) end,
+                { silent = true, expr = true })
+            vim.keymap.set('i', '<C-x>', function() return vim.fn['codeium#Clear']() end,
+                { silent = true, expr = true })
         end,
+
         keys = {
             { '<Leader>ai', function() codeium_toggler:toggle() end, { 'n', 'v' }, { expr = true } },
         }
