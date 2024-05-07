@@ -63,8 +63,6 @@ keyset("n", "<A-DOWN>", "ddp")
 keyset("n", "<A-UP>", "ddkP")
 
 keyset("n", "<C-UP>", "15k")
-keyset("n", "<C-K>", "15k")
-keyset("n", "<C-J>", "15j")
 keyset("n", "<C-DOWN>", "15j")
 --- indent
 keyset("n", "<TAB>", ">>")
@@ -92,7 +90,20 @@ require("bufferline").setup{
             text = "File Explorer",
             highlight = "Directory",
             text_align = "left"
-        }}
+        }},
+        close_command = "bdelete! %d",       
+        right_mouse_command = "bdelete! %d", 
+        left_mouse_command = "buffer %d",   
+        middle_mouse_command = "bdelete! %d",
+        always_show_bufferline = true, 
+        hover = {
+            enabled = true,
+            delay = 200,
+            reveal = {'close'}
+        },
+        indicator = {
+            style = "none"
+        }
     }
 }
 keyset({ "n", "v", "i" }, "<A-Left>", "<cmd>BufferLineCyclePrev<CR>", {silent = true})
@@ -114,4 +125,6 @@ keyset("n", "<Leader>fs", ":CocList symbols<CR>", {silent = true})
 require('debug')
 
 -- motion
-require('leap').add_default_mappings()
+require('leap')
+keyset({"n"}, "z", "<Plug>(leap-forward-to)")
+keyset({"n"}, "Z", "<Plug>(leap-backward-to)")
