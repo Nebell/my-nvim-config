@@ -9,7 +9,7 @@ local function setup()
         reload_on_bufenter = true,
         update_focused_file = {
             enable = true,
-            update_root = true
+            update_root = false
         },
         view = {
             width = 30,
