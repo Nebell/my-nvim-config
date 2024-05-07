@@ -10,6 +10,12 @@ return {
         },
     },
 
+    ---------- git ------------------
+    {
+        'tpope/vim-fugitive',
+        cmd = {'Git', 'Gvdiffsplit', 'Ggrep'}
+    },
+
     ---------- git diff -------------
     {
         'sindrets/diffview.nvim',
