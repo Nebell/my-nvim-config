@@ -10,6 +10,18 @@ vim.opt.updatetime = 300
 -- diagnostics appeared/became resolved
 vim.opt.signcolumn = "yes"
 
+-- extensions to install
+vim.g.coc_global_extensions = {
+    "coc-git", 
+    "coc-lists", 
+    "coc-json", 
+    "coc-go", 
+    "coc-pairs",
+    "coc-rust-analyzer",
+    "coc-snippets",
+    "coc-pyright"
+}
+
 local keyset = vim.keymap.set
 -- Autocomplete
 function _G.check_back_space()
@@ -84,7 +96,8 @@ keyset("n", "<leader>rn", "<Plug>(coc-rename)", { silent = true })
 
 
 -- Formatting
-keyset({ "n", "v" }, "<Space>f", "<CMD>call CocActionAsync('format')<CR>", { silent = true })
+keyset("n", "<Space>f", "<CMD>call CocActionAsync('format')<CR>", { silent = true })
+keyset({ "v", "x" }, "<Space>f", "<Plug>(coc-format-selected)", { silent = true })
 
 -- Mappings for CoCList
 -- code actions and coc stuff

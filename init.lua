@@ -112,14 +112,11 @@ keyset({ "n", "v", "i" }, "<A-H>", "<cmd>BufferLineCyclePrev<CR>", {silent = tru
 keyset({ "n", "v", "i" }, "<A-L>", "<cmd>BufferLineCycleNext<CR>", {silent = true})
 
 -- fuzzy search
-vim.g.Lf_WindowPosition = 'popup'
-vim.g.Lf_ShortcutF = '<C-P>'
-vim.g.Lf_GtagsAutoGenerate = 0
-keyset("n", "<C-F>", ':<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>', {silent = true} )
-keyset("n", "<Leader>fl", ':<C-U><C-R>=printf("Leaderf! line %s", "")<CR><CR>', {silent = true} )
-keyset("n", "<Leader>fb", ':<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>', {silent = true} )
-keyset("n", "<Leader>f", ':<C-U><C-R>=printf("Leaderf self")<CR><CR>', {silent = true} )
-keyset("n", "<Leader>fs", ":CocList symbols<CR>", {silent = true})
+local fzf = require("fzf-lua")
+local fzf_opts = {noremap = true, silent = true}
+keyset({ "n", "v", "i" }, "<C-P>", function() fzf.files() end, fzf_opts)
+keyset({ "n", "v", "i" }, "<C-F>", function() fzf.blines() end, fzf_opts)
+keyset({ "n", "v" }, "<Leader>fzf", function() fzf.builtin() end, fzf_opts)
 
 -- debug
 require('debug')
