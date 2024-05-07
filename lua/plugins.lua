@@ -299,25 +299,21 @@ local plugins = {
     ---------- undo tree -------------
     {
         'mbbill/undotree',
-        event = "TextChanged",
-        config = function()
-            vim.keymap.set('n', '<Space>u', vim.cmd.UndotreeToggle)
-        end
+        -- event = "TextChanged",
+        cmd = "UndotreeToggle",
+        keys = { { "<Leader>u", vim.cmd.UndotreeToggle } },
     },
 
     ---------- quickfix diagnostics -------------
     {
         "folke/trouble.nvim",
-        event = "BufReadPost",
+        -- event = "BufReadPost",
+        cmd = "TroubleToggle",
         dependencies = { "nvim-tree/nvim-web-devicons" },
-        opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
+        keys = {
+            { '<Leader>dw', "<CMD>TroubleToggle workspace_diagnostics<CR>" },
+            { '<Leader>dd', "<CMD>TroubleToggle document_diagnostics<CR>" },
         },
-        config = function ()
-            vim.keymap.set('n', '<Space>d', vim.cmd.TroubleToggle)
-        end
     },
 }
 

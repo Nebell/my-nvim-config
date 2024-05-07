@@ -18,15 +18,15 @@ function M.lspsaga()
     keyset("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
     keyset("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
 
-    local opts = { noremap = true, silent = true }
-    keyset('n', '<Leader>d', "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts)
-    keyset('n', 'gp', function()
-        require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
-    end, opts)
-    keyset('n', 'gn', function()
-        require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
-    end, opts)
-    keyset('n', '<Leader>q', "<cmd>Lspsaga show_buf_diagnostics<CR>", opts)
+    -- local opts = { noremap = true, silent = true }
+    -- keyset('n', '<Leader>d', "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts)
+    -- keyset('n', 'gp', function()
+    --     require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
+    -- end, opts)
+    -- keyset('n', 'gn', function()
+    --     require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
+    -- end, opts)
+    -- keyset('n', '<Leader>q', "<cmd>Lspsaga show_buf_diagnostics<CR>", opts)
 end
 
 function M.default()
