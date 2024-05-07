@@ -71,7 +71,7 @@ return require('packer').startup({function(use)
     use 'vim-scripts/argtextobj.vim'
 
     -- motion
-    use 'ggandor/leap.nvim'
+    use { 'ggandor/leap.nvim', config = function() require('leap') end, }
 
     -- symbol outline
     use {'liuchengxu/vista.vim'}
