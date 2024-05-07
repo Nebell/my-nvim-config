@@ -34,6 +34,9 @@ vim.bo.autoread = true
 -- auto completion
 vim.o.wildmenu = true
 
+-- keymap before loading vimspector
+vim.g.vimspector_enable_mappings = 'VISUAL_STUDIO'
+
 -- plugins
 require('plugins')
 local keyset = vim.keymap.set
