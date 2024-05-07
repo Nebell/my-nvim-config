@@ -94,8 +94,7 @@ keyset({"n"}, "f", "<Plug>(leap-forward-to)")
 keyset({"n"}, "F", "<Plug>(leap-backward-to)")
 
 -- symbols outline
-vim.g.vista_default_executive = 'lsp'
-keyset({ "n", "i", "v" }, "<C-S>", "<CMD>Vista!!<CR>", {silent = true})
+keyset({ "n", "i", "v" }, "<C-S>", "<CMD>Lspsaga outline<CR>", {silent = true})
 
 -- fuzzy
 --- telescope

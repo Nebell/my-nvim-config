@@ -67,4 +67,13 @@ function M.setup()
     end
 end
 
+local lspsaga_config = {
+    symbol_in_winbar = { enable = false },
+}
+
+-- Lspsaga setup
+function M.lspsaga_setup()
+    utils.async_run(function() require("lspsaga").setup(lspsaga_config) end)
+end
+
 return M
