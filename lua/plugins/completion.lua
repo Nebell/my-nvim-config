@@ -191,15 +191,20 @@ return {
     },
     {
         'hrsh7th/cmp-nvim-lsp',
+        event = "LspAttach",
         dependencies = {
             'hrsh7th/nvim-cmp',
             'neovim/nvim-lspconfig',
-        }
+        },
     },
     {
         'hrsh7th/cmp-nvim-lua',
         dependencies = 'hrsh7th/nvim-cmp',
         event = "InsertEnter",
     },
-
+    {
+        'hrsh7th/cmp-omni',
+        ft = "lua",
+        dependencies = 'hrsh7th/nvim-cmp',
+    }
 }
