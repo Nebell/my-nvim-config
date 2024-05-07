@@ -32,7 +32,8 @@ return {
         'gbprod/yanky.nvim',
         event = "BufReadPost",
         config = function()
-            if nil ~= os.getenv('SSH_CLIENT') then
+            -- not in a SSH connection
+            if not os.getenv('SSH_CLIENT') then
                 yanky_config.system_clipboard.sync_with_ring = true
                 vim.api.nvim_set_option("clipboard", "unnamedplus")
             end
