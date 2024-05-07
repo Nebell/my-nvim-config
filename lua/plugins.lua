@@ -4,7 +4,8 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     use 'tpope/vim-commentary' -- commentary
     use 'tpope/vim-surround' -- surround e.g. () []
-    use 'itchyny/lightline.vim' -- status bar
+    -- use 'itchyny/lightline.vim' -- status bar
+    use { 'nvim-lualine/lualine.nvim' }
 
     -- coc.nvim
     use {'neoclide/coc.nvim', branch = 'release' }
