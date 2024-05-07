@@ -2,7 +2,14 @@ local M = {}
 
 local theme = require('theme')
 local plugins = {
-    { 'tpope/vim-commentary',  event = "BufReadPost" }, -- commentary
+    --------- comment ------------
+    {
+        'numToStr/Comment.nvim',
+        event = "BufReadPost",
+        config = function()
+            require('Comment').setup()
+        end
+    },
     {
         "kylechui/nvim-surround",
         -- version = "*",
@@ -120,6 +127,22 @@ local plugins = {
             { "Z", "<Plug>(leap-backward-to)" },
         },
         config = function() require('leap') end
+    },
+
+
+    ---------- which key -------------
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        init = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+        end,
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        }
     },
 
     ---------- git signs for buffer -------------
