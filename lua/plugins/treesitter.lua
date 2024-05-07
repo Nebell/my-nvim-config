@@ -19,7 +19,7 @@ local treesitter_config = {
         -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
         -- disable = function(lang, buf)
         disable = function(_, buf)
-            local max_filesize = 100 * 1024 * 1024     -- 100 MB
+            local max_filesize = 100 * 1024 * 1024 -- 100 MB
             local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
             if ok and stats and stats.size > max_filesize then
                 return true
@@ -46,14 +46,13 @@ local function setup()
     -- use global github proxy
     for _, config in pairs(require("nvim-treesitter.parsers").get_parser_configs()) do
         config.install_info.url = config.install_info.url:gsub("https://github.com/",
-        "https://" .. vim.g.git_src_host .. "/")
+            "https://" .. vim.g.git_src_host .. "/")
     end
 
     require('utils').async_run(function()
-
         -- compilers
         local compilers = { vim.fn.getenv('CC'), "cc", "gcc", "clang", "cl", "zig" }
-        if vim.loop.os_uname().sysname == "Windows" then
+        if nil ~= string.find(vim.loop.os_uname().sysname, "Windows") then
             compilers = { "zig", "clang", vim.fn.getenv('CC'), "gcc" }
         end
 
