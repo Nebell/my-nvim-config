@@ -1,7 +1,5 @@
 theme = {}
 
-utils = require('utils')
-
 -- github theme
 function theme.github_setup()
     require('github-theme').setup({
@@ -76,11 +74,13 @@ vim.g.vista_icon_indent = {"╰─▸ ", "├─▸ "}
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 function theme.nvim_tree_setup()
-    require("nvim-tree").setup({
-        view = {
-            width = 23,
-        }
-    })
+    utils.async_run(function()
+        require("nvim-tree").setup({
+            view = {
+                width = 23,
+            }
+        })
+    end)
 end
 
 -- bufferline

@@ -17,11 +17,12 @@ local theme = require('theme')
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup({function(use)
+
     use 'wbthomason/packer.nvim'
     use 'tpope/vim-commentary' -- commentary
     use({
         "kylechui/nvim-surround", tag = "*",
-        config = function() require("nvim-surround").setup() end,
+        config = function() utils.async_run(require("nvim-surround").setup) end,
         event = "BufReadPost",
     })
     -- status bar
@@ -111,7 +112,7 @@ return require('packer').startup({function(use)
     -- git signs for buffer
     use {
         'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' },
-        config = function() require('gitsigns').setup() end,
+        config = function() require('utils').async_run(require('gitsigns').setup) end,
         event = "BufReadPre",
     }
 
