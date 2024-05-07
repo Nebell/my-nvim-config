@@ -128,13 +128,22 @@ return require('packer').startup({ function(use)
     }
 
     -- autocompletion
-    use { 'hrsh7th/nvim-cmp', event = "UIEnter", config = "" }
+    use { 'hrsh7th/nvim-cmp', -- event = "UIEnter", module = {'cmp_nvim_lsp', 'cmp'},
+        config = require('lsp.nvim-cmp').setup }
     -- nvim-cmp plugins, run after nvim-cmp
-    -- use {
-    --     'hrsh7th/cmp-nvim-lsp',
-    --     'hrsh7th/cmp-buffer',
-    --     'hrsh7th/cmp-path',
-    --     'hrsh7th/cmp-cmdline', }
+    use { after = 'nvim-cmp',
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-buffer',
+        'hrsh7th/cmp-path',
+        'hrsh7th/cmp-cmdline'
+    }
+
+    -- snippet
+    use { after = 'nvim-cmp', event = "InsertEnter",
+        'hrsh7th/cmp-vsnip',
+        'hrsh7th/vim-vsnip',
+        'hrsh7th/vim-vsnip-integ',
+    }
 
     if packer_bootstrap then
         require('packer').sync()
