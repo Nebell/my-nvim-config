@@ -64,6 +64,7 @@ local config = {
 
 return {
     'simrat39/symbols-outline.nvim',
+    enabled = false,
     event = "BufReadPost",
     config = function() require("symbols-outline").setup(config) end,
     keys = { { "<C-S>", "<cmd>SymbolsOutline<CR>", { silent = true, noremap = true } } },
