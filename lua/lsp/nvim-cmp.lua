@@ -43,6 +43,7 @@ function M.setup()
                     local entry = cmp.get_selected_entry()
                     if not entry then
                         cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                        cmp.confirm()
                     else
                         cmp.confirm()
                     end
@@ -70,6 +71,16 @@ function M.setup()
                     fallback()
                 end
             end, { "i", "s", "c", }),
+                -- Abort completion and quit insert mode
+                -- 'N' means normal mode
+                ['<C-N>'] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                    cmp.abort()
+                    vim.cmd("stopinsert")
+                else
+                    fallback()
+                end
+                end, { "i" })
         }),
         sources = cmp.config.sources({
             { name = 'nvim_lsp' },
