@@ -164,7 +164,7 @@ local plugins = {
     -- autocompletion
     {
         'hrsh7th/nvim-cmp',
-        event = "UIEnter",
+        event = "VeryLazy",
         module = { 'cmp_nvim_lsp', 'cmp' },
         config = function() require('lsp.nvim-cmp').setup() end,
         -- nvim-cmp plugins, run dependenciesnvim-cmp
