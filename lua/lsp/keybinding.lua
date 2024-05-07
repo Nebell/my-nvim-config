@@ -6,13 +6,13 @@ function M.lspsaga()
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local bufopts = { noremap = true, silent = true }
-    keyset('n', 'gD', vim.lsp.buf.declaration, bufopts)
+    -- keyset('n', 'gD', vim.lsp.buf.declaration, bufopts)
     keyset('n', 'gd', "<cmd>Lspsaga goto_definition<CR>", bufopts)
     keyset('n', 'gr', "<cmd>Lspsaga finder<CR>", bufopts)
     keyset('n', 'gi', "<cmd>Lspsaga finder<CR>", bufopts)
     keyset('n', 'gf', function() vim.lsp.buf.format { async = true } end, bufopts)
     keyset('n', 'K', "<cmd>Lspsaga hover_doc<CR>", bufopts)
-    keyset('n', '<Leader>k', "<cmd>Lspsaga hover_doc ++keep<CR>", bufopts)
+    keyset('n', 'gK', "<cmd>Lspsaga hover_doc ++keep<CR>", bufopts)
     keyset('n', '<Leader>rn', "<cmd>Lspsaga rename<CR>", bufopts)
     keyset('n', '<Leader>ca', "<cmd>Lspsaga code_action<CR>", bufopts)
     keyset("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
