@@ -1,7 +1,7 @@
 return {
     {
         "rust-lang/rust.vim",
-        ft = "rs",
+        ft = "rust",
     },
     {
         "ray-x/go.nvim",
