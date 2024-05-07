@@ -131,11 +131,11 @@ return {
     },
     {
         'williamboman/mason.nvim',
-        event = "VeryLazy",
+        -- event = "VeryLazy",
     },
     {
         'williamboman/mason-lspconfig.nvim',
-        event = "VeryLazy",
+        event = "BufReadPre",
         dependencies = 'williamboman/mason.nvim'
     },
     {
