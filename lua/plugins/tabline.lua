@@ -8,7 +8,12 @@ local config = {
             text = function() return vim.fn.getcwd() end,
             highlight = "Directory",
             text_align = "left"
-        } },
+        }, {
+            filetype = "Outline",
+            text = "Symbol Outline",
+            text_align = "center"
+        }
+        },
         close_command = bufclose,
         right_mouse_command = bufclose,
         left_mouse_command = "buffer %d",
@@ -44,8 +49,6 @@ return {
     },
     config = setup,
     keys = {
-        { "<A-Left>",  "<cmd>BufferLineCyclePrev<CR>", mode = { "n", "v", "i" }, { silent = true } },
-        { "<A-Right>", "<cmd>BufferLineCycleNext<CR>", mode = { "n", "v", "i" }, { silent = true } },
         { "<C-H>",     "<cmd>BufferLineCyclePrev<CR>", mode = { "n", "v", "i" }, { silent = true } },
         { "<C-L>",     "<cmd>BufferLineCycleNext<CR>", mode = { "n", "v", "i" }, { silent = true } },
     }
