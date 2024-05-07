@@ -131,6 +131,47 @@ end
 
 local lspsaga_config = {
     symbol_in_winbar = { enable = false },
+    callhierarchy = {
+        show_detail = false,
+        keys = {
+            edit = "e",
+            vsplit = "s",
+            split = "i",
+            tabe = "t",
+            jump = "<CR>",
+            quit = "q",
+            expand_collapse = "u",
+        },
+    },
+    finder = {
+        max_height = 0.5,
+        min_width = 30,
+        force_max_height = false,
+        keys = {
+            jump_to = 'p',
+            expand_or_jump = '<CR>',
+            vsplit = 's',
+            split = 'i',
+            tabe = 't',
+            tabnew = 'r',
+            quit = { 'q', '<ESC>' },
+            close_in_preview = '<ESC>',
+        },
+    },
+    ui = {
+        -- This option only works in Neovim 0.9
+        title = true,
+        -- Border type can be single, double, rounded, solid, shadow.
+        border = "single",
+        winblend = 0,
+        expand = "",
+        collapse = "",
+        code_action = "",
+        incoming = " ",
+        outgoing = " ",
+        hover = ' ',
+        kind = {},
+    },
 }
 
 -- Lspsaga setup
