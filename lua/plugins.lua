@@ -2,7 +2,7 @@ local M = {}
 
 local theme = require('theme')
 local plugins = {
-    { 'tpope/vim-commentary', event = "BufReadPost" }, -- commentary
+    { 'tpope/vim-commentary',  event = "BufReadPost" },     -- commentary
     {
         "kylechui/nvim-surround",
         -- version = "*",
@@ -10,7 +10,17 @@ local plugins = {
         event = "BufReadPost",
     },
     -- status bar
-    { 'nvim-lualine/lualine.nvim', event = "VeryLazy", config = theme.lualine_setup },
+    {
+        'nvim-lualine/lualine.nvim',
+        event = "VeryLazy",
+        dependencies = { 'SmiteshP/nvim-navic' },
+        config = theme.lualine_setup
+    },
+    {
+        'SmiteshP/nvim-navic',
+        dependencies = "neovim/nvim-lspconfig",
+        module = "nvim-navic",
+    },
 
     -- dashboard
     {
@@ -21,9 +31,9 @@ local plugins = {
     },
 
     -- theme
-    { 'rmehri01/onenord.nvim', event = "UIEnter", config = theme.theme_setup },
+    { 'rmehri01/onenord.nvim', event = "UIEnter",    config = theme.theme_setup },
     -- rainbow parenthese
-    { 'luochen1990/rainbow', event = "BufReadPre" },
+    { 'luochen1990/rainbow',   event = "BufReadPre" },
 
     -- file explorer
     {
@@ -83,7 +93,7 @@ local plugins = {
     },
 
     -- git diff
-    { 'sindrets/diffview.nvim', dependencies = 'nvim-lua/plenary.nvim', event = "BufReadPost" },
+    { 'sindrets/diffview.nvim',     dependencies = 'nvim-lua/plenary.nvim', event = "BufReadPost" },
 
     -- terminal
     {
@@ -121,9 +131,9 @@ local plugins = {
     },
 
     -- LSP
-    { 'neovim/nvim-lspconfig', event = "BufReadPre", config = function() require('lsp.setup').setup() end },
-    { 'williamboman/mason.nvim', event = "VeryLazy" },
-    { 'williamboman/mason-lspconfig.nvim', event = "VeryLazy", dependencies = 'williamboman/mason.nvim' },
+    { 'neovim/nvim-lspconfig',             event = "BufReadPre", config = function() require('lsp.setup').setup() end },
+    { 'williamboman/mason.nvim',           event = "VeryLazy" },
+    { 'williamboman/mason-lspconfig.nvim', event = "VeryLazy",   dependencies = 'williamboman/mason.nvim' },
     {
         "glepnir/lspsaga.nvim",
         branch = "main",
@@ -188,18 +198,18 @@ local plugins = {
             'hrsh7th/cmp-cmdline',
         },
     }, {
-        'hrsh7th/cmp-buffer',
-        event = "BufReadPost",
-        dependencies = {
-            'hrsh7th/nvim-cmp',
-        },
-    }, {
-        'hrsh7th/cmp-nvim-lsp',
-        dependencies = {
-            'hrsh7th/nvim-cmp',
-            'neovim/nvim-lspconfig',
-        }
+    'hrsh7th/cmp-buffer',
+    event = "BufReadPost",
+    dependencies = {
+        'hrsh7th/nvim-cmp',
     },
+}, {
+    'hrsh7th/cmp-nvim-lsp',
+    dependencies = {
+        'hrsh7th/nvim-cmp',
+        'neovim/nvim-lspconfig',
+    }
+},
 
     -- snippet
     {
@@ -224,7 +234,7 @@ local plugins = {
         build = "make install_jsregexp",
         dependencies = {
             { 'saadparwaiz1/cmp_luasnip' },
-            { 'rafamadriz/friendly-snippets'},
+            { 'rafamadriz/friendly-snippets' },
         }
     },
 }

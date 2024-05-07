@@ -1,11 +1,11 @@
 Theme = {}
 
--- github theme
+--------------------  github theme -------------------
 function Theme.theme_setup()
-    local colors = require("onenord.colors").load()
+    local _ = require("onenord.colors").load()
     require('onenord').setup({
-        theme = "dark", -- "dark" or "light". Alternatively, remove the option and set vim.o.background instead
-        borders = true, -- Split window borders
+        theme = "dark",  -- "dark" or "light". Alternatively, remove the option and set vim.o.background instead
+        borders = true,  -- Split window borders
         fade_nc = false, -- Fade non-current windows, making them more distinguishable
         -- Style that is applied to various groups: see `highlight-args` for options
         styles = {
@@ -19,7 +19,7 @@ function Theme.theme_setup()
         disable = {
             background = false, -- Disable setting the background color
             cursorline = false, -- Disable the cursorline
-            eob_lines = true, -- Hide the end-of-buffer lines
+            eob_lines = true,   -- Hide the end-of-buffer lines
         },
         -- Inverse highlight for different groups
         inverse = {
@@ -33,24 +33,43 @@ function Theme.theme_setup()
     })
 end
 
--- rainbow parenthese
+-------------- rainbow parenthese ----------------
 vim.g.rainbow_active = 1
 vim.g.rainbow_conf = {
     -- gui color
     guifgs = { 'darkgray', 'lightslategray', 'lightskyblue', 'Cornflowerblue', 'peachpuff', 'white' }
 }
 
--- lualine
-local function context_line()
-    return vim.fn['nvim_treesitter#statusline']({
-        indicator_size = 100,
-        type_patterns = { 'class', 'function', 'method', 'parameter' },
-        transform_fn = function(line, _node)
-            return line:gsub('%s*[%[%(%{]*%s*$', '')
-        end,
-        separator = '  ',
-        allow_duplicates = false
-    })
+------------------- lualine & navic -------------------
+
+-- use treesitter to generate context line in bar
+-- local function context_line()
+--     return vim.fn['nvim_treesitter#statusline']({
+--         indicator_size = 100,
+--         type_patterns = { 'class', 'function', 'method', 'parameter' },
+--         transform_fn = function(line, _node)
+--             return line:gsub('%s*[%[%(%{]*%s*$', '')
+--         end,
+--         separator = '  ',
+--         allow_duplicates = false
+--     })
+-- end
+
+Theme.navic_config = {
+    lsp = {
+        auto_attach = true,
+        preference = nil,
+    },
+    highlight = true,
+    separator = "  ",
+    depth_limit = 3,
+    depth_limit_indicator = "..",
+    safe_output = true,
+}
+
+function Theme.navic_setup()
+    local navic = require('nvim-navic')
+    navic.setup(Theme.navic_config)
 end
 
 Theme.lualine_config = {
@@ -61,7 +80,7 @@ Theme.lualine_config = {
         section_separators = { left = '', right = '' },
         disabled_filetypes = {
             statusline = { 'NvimTree', 'vista', 'Outline', 'Terminal' },
-            winbar = { 'NvimTree', 'vista', 'Outline', 'Terminal'  },
+            winbar = { 'NvimTree', 'vista', 'Outline', 'Terminal' },
         },
         ignore_focus = {},
         always_divide_middle = true,
@@ -75,7 +94,8 @@ Theme.lualine_config = {
     sections = {
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diagnostics' },
-        lualine_c = { 'filename', context_line },
+        -- lualine_c = { 'filename', context_line },
+        lualine_c = { 'filename', },
         lualine_x = { 'encoding', 'fileformat', 'filetype' },
         lualine_y = {},
         lualine_z = { 'location' }
@@ -83,7 +103,7 @@ Theme.lualine_config = {
     inactive_sections = {
         lualine_a = {},
         lualine_b = {},
-        lualine_c = { 'filename' },
+        lualine_c = { 'filename', },
         lualine_x = { 'location' },
         lualine_y = {},
         lualine_z = {}
@@ -93,19 +113,36 @@ Theme.lualine_config = {
     inactive_winbar = {},
     extensions = {}
 }
+
 function Theme.lualine_setup()
     utils.async_run(function()
-        require('lualine').setup(Theme.lualine_config)
+        -- attach context status
+        local cfg = Theme.lualine_config
+        local navic = require('nvim-navic')
+        Theme.navic_setup()
+        local lualine_c = {
+            {
+                function()
+                    return navic.get_location()
+                end,
+                cond = function()
+                    return navic.is_available()
+                end
+            },
+        }
+        cfg.sections.lualine_c = lualine_c
+        cfg.inactive_sections.lualine_c = lualine_c
+        require('lualine').setup(cfg)
     end)
 end
 
--- symbols outline
+------------------- symbols outline -------------------
 -- vim.g.vista_icon_indent = { "╰─▸ ", "├─▸ " }
 -- vim.g["vista#renderer#enable_icon"] = 1
 -- vim.g["vista#renderer#icons"]["function"] = "\\uf794"
 -- vim.g["vista#renderer#icons"]["variable"] = "\\uf71b"
 
--- nvim-tree
+------------------- nvim-tree -------------------
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 function Theme.nvim_tree_setup()
@@ -116,7 +153,7 @@ function Theme.nvim_tree_setup()
     })
 end
 
--- bufferline
+------------------- bufferline -------------------
 local bufclose = function(bufnum) require('bufdelete').bufdelete(bufnum, true) end
 Theme.bufferline_config = {
     options = {
@@ -150,6 +187,7 @@ function Theme.bufferline_setup()
     end)
 end
 
+------------------- dashboard -------------------
 local dashboard_config = {
     theme = 'hyper',
     config = {
@@ -177,7 +215,6 @@ local dashboard_config = {
 
 }
 
--- dashboard
 function Theme.dashboard_setup()
     require('dashboard').setup(dashboard_config)
 end
