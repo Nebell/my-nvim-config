@@ -1,28 +1,26 @@
 local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
+    local fn = vim.fn
+    local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+    if fn.empty(fn.glob(install_path)) > 0 then
+        fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+        vim.cmd [[packadd packer.nvim]]
+        return true
+    end
+    return false
 end
 
 local packer_bootstrap = ensure_packer()
-local keyset = vim.keymap.set
-local util = require('packer.util')
-local theme = require('theme')
 
 vim.cmd [[packadd packer.nvim]]
 
-return require('packer').startup({function(use)
+return require('packer').startup({ function(use)
 
+    local theme = require('theme')
     use 'wbthomason/packer.nvim'
     use 'tpope/vim-commentary' -- commentary
     use({
         "kylechui/nvim-surround", tag = "*",
-        config = function() utils.async_run(require("nvim-surround").setup) end,
+        config = function() require('utils').async_run(require("nvim-surround").setup()) end,
         event = "BufReadPost",
     })
     -- status bar
@@ -48,21 +46,23 @@ return require('packer').startup({function(use)
         requires = {
             'nvim-tree/nvim-web-devicons', -- optional, for file icons
         },
-        config = theme.nvim_tree_setup }
+        config = theme.nvim_tree_setup
+    }
 
-    use {'akinsho/bufferline.nvim', tag = "v3.*", 
+    use { 'akinsho/bufferline.nvim', tag = "v3.*",
         event = "BufReadPre",
-        requires = { 
+        requires = {
             'nvim-tree/nvim-web-devicons',
             -- delete a buffer without mess up the layout
-            {'famiu/bufdelete.nvim', module = 'bufferline'},
+            { 'famiu/bufdelete.nvim', module = 'bufferline' },
         },
         config = theme.bufferline_setup }
 
     -- fuzzy search
-    use {'nvim-telescope/telescope.nvim', 
+    use { 'nvim-telescope/telescope.nvim',
         requires = { 'nvim-lua/plenary.nvim' },
         cmd = "Telescope",
+        module = 'telescope.*',
         config = function()
             -- fuzzy search
             local mapping = {
@@ -76,7 +76,7 @@ return require('packer').startup({function(use)
                 }
             }
 
-            require('telescope').setup{
+            require('telescope').setup {
                 defaults = {
                     mappings = {
                         i = mapping,
@@ -93,8 +93,8 @@ return require('packer').startup({function(use)
     -- git diff
     use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim', event = "BufReadPost" }
 
-    -- terminal 
-    use { 'voldikss/vim-floaterm', cmd = "FloatermToggle" }  -- float terminal
+    -- terminal
+    use { 'voldikss/vim-floaterm', cmd = "FloatermToggle" } -- float terminal
     -- use 'skywind3000/vim-terminal-help' -- terminal
 
     -- debug
@@ -107,18 +107,17 @@ return require('packer').startup({function(use)
     use { 'ggandor/leap.nvim', key = 'f', config = function() require('leap') end }
 
     -- symbol outline
-    use { 'liuchengxu/vista.vim', cmd = { "Vista", "Vista!", "Vista!!" }}
+    use { 'liuchengxu/vista.vim', cmd = { "Vista", "Vista!", "Vista!!" } }
 
     -- git signs for buffer
     use {
         'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' },
         config = function() require('utils').async_run(require('gitsigns').setup) end,
-        event = "BufReadPre",
+        event = "BufReadPost",
     }
 
     -- LSP
-    use { 'neovim/nvim-lspconfig',
-        event = "BufReadPre", config = require('lsp.setup').setup }
+    use { 'neovim/nvim-lspconfig', event = "BufReadPre", config = function() require('lsp.setup').setup() end }
     use { 'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim', module = 'mason' }
 
     use { 'nvim-treesitter/nvim-treesitter', event = "BufReadPost",
@@ -127,17 +126,17 @@ return require('packer').startup({function(use)
     use { 'windwp/nvim-autopairs', event = "InsertEnter",
         config = function() require("nvim-autopairs").setup {} end
     }
-    
+
     if packer_bootstrap then
         require('packer').sync()
     end
 end,
-config = {
-    auto_clean = true, -- During sync(), remove unused plugins
-    compile_on_sync = true, -- During sync(), run packer.compile()
-    git = {
-        depth = 1, -- Git clone depth
-        clone_timeout = 60, -- Timeout, in seconds, for git clones
-        default_url_format = 'https://github.com/%s' -- Lua format string used for "aaa/bbb" style plugins
-    },
-}})
+    config = {
+        auto_clean = true, -- During sync(), remove unused plugins
+        compile_on_sync = true, -- During sync(), run packer.compile()
+        git = {
+            depth = 1, -- Git clone depth
+            clone_timeout = 60, -- Timeout, in seconds, for git clones
+            default_url_format = 'https://github.com/%s' -- Lua format string used for "aaa/bbb" style plugins
+        },
+    } })

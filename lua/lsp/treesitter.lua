@@ -1,6 +1,6 @@
 M = {}
 
-treesitter_config = {
+M.treesitter_config = {
   -- A list of parser names, or "all" (the four listed parsers should always be installed)
   ensure_installed = { "c", "lua", "vim", "help", "go", "python" },
 
@@ -38,7 +38,7 @@ treesitter_config = {
 
 function M.setup()
     require('utils').async_run(function()
-        require('nvim-treesitter.configs').setup(treesitter_config)
+        require('nvim-treesitter.configs').setup(M.treesitter_config)
     end)
 end
 
