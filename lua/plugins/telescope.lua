@@ -64,7 +64,7 @@ return {
             { "<Space>f", "<CMD>Telescope current_buffer_fuzzy_find<CR>", mode = { "n", "v" },      { silent = true } },
             { "<Space>F", "<CMD>Telescope live_grep<CR>",                 mode = { "n", "v" },      { silent = true } },
             { "<Space>j", "<CMD>Telescope jumplist<CR>",                  mode = { "n", "v" },      { silent = true } },
-            { "<Space>b", "<CMD>Telescope buffers<CR>",                   mode = { "n", "v" },      { silent = true } },
+            -- { "<Space>b", "<CMD>Telescope buffers<CR>",                   mode = { "n", "v" },      { silent = true } },
             { "<Space>s", "<CMD>Telescope lsp_document_symbols<CR>",      mode = { "n", "v" },      { silent = true } },
         },
     },
@@ -76,5 +76,14 @@ return {
         config = function()
             require('telescope').load_extension('fzf')
         end,
+    },
+    {
+        "smartpde/telescope-recent-files",
+        config = function()
+            require("telescope").load_extension("recent_files")
+        end,
+        keys = {
+            { "<Space>b", "<CMD>lua require('telescope').extensions.recent_files.pick() <CR>", mode = { "n", "v" }, { silent = true } },
+        }
     },
 }
