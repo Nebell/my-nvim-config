@@ -21,10 +21,17 @@ return {
             local rainbow_delimiters = require 'rainbow-delimiters'
 
             setup_colors()
-            ---@type rainbow_delimiters.config
+
             vim.g.rainbow_delimiters = {
                 strategy = {
-                    [''] = rainbow_delimiters.strategy['global'],
+                    [''] = function(bufnr)
+                        -- Disabled for very large files, global strategy default,
+                        local line_count = vim.api.nvim_buf_line_count(bufnr)
+                        if line_count > 20000 then
+                            return nil
+                        end
+                        return rainbow_delimiters.strategy['local']
+                    end,
                     vim = rainbow_delimiters.strategy['local'],
                 },
                 query = {
