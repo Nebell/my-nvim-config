@@ -4,10 +4,18 @@ local function load_extension()
 end
 
 local function check_fzf_compile()
-    local path_prefix = vim.fn.stdpath("data") .. "lazy\\telescope-fzf-native.nvim\\build\\"
-    if vim.fn.exists(path_prefix .. "libfzf.dll") then
+    -- check compiler
+    if vim.fn.has("win32") ~= 0 and (vim.fn.executable("mingw32-make") == 0 or vim.fn.executable("make") == 0) then
+        return false
+    elseif vim.fn.executable("make") == 0 then
+        return false
+    end
+
+    -- check compiled
+    local path_prefix = vim.fn.stdpath("data") .. "/lazy/telescope-fzf-native.nvim/build/"
+    if 0 ~= vim.fn.filereadable(path_prefix .. "libfzf.dll") then
         return true
-    elseif vim.fn.exists(path_prefix .. "libfzf.so") then
+    elseif 0 ~= vim.fn.filereadable(path_prefix .. "libfzf.so") then
         return true
     end
     return false
@@ -64,7 +72,7 @@ return {
         "nvim-telescope/telescope-fzf-native.nvim",
         enabled = check_fzf_compile,
         ft = "dashboard",
-        build = vim.fn.has('win32') and 'mingw32-make' or 'make',
+        build = 0 ~= vim.fn.has('win32') and 'mingw32-make' or 'make',
         config = function()
             require('telescope').load_extension('fzf')
         end,
