@@ -71,7 +71,7 @@ return {
     {
         "nvim-telescope/telescope-fzf-native.nvim",
         enabled = check_fzf_compile,
-        ft = "dashboard",
+        ft = require('common').dashboard_ft,
         build = 0 ~= vim.fn.has('win32') and 'mingw32-make' or 'make',
         config = function()
             require('telescope').load_extension('fzf')

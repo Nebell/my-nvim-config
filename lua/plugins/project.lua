@@ -39,7 +39,7 @@ local cfg = {
 
 return {
     "ahmedkhalf/project.nvim",
-    event = "VeryLazy",
+    ft = require('common').dashboard_ft,
     module = "project_nvim",
     config = function()
         require("project_nvim").setup(cfg)

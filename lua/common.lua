@@ -13,4 +13,6 @@ M.ignore_ft = {
     "neo-tree",
 }
 
+M.dashboard_ft = "dashboard"
+
 return M
