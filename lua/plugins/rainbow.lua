@@ -29,11 +29,11 @@ return {
                 },
                 query = {
                     [''] = 'rainbow-delimiters',
-                    lua = 'rainbow-blocks',
+                    -- lua = 'rainbow-blocks',
                 },
                 priority = {
                     [''] = 110,
-                    lua = 210,
+                    -- lua = 210,
                 },
                 highlight = {
                     -- 'RainbowDelimiterRed',
