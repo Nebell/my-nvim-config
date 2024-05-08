@@ -5,9 +5,9 @@ end
 
 local function check_fzf_compile()
     -- check compiler
-    if vim.fn.has("win32") ~= 0 and (vim.fn.executable("mingw32-make") == 0 or vim.fn.executable("make") == 0) then
+    if vim.fn.has("win32") ~= 0 and (vim.fn.executable("mingw32-make") == 0 and vim.fn.executable("make") == 0) then
         return false
-    elseif vim.fn.executable("make") == 0 then
+    elseif vim.fn.has("win32") == 0 and vim.fn.executable("make") == 0 then
         return false
     end
 
