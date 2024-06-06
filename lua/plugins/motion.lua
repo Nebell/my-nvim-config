@@ -302,6 +302,10 @@ return {
         init = function ()
             vim.g.qs_highlight_on_keys = { 'f', 'F' }
         end,
+    },
+    {
+        "chaoren/vim-wordmotion",
+        event = "BufReadPost",
     }
 }
 
