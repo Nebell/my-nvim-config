@@ -127,7 +127,7 @@ local function setup()
             { name = 'buffer' },
         }),
         experimental = {
-            ghost_text = true -- this feature conflict with copilot.vim's preview.
+            ghost_text = false -- this feature conflict with copilot.vim's preview.
         },
     })
 
@@ -230,7 +230,6 @@ return {
         'Exafunction/codeium.vim',
         event = 'InsertEnter',
         cmd = "Codeium",
-        enabled = false,
         -- codeium server may not work on windows
         -- download language-server from https://github.com/Exafunction/codeium/releases/
         -- and replace the .exe before
