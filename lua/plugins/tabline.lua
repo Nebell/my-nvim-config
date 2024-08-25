@@ -45,7 +45,7 @@ end
 -------------- tabline -------------------
 return {
     'akinsho/bufferline.nvim',
-    -- version = vim.fn.has("nvim-0.10") and "" or "*", 
+    version = vim.fn.has("nvim-0.10") and "" or "*", 
     event = "BufReadPre",
     dependencies = {
         'nvim-tree/nvim-web-devicons',
