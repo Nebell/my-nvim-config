@@ -156,12 +156,6 @@ local function setup()
     add_snippets()
 end
 
-local codeium_toggler = require('utils').toggler(function()
-    vim.cmd("CodeiumEnable")
-end, function()
-    vim.cmd("CodeiumDisable")
-end)
-
 return {
     ----------- autopairs ---------------
     {
@@ -248,7 +242,7 @@ return {
         end,
 
         keys = {
-            { '<Leader>ai', function() codeium_toggler:toggle() end, { 'n', 'v' }, { expr = true } },
+            { '<Leader>ai', function() vim.cmd('CodeiumToggle') end, { 'n', 'v' }, { expr = true } },
         }
     },
 }
