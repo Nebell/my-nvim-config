@@ -39,6 +39,7 @@ local servers = {
     hls = { filetypes = { 'haskell', 'lhaskell', 'cabal' } },
     racket_langserver = {},
     zls = {},
+    clangd = {},
 }
 
 -- Use an on_attach function to only map the following keys
