@@ -1,7 +1,7 @@
 ---------- quickfix diagnostics -------------
 return {
     "folke/trouble.nvim",
-    -- event = "BufReadPost",
+    event = "BufReadPost",
     cmd = "TroubleToggle",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
